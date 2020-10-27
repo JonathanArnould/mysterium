@@ -1,17 +1,20 @@
-import React from 'react';
-import axios from 'axios';
+import React, { Component } from 'react';
+import '../../styles/css/Home.css';
+import titleLogo from '../../styles/images/titleLogo.png';
 
-class Home extends React.Component {
-  componentDidMount() {
-    axios
-
-      .get('https://mysterium-game.herokuapp.com/api/mediums')
-      .then((responses) => responses.data)
-      .then();
-  }
-
-  render() {
-    return <div>Home</div>;
-  }
+function Home() {
+  return (
+    <div>
+      <div className="titleHome">
+        <img className="titleStyle" src={titleLogo} alt="Game Title" />
+      </div>
+      <div className="inputHome">
+        <input className="inputStyle"></input>
+      </div>
+      <div className="buttonHome">
+        <button className="buttonStyle">Commencer</button>
+      </div>
+    </div>
+  );
 }
 export default Home;
