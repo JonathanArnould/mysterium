@@ -1,6 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function Help() {
+import '../../styles/css/Help.css';
+
+function Help(props) {
+  const { show } = props;
+  if (!show) {
+    return null;
+  }
   return (
     <div className="help-modal">
       <h1>Mysterium Rules</h1>
@@ -8,4 +15,8 @@ function Help() {
     </div>
   );
 }
+
+Help.propTypes = {
+  show: PropTypes.bool.isRequired,
+};
 export default Help;
