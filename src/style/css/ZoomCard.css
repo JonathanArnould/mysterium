@@ -1,0 +1,10 @@
+/*.zoomcard{
+    border-style: ridge;
+    border-width: 10px;
+    max-width: 12em;
+    min-height: 30em;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    
+}*/
