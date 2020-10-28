@@ -21,6 +21,7 @@ body {
 }
 .inputStyle {
   padding: 8px;
+  width: 200px;
 }
 .buttonHome {
   display: flex;
@@ -30,5 +31,8 @@ body {
 .buttonStyle {
   padding: 8px;
   width: 150px;
-  border-radius: 15px;
+  border-radius: 20px;
+  background-color: antiquewhite;
+  border: none;
+  font-size: 16px;
 }
