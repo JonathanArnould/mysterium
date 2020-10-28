@@ -18,10 +18,13 @@ const Navbar = () => {
   const [timeLeft, setTimeLeft] = useState(60);
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setTimeLeft(timeLeft - 1);
-    }, 1000);
-    return () => clearInterval(intervalId);
+    if (timeLeft) {
+      const intervalId = setInterval(() => {
+        setTimeLeft(timeLeft - 1);
+      }, 1000);
+      return () => clearInterval(intervalId);
+    }
+    return timeLeft;
   }, [timeLeft]);
 
   return (
