@@ -43,3 +43,15 @@
   color: #333;
   letter-spacing: 1px;
 }
+.buttonHomeStyleDisabled {
+  padding: 8px;
+  width: 150px;
+  border-radius: 20px;
+  border: none;
+  font-size: 16px;
+  margin: 0 5px;
+  cursor: pointer;
+  color: #333;
+  letter-spacing: 1px;
+  opacity: 90%;
+}

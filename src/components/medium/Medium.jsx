@@ -3,14 +3,15 @@ import axios from 'axios';
 import '../../styles/css/Medium.css';
 
 class Medium extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       mediumCards: null,
       currentCard: 0,
       theta: null,
     };
     this.next = this.next.bind(this);
+    this.hundleOnClickMedium = this.hundleOnClickMedium.bind(this);
   }
   getMedium() {
     axios
@@ -42,8 +43,14 @@ class Medium extends React.Component {
   componentDidMount() {
     this.getMedium();
   }
+  hundleOnClickMedium(event) {
+    event.preventDefault();
+    localStorage.setItem('medium', this.state.value);
+    this.props.history.push('/gameBoard');
+  }
 
   render() {
+    console.log(this.props);
     return (
       <div className="Medium">
         <div className="titleMedium">
@@ -62,6 +69,7 @@ class Medium extends React.Component {
                       : {}
                   }
                   src={card.image}
+                  onClick={this.hundleOnClickMedium}
                 />
               ))
             ) : (
