@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../../../../../style/css/ZoomCard.css';
+import '../../../../styles/css/component/ZoomCard.css';
 
 const ZoomCard = ({ className }) => {
   return (
