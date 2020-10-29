@@ -4,4 +4,5 @@
 }
 .stockcardleft {
   font-family: cursive;
+  transform: translateX(30px);
 }
