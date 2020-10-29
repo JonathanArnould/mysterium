@@ -6,29 +6,29 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.submitHome = this.submitHome.bind(this);
-    this.onChange = this.onChange.bind(this);
+    this.hundleSubmitHome = this.hundleSubmitHome.bind(this);
+    this.hundleOnChange = this.hundleOnChange.bind(this);
   }
-  onChange() {
+  hundleOnChange(event) {
     this.setState();
   }
-  submitHome() {}
+  hundleSubmitHome() {}
 
   render() {
     return (
-      <div>
+      <div className="Home">
         <div className="titleHome">
-          <img className="titleStyle" src={titleLogo} alt="Game Title" />
+          <img className="titleHomeStyle" src={titleLogo} alt="Game Title" />
         </div>
-        <form className="inputHome" onSubmit={this.submitHome}>
+        <form className="inputHome" onSubmit={this.hundleSubmitHome}>
           <input
             placeholder="Entrez votre pseudo..."
-            className="inputStyle"
-            onChange={this.onChange}
+            className="inputHomeStyle"
+            onChange={this.hundleOnChange}
           ></input>
         </form>
         <div className="buttonHome">
-          <button type="submit" className="buttonStyle">
+          <button type="submit" className="buttonHomeStyle">
             Commencer
           </button>
         </div>

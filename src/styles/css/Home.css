@@ -1,25 +1,28 @@
-body {
+.Home {
   background-attachment: fixed;
   background-image: url('../images/backgroundHome.jpg');
   background-size: cover;
-  margin: 0 auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
-.titleStyle {
-  width: 500px;
+.titleHomeStyle {
+  width: 600px;
   margin: 40px;
   margin-top: 120px;
 }
 .titleHome {
   display: flex;
   justify-content: center;
-  margin: 30px;
 }
 .inputHome {
   display: flex;
   justify-content: center;
   margin: 30px;
 }
-.inputStyle {
+.inputHomeStyle {
   padding: 8px;
   width: 200px;
 }
@@ -28,11 +31,15 @@ body {
   justify-content: center;
   margin: 30px;
 }
-.buttonStyle {
+.buttonHomeStyle {
   padding: 8px;
   width: 150px;
   border-radius: 20px;
   background-color: antiquewhite;
   border: none;
   font-size: 16px;
+  margin: 0 5px;
+  cursor: pointer;
+  color: #333;
+  letter-spacing: 1px;
 }

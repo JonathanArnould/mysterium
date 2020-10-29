@@ -1,0 +1,88 @@
+.Medium {
+  background-attachment: fixed;
+  background-image: url('../images/backgroundMedium.jpg');
+  background-size: cover;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.titleMedium {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+.titleMediumStyle {
+  color: antiquewhite;
+  font-size: 25px;
+}
+.buttonMediumStyle {
+  background-color: antiquewhite;
+  margin: 30px 5px;
+  cursor: pointer;
+  color: #333;
+  letter-spacing: 1px;
+  padding: 8px;
+  width: 150px;
+  border-radius: 20px;
+  border: none;
+  font-size: 16px;
+}
+.loadingText {
+  color: antiquewhite;
+  font-size: 30px;
+  font-weight: bolder;
+  display: flex;
+  justify-content: center;
+}
+/* ______________________________________________ */
+
+.carousel {
+  margin-top: 50px;
+  padding: 20px;
+  -webkit-perspective: 500px;
+  perspective: 500px;
+  overflow: hidden;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+}
+.carousel > * {
+  -webkit-box-flex: 0;
+  flex: 0 0 auto;
+}
+.carousel figure {
+  margin: 0;
+  width: 400px;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+  -webkit-transform-origin: 50% 50% -482.8427124746px;
+  transform-origin: 50% 50% -482.8427124746px;
+}
+.carousel figure img {
+  width: 100%;
+  box-sizing: border-box;
+}
+.carousel figure img:not(:first-of-type) {
+  position: absolute;
+  left: 0;
+  top: 0;
+  -webkit-transform-origin: 50% 50% -482.8427124746px;
+  transform-origin: 50% 50% -482.8427124746px;
+}
+.carousel nav {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  margin: 20px 0 0;
+}
