@@ -1,0 +1,8 @@
+.GameBody {
+  display: flex;
+  justify-content: space-around;
+}
+.stockcardleft {
+  font-family: cursive;
+  transform: translateX(30px);
+}
