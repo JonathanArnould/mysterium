@@ -1,5 +1,6 @@
 import React from 'react';
 import GameTable from './gametable/GameTable';
+import '../../styles/css/component/GameBoard.css';
 
 const GameBoard = () => {
   return (

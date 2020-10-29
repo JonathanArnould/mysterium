@@ -1,7 +1,7 @@
 import React from 'react';
 import StockCard from './StockCard';
 import ZoomCard from './ZoomCard';
-import '../../../../../style/css/GameBody.css';
+import '../../../../styles/css/component/GameBody.css';
 
 const GameBody = () => {
   return (

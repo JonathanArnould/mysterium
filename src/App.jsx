@@ -3,7 +3,7 @@ import './App.css';
 import { Switch, Route } from 'react-router-dom';
 import Home from './components/home/Home';
 import Help from './components/help/Help';
-import Gameboard from './components/game/gameboard/Gameboard';
+import Gameboard from './components/gameboard/GameBoard';
 import Win from './components/end/Win';
 
 class App extends React.Component {
@@ -39,6 +39,7 @@ class App extends React.Component {
           Help Me!
         </button>
         <Help show={show} />
+        <Gameboard />
 
         <Win />
       </div>
