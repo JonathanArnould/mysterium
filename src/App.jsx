@@ -1,9 +1,8 @@
 import React from 'react';
-import './App.css';
 import { Switch, Route } from 'react-router-dom';
 import Home from './components/home/Home';
-import Gameboard from './components/game/gameboard/Gameboard';
 import Help from './components/help/Help';
+import Gameboard from './components/game/gameboard/Gameboard';
 
 const App = () => {
   return (
