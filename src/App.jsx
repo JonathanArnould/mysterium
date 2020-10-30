@@ -1,10 +1,10 @@
 import React from 'react';
-import './App.css';
 import { Switch, Route } from 'react-router-dom';
 import Home from './components/home/Home';
 import Help from './components/help/Help';
 import Gameboard from './components/gameboard/GameBoard';
 import Win from './components/end/Win';
+import Medium from './components/medium/Medium';
 
 class App extends React.Component {
   constructor() {
@@ -27,6 +27,7 @@ class App extends React.Component {
       <div className="App">
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route path="/medium" component={Medium} />
           <Route path="/board" component={Gameboard} />
         </Switch>
         <button
@@ -40,7 +41,6 @@ class App extends React.Component {
         </button>
         <Help show={show} />
         <Gameboard />
-
         <Win />
       </div>
     );
