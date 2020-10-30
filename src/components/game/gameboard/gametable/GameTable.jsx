@@ -3,8 +3,8 @@ import React from 'react';
 import Card from './Card';
 
 class GameTable extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       visions: [],
     };

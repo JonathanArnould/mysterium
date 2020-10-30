@@ -2,7 +2,11 @@ import React from 'react';
 import GameTable from './gametable/GameTable';
 
 const Gameboard = () => {
-  return <GameTable />;
+  return (
+    <div>
+      <GameTable />
+    </div>
+  );
 };
 
 export default Gameboard;
