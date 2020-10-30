@@ -1,0 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica+SC&display=swap');
+
+@import './theme/_variable.css';
+@import './theme/_reset.css';
+@import './theme/_animation.css';
