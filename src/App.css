@@ -1,38 +1,58 @@
+* {
+  
+  color: black;
+}
+
 .App {
   text-align: center;
+  font-family: 'IM Fell DW Pica SC', serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.help-btn {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation-duration: 1s;
+  animation-name: gleam;
+  animation-iteration-count: infinite;
+  transition: 0.5s;
   color: white;
+  background-image: linear-gradient(
+    to right top,
+    #342000,
+    #372304,
+    #392608,
+    #3c290c,
+    #3f2c0f,
+    #443014,
+    #483519,
+    #4d391e,
+    #544026,
+    #5b472e,
+    #624e37,
+    #69553f
+  );
 }
 
-.App-link {
-  color: #61dafb;
+.help-btn:hover {
+  transition: 0.5s;
+  box-shadow: 0px 0px 50px #2fbde6;
 }
 
-@keyframes App-logo-spin {
+:focus {
+  outline-style: none;
+}
+
+@keyframes gleam {
   from {
-    transform: rotate(0deg);
+    box-shadow: 0px 0px 20px #17748b;
   }
+
+  25% {
+    box-shadow: 0px 0px 50px #2fbde6;
+  }
+
   to {
-    transform: rotate(360deg);
+    box-shadow: 0px 0px 20px #17748b;
   }
 }

@@ -1,0 +1,421 @@
+.Win {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: url('../../images/bg-end.jpg') no-repeat center;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.Win .mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.Win .cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Win .cards > div {
+  background: rgb(228, 155, 155);
+  height: 300px;
+  width: 300px;
+  margin: 0 20px;
+  z-index: 100;
+}
+
+.Win .cards > .ghost {
+  animation: bounceInLeft 2s both;
+}
+
+.Win .cards > .murderer {
+  animation: bounceInRight 2s both;
+}
+
+/* =============================
+    END TEXT
+============================= */
+.Win .win-text {
+  margin-top: 4rem;
+  font-size: 5rem;
+  font-family: 'IM Fell DW Pica SC', serif;
+}
+
+.win-text .text {
+  position: absolute;
+  color: #fff;
+  margin-top: 1.5rem;
+  line-height: 8rem;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+}
+
+.win-text .text:nth-child(1) {
+  clip-path: polygon(0% 0%, 0% 50%, 10% 50%);
+  transform-origin: -17% -48%;
+  animation: fly1 5000ms 0ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(2) {
+  clip-path: polygon(0% 0%, 10% 0%, 10% 50%);
+  transform-origin: -38% -31%;
+  animation: fly2 5000ms 40ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(3) {
+  clip-path: polygon(10% 0%, 10% 50%, 20% 50%);
+  transform-origin: -3% -3%;
+  animation: fly3 5000ms 80ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(4) {
+  clip-path: polygon(10% 0%, 20% 0%, 20% 50%);
+  transform-origin: -27% -27%;
+  animation: fly4 5000ms 120ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(5) {
+  clip-path: polygon(20% 0%, 20% 50%, 30% 50%);
+  transform-origin: -6% -15%;
+  animation: fly5 5000ms 160ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(6) {
+  clip-path: polygon(20% 0%, 30% 0%, 30% 50%);
+  transform-origin: 1% -30%;
+  animation: fly6 5000ms 200ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(7) {
+  clip-path: polygon(30% 0%, 30% 50%, 40% 50%);
+  transform-origin: 9% -21%;
+  animation: fly7 5000ms 240ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(8) {
+  clip-path: polygon(30% 0%, 40% 0%, 40% 50%);
+  transform-origin: -10% -4%;
+  animation: fly8 5000ms 280ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(9) {
+  clip-path: polygon(40% 0%, 40% 50%, 50% 50%);
+  transform-origin: 5% 7%;
+  animation: fly9 5000ms 320ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(10) {
+  clip-path: polygon(40% 0%, 50% 0%, 50% 50%);
+  transform-origin: 31% -30%;
+  animation: fly10 5000ms 360ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(11) {
+  clip-path: polygon(50% 0%, 50% 50%, 60% 50%);
+  transform-origin: 62% -21%;
+  animation: fly11 5000ms 400ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(12) {
+  clip-path: polygon(50% 0%, 60% 0%, 60% 50%);
+  transform-origin: 81% 18%;
+  animation: fly12 5000ms 440ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(13) {
+  clip-path: polygon(60% 0%, 60% 50%, 70% 50%);
+  transform-origin: 95% 30%;
+  animation: fly13 5000ms 480ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(14) {
+  clip-path: polygon(60% 0%, 70% 0%, 70% 50%);
+  transform-origin: 16% 8%;
+  animation: fly14 5000ms 520ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(15) {
+  clip-path: polygon(70% 0%, 70% 50%, 80% 50%);
+  transform-origin: 55% -23%;
+  animation: fly15 5000ms 560ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(16) {
+  clip-path: polygon(70% 0%, 80% 0%, 80% 50%);
+  transform-origin: 96% 24%;
+  animation: fly16 5000ms 600ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(17) {
+  clip-path: polygon(80% 0%, 80% 50%, 90% 50%);
+  transform-origin: 57% -34%;
+  animation: fly17 5000ms 640ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(18) {
+  clip-path: polygon(80% 0%, 90% 0%, 90% 50%);
+  transform-origin: 40% -31%;
+  animation: fly18 5000ms 680ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(19) {
+  clip-path: polygon(90% 0%, 90% 50%, 100% 50%);
+  transform-origin: 71% -31%;
+  animation: fly19 5000ms 720ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(20) {
+  clip-path: polygon(90% 0%, 100% 0%, 100% 50%);
+  transform-origin: 45% -11%;
+  animation: fly20 5000ms 760ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(21) {
+  clip-path: polygon(0% 50%, 0% 100%, 10% 100%);
+  transform-origin: -20% 38%;
+  animation: fly21 5000ms 800ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(22) {
+  clip-path: polygon(0% 50%, 10% 50%, 10% 100%);
+  transform-origin: -5% 22%;
+  animation: fly22 5000ms 840ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(23) {
+  clip-path: polygon(10% 50%, 10% 100%, 20% 100%);
+  transform-origin: 9% 31%;
+  animation: fly23 5000ms 880ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(24) {
+  clip-path: polygon(10% 50%, 20% 50%, 20% 100%);
+  transform-origin: 28% 69%;
+  animation: fly24 5000ms 920ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(25) {
+  clip-path: polygon(20% 50%, 20% 100%, 30% 100%);
+  transform-origin: 17% 60%;
+  animation: fly25 5000ms 960ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(26) {
+  clip-path: polygon(20% 50%, 30% 50%, 30% 100%);
+  transform-origin: 17% 84%;
+  animation: fly26 5000ms 1000ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(27) {
+  clip-path: polygon(30% 50%, 30% 100%, 40% 100%);
+  transform-origin: 46% 61%;
+  animation: fly27 5000ms 1040ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(28) {
+  clip-path: polygon(30% 50%, 40% 50%, 40% 100%);
+  transform-origin: 34% 2%;
+  animation: fly28 5000ms 1080ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(29) {
+  clip-path: polygon(40% 50%, 40% 100%, 50% 100%);
+  transform-origin: 42% 92%;
+  animation: fly29 5000ms 1120ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(30) {
+  clip-path: polygon(40% 50%, 50% 50%, 50% 100%);
+  transform-origin: 61% 13%;
+  animation: fly30 5000ms 1160ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(31) {
+  clip-path: polygon(50% 50%, 50% 100%, 60% 100%);
+  transform-origin: 36% 70%;
+  animation: fly31 5000ms 1200ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(32) {
+  clip-path: polygon(50% 50%, 60% 50%, 60% 100%);
+  transform-origin: 50% 19%;
+  animation: fly32 5000ms 1240ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(33) {
+  clip-path: polygon(60% 50%, 60% 100%, 70% 100%);
+  transform-origin: 79% 19%;
+  animation: fly33 5000ms 1280ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(34) {
+  clip-path: polygon(60% 50%, 70% 50%, 70% 100%);
+  transform-origin: 70% 87%;
+  animation: fly34 5000ms 1320ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(35) {
+  clip-path: polygon(70% 50%, 70% 100%, 80% 100%);
+  transform-origin: 119% 29%;
+  animation: fly35 5000ms 1360ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(36) {
+  clip-path: polygon(70% 50%, 80% 50%, 80% 100%);
+  transform-origin: 115% 61%;
+  animation: fly36 5000ms 1400ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(37) {
+  clip-path: polygon(80% 50%, 80% 100%, 90% 100%);
+  transform-origin: 87% 43%;
+  animation: fly37 5000ms 1440ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(38) {
+  clip-path: polygon(80% 50%, 90% 50%, 90% 100%);
+  transform-origin: 58% 26%;
+  animation: fly38 5000ms 1480ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(39) {
+  clip-path: polygon(90% 50%, 90% 100%, 100% 100%);
+  transform-origin: 70% 35%;
+  animation: fly39 5000ms 1520ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(40) {
+  clip-path: polygon(90% 50%, 100% 50%, 100% 100%);
+  transform-origin: 81% 6%;
+  animation: fly40 5000ms 1560ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(41) {
+  clip-path: polygon(0% 100%, 0% 150%, 10% 150%);
+  transform-origin: -4% 131%;
+  animation: fly41 5000ms 1600ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(42) {
+  clip-path: polygon(0% 100%, 10% 100%, 10% 150%);
+  transform-origin: 1% 113%;
+  animation: fly42 5000ms 1640ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(43) {
+  clip-path: polygon(10% 100%, 10% 150%, 20% 150%);
+  transform-origin: 42% 73%;
+  animation: fly43 5000ms 1680ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(44) {
+  clip-path: polygon(10% 100%, 20% 100%, 20% 150%);
+  transform-origin: 30% 125%;
+  animation: fly44 5000ms 1720ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(45) {
+  clip-path: polygon(20% 100%, 20% 150%, 30% 150%);
+  transform-origin: 16% 146%;
+  animation: fly45 5000ms 1760ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(46) {
+  clip-path: polygon(20% 100%, 30% 100%, 30% 150%);
+  transform-origin: -16% 108%;
+  animation: fly46 5000ms 1800ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(47) {
+  clip-path: polygon(30% 100%, 30% 150%, 40% 150%);
+  transform-origin: 25% 51%;
+  animation: fly47 5000ms 1840ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(48) {
+  clip-path: polygon(30% 100%, 40% 100%, 40% 150%);
+  transform-origin: 40% 86%;
+  animation: fly48 5000ms 1880ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(49) {
+  clip-path: polygon(40% 100%, 40% 150%, 50% 150%);
+  transform-origin: 84% 98%;
+  animation: fly49 5000ms 1920ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(50) {
+  clip-path: polygon(40% 100%, 50% 100%, 50% 150%);
+  transform-origin: 65% 60%;
+  animation: fly50 5000ms 1960ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(51) {
+  clip-path: polygon(50% 100%, 50% 150%, 60% 150%);
+  transform-origin: 49% 76%;
+  animation: fly51 5000ms 2000ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(52) {
+  clip-path: polygon(50% 100%, 60% 100%, 60% 150%);
+  transform-origin: 55% 92%;
+  animation: fly52 5000ms 2040ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(53) {
+  clip-path: polygon(60% 100%, 60% 150%, 70% 150%);
+  transform-origin: 22% 131%;
+  animation: fly53 5000ms 2080ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(54) {
+  clip-path: polygon(60% 100%, 70% 100%, 70% 150%);
+  transform-origin: 11% 138%;
+  animation: fly54 5000ms 2120ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(55) {
+  clip-path: polygon(70% 100%, 70% 150%, 80% 150%);
+  transform-origin: 57% 106%;
+  animation: fly55 5000ms 2160ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(56) {
+  clip-path: polygon(70% 100%, 80% 100%, 80% 150%);
+  transform-origin: 107% 120%;
+  animation: fly56 5000ms 2200ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(57) {
+  clip-path: polygon(80% 100%, 80% 150%, 90% 150%);
+  transform-origin: 79% 146%;
+  animation: fly57 5000ms 2240ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(58) {
+  clip-path: polygon(80% 100%, 90% 100%, 90% 150%);
+  transform-origin: 36% 60%;
+  animation: fly58 5000ms 2280ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(59) {
+  clip-path: polygon(90% 100%, 90% 150%, 100% 150%);
+  transform-origin: 69% 138%;
+  animation: fly59 5000ms 2320ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
+
+.win-text .text:nth-child(60) {
+  clip-path: polygon(90% 100%, 100% 100%, 100% 150%);
+  transform-origin: 55% 150%;
+  animation: fly60 5000ms 2360ms cubic-bezier(0.36, 0.1, 0.16, 1) both alternate;
+}
