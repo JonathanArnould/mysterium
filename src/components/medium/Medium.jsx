@@ -26,7 +26,6 @@ class Medium extends React.Component {
   }
 
   next() {
-    console.log(this.state);
     this.setState({ currentCard: this.state.currentCard + 1 });
   }
 
@@ -43,14 +42,12 @@ class Medium extends React.Component {
   componentDidMount() {
     this.getMedium();
   }
-  hundleOnClickMedium(event) {
-    event.preventDefault();
-    localStorage.setItem('medium', this.state.value);
-    this.props.history.push('/gameBoard');
+  hundleOnClickMedium(medium) {
+    localStorage.setItem('medium', JSON.stringify(medium));
+    this.props.history.push('/board');
   }
 
   render() {
-    console.log(this.props);
     return (
       <div className="Medium">
         <div className="titleMedium">
@@ -69,7 +66,7 @@ class Medium extends React.Component {
                       : {}
                   }
                   src={card.image}
-                  onClick={this.hundleOnClickMedium}
+                  onClick={() => this.hundleOnClickMedium(card)}
                 />
               ))
             ) : (
