@@ -27,12 +27,21 @@
   margin: 0 auto;
 }
 
+.avatar-container {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 nav .avatar {
   border-radius: 50%;
   border: 2px solid #a19149;
   vertical-align: top;
   max-width: 35px;
   transform: scale(2);
+  margin: 24px;
 }
 
 nav a {
