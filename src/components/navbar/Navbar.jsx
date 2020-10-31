@@ -27,7 +27,7 @@ const Navbar = () => {
   }, [timeLeft]);
 
   return (
-    <nav>
+    <nav className="Navbar">
       <div className="nav-left">
         {player ? (
           <img
