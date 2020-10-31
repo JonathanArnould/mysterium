@@ -1,0 +1,23 @@
+.StockCard {
+  border: 1px solid white;
+  min-width: 15em;
+  min-height: 30em;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.Card1 {
+  border: 1px solid white;
+}
+
+.Card2 {
+  border: 1px solid white;
+}
+
+.Card3 {
+  border: 1px solid white;
+}
+
+.Card4 {
+  border: 1px solid white;
+}
