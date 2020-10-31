@@ -14,6 +14,13 @@ const Navbar = () => {
     setPlayer(JSON.parse(avatar));
   }, []);
 
+  const [pseudo, setPseudo] = useState('');
+
+  useEffect(() => {
+    const username = localStorage.getItem('username');
+    setPseudo(username);
+  }, []);
+
   const [timeLeft, setTimeLeft] = useState(60);
 
   useEffect(() => {
@@ -29,15 +36,19 @@ const Navbar = () => {
   return (
     <nav className="Navbar">
       <div className="nav-left">
-        {player ? (
-          <img
-            className="nav-item avatar"
-            src={player.image}
-            alt={player.name}
-          />
-        ) : (
-          <p>Loading</p>
-        )}
+        <div className="avatar-container">
+          {player ? (
+            <img
+              className="nav-item avatar"
+              src={player.image}
+              alt={player.name}
+            />
+          ) : (
+            <p>Loading</p>
+          )}
+          <p>{pseudo}</p>
+        </div>
+
         <span className="nav-item counter">
           {!timeLeft ? 'Temps écoulé!' : `: ${timeLeft}`}
         </span>
