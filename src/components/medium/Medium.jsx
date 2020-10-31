@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import '../../styles/css/Medium.css';
 
 class Medium extends React.Component {
@@ -13,6 +14,20 @@ class Medium extends React.Component {
     this.next = this.next.bind(this);
     this.hundleOnClickMedium = this.hundleOnClickMedium.bind(this);
   }
+
+  componentDidMount() {
+    this.getMedium();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { currentCard, theta } = this.state;
+    const carousel = document.querySelector('.carousel');
+    if (currentCard !== prevState.currentCard) {
+      const figure = carousel.querySelector('figure');
+      figure.style.transform = `rotateY(${currentCard * -theta}rad)`;
+    }
+  }
+
   getMedium() {
     axios
       .get('https://mysterium-game.herokuapp.com/api/mediums')
@@ -26,31 +41,18 @@ class Medium extends React.Component {
   }
 
   next() {
-    console.log(this.state);
-    this.setState({ currentCard: this.state.currentCard + 1 });
+    const { currentCard } = this.state;
+    this.setState({ currentCard: currentCard + 1 });
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log(prevState, this.state);
-    if (this.state.currentCard !== prevState.currentCard) {
-      const carousel = document.querySelector('.carousel'),
-        figure = carousel.querySelector('figure');
-      figure.style.transform = `rotateY(${
-        this.state.currentCard * -this.state.theta
-      }rad)`;
-    }
-  }
-  componentDidMount() {
-    this.getMedium();
-  }
-  hundleOnClickMedium(event) {
-    event.preventDefault();
-    localStorage.setItem('medium', this.state.value);
-    this.props.history.push('/gameBoard');
+  hundleOnClickMedium(medium) {
+    const { history } = this.props;
+    localStorage.setItem('medium', JSON.stringify(medium));
+    history.push('/board');
   }
 
   render() {
-    console.log(this.props);
+    const { mediumCards, theta } = this.state;
     return (
       <div className="Medium">
         <div className="titleMedium">
@@ -58,18 +60,20 @@ class Medium extends React.Component {
         </div>
         <div className="carousel" id="carousel">
           <figure>
-            {this.state.mediumCards ? (
-              this.state.mediumCards.map((card, index) => (
+            {mediumCards ? (
+              mediumCards.map((card, index) => (
                 <img
+                  key={card.id}
                   style={
                     index !== 0
                       ? {
-                          transform: `rotateY(${index * this.state.theta}rad)`,
+                          transform: `rotateY(${index * theta}rad)`,
                         }
                       : {}
                   }
                   src={card.image}
-                  onClick={this.hundleOnClickMedium}
+                  alt={card.name}
+                  onClick={() => this.hundleOnClickMedium(card)}
                 />
               ))
             ) : (
@@ -77,7 +81,11 @@ class Medium extends React.Component {
             )}
           </figure>
           <nav>
-            <button className="buttonMediumStyle" onClick={this.next}>
+            <button
+              type="button"
+              className="buttonMediumStyle"
+              onClick={this.next}
+            >
               Switch
             </button>
           </nav>
@@ -86,5 +94,13 @@ class Medium extends React.Component {
     );
   }
 }
+
+Medium.defaultProps = {
+  history: [],
+};
+
+Medium.propTypes = {
+  history: PropTypes.string,
+};
 
 export default Medium;
