@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../../styles/css/Navbar.css';
 import crystalBall from '../../styles/images/image-678070.png';
-import clock from '../../styles/images/clock.resized.png';
+import clock from '../../styles/images/horloge.png';
 import home from '../../styles/images/home.png';
+import clockhand from '../../styles/images/aiguille-next.png';
 
 const Navbar = () => {
   const [player, setPlayer] = useState('');
@@ -44,7 +45,11 @@ const Navbar = () => {
         </span>
       </div>
 
-      <img className="clock" src={clock} alt="clock" />
+      <div className="clock-container">
+        <img className="clock" src={clock} alt="clock" />
+        <img className="clockhand" src={clockhand} alt="clockhand" />
+      </div>
+
       <div className="nav-right">
         <Link to="/">
           <img className="nav-item icon-home" src={home} alt="home" />

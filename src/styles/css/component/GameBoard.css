@@ -1,4 +1,4 @@
 .GameBoard {
-  background: url('../../images/Test.jpg') center;
+  background: url('../../images/Test.jpg') center no-repeat;
   color: white;
 }

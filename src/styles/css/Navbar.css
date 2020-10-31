@@ -13,6 +13,7 @@ nav {
   width: 100%;
   align-items: center;
   justify-content: center;
+  padding-top: 10px;
 }
 
 .nav-left {
@@ -43,14 +44,25 @@ nav a {
   font-size: 1.4em;
 }
 
-.clock {
+.clock-container {
   position: absolute;
   top: -30%;
   left: 50%;
-  transform: translate(-50%, 35%);
-  width: 100%;
   max-width: 100px;
-  z-index: 2;
+}
+
+.clock {
+  transform: translate(-50%, 35%);
+  max-width: 100%;
+}
+
+.clockhand {
+  position: absolute;
+  top: 72%;
+  left: -8%;
+  width: 35px;
+  height: auto;
+  z-index: 3;
 }
 
 .icon-home {
@@ -94,8 +106,12 @@ nav a {
 }
 
 @media screen and (min-width: 768px) {
-  .clock {
+  .clock-container {
     max-width: 150px;
     top: -40%;
+  }
+
+  .clockhand {
+    width: 50px;
   }
 }
