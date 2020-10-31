@@ -1,7 +1,6 @@
 nav {
   display: flex;
   justify-content: space-around;
-  align-items: baseline;
   height: 80px;
   font-weight: bold;
   position: relative;
@@ -21,7 +20,7 @@ nav {
 }
 
 .nav-right {
-  margin-left: 80px;
+  margin-left: 100px;
 }
 
 .nav-item {
@@ -30,8 +29,10 @@ nav {
 
 nav .avatar {
   border-radius: 50%;
-  border: 3px solid #a19149;
-  vertical-align: middle;
+  border: 2px solid #a19149;
+  vertical-align: top;
+  max-width: 35px;
+  transform: scale(2);
 }
 
 nav a {

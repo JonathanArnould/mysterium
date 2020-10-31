@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import '../../styles/css/Navbar.css';
 import crystalBall from '../../styles/images/image-678070.png';
 import clock from '../../styles/images/horloge.png';
@@ -11,9 +10,8 @@ const Navbar = () => {
   const [player, setPlayer] = useState('');
 
   useEffect(() => {
-    axios
-      .get('https://randomuser.me/api?nat=fr')
-      .then((responses) => setPlayer(responses.data.results[0]));
+    const avatar = localStorage.getItem('medium');
+    setPlayer(JSON.parse(avatar));
   }, []);
 
   const [timeLeft, setTimeLeft] = useState(60);
@@ -34,8 +32,8 @@ const Navbar = () => {
         {player ? (
           <img
             className="nav-item avatar"
-            src={player.picture.thumbnail}
-            alt={player.name.first}
+            src={player.image}
+            alt={player.name}
           />
         ) : (
           <p>Loading</p>
