@@ -29,6 +29,7 @@ class App extends React.Component {
           <Route exact path="/" component={Home} />
           <Route path="/medium" component={Medium} />
           <Route path="/board" component={Gameboard} />
+          <Route path="/win" component={Win} />
         </Switch>
         <button
           type="submit"
@@ -40,8 +41,6 @@ class App extends React.Component {
           Help Me!
         </button>
         <Help show={show} />
-        <Gameboard />
-        <Win />
       </div>
     );
   }

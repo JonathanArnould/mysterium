@@ -1,11 +1,12 @@
 * {
-  
   color: black;
 }
 
 .App {
   text-align: center;
   font-family: 'IM Fell DW Pica SC', serif;
+  padding: 0;
+  margin: 0 auto;
 }
 
 .help-btn {
