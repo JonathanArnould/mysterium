@@ -1,12 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import '../../styles/css/component/Lose.css';
 
-const Lose = () => {
+const Lose = ({ medium }) => {
   return (
     <div className="Lose">
       <div className="mask" />
       <div className="cards">
-        <div className="ghost" />
+        <div className="medium">
+          <img src={medium.image} alt="" />
+        </div>
       </div>
 
       <div className="replay">
@@ -21,6 +24,10 @@ const Lose = () => {
       </div>
     </div>
   );
+};
+
+Lose.propTypes = {
+  medium: PropTypes.isRequired,
 };
 
 export default Lose;

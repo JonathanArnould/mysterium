@@ -14,7 +14,7 @@
   overflow: hidden;
 }
 
-.End .mask {
+.Lose .mask {
   position: absolute;
   top: 0;
   left: 0;
@@ -36,11 +36,15 @@
 
 .Lose .cards > div {
   background: rgb(228, 155, 155);
-  height: 300px;
-  width: 300px;
+  width: 400px;
   margin: 0 20px;
   animation: bounceInLeft 2s both;
   z-index: 100;
+}
+
+.Lose .cards > div > img {
+  width: 100%;
+  height: 300px;
 }
 
 /* =============================
