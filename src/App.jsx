@@ -5,6 +5,7 @@ import Help from './components/help/Help';
 import Gameboard from './components/gameboard/GameBoard';
 import Win from './components/end/Win';
 import Medium from './components/medium/Medium';
+import Lose from './components/end/Lose';
 
 class App extends React.Component {
   constructor() {
@@ -30,6 +31,7 @@ class App extends React.Component {
           <Route path="/medium" component={Medium} />
           <Route path="/board" component={Gameboard} />
           <Route path="/win" component={Win} />
+          <Route path="/lose" component={Lose} />
         </Switch>
         <button
           type="submit"

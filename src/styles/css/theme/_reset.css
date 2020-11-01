@@ -2,6 +2,10 @@
         RESET CSS
 ======================== */
 
+* {
+  box-sizing: border-box;
+}
+
 html,
 body,
 div,
