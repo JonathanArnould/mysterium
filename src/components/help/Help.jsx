@@ -1,21 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import '../../styles/css/Help.css';
+import Rule from './Rule';
 
-function Help(props) {
-  const { show } = props;
-  if (!show) {
-    return null;
-  }
+const Help = () => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
   return (
-    <div className="help-modal">
-      <h1>Mysterium Rules</h1>
-      <div>Help Me!</div>
+    <div>
+      <div className={modalIsOpen ? 'flouter' : 'deflouter'}>Help</div>
+      <button type="button" onClick={() => setModalIsOpen(!modalIsOpen)}>
+        Open Modal
+      </button>
+      {modalIsOpen && <Rule />}
     </div>
   );
-}
-
-Help.propTypes = {
-  show: PropTypes.bool.isRequired,
 };
 export default Help;
