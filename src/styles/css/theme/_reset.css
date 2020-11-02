@@ -2,6 +2,11 @@
         RESET CSS
 ======================== */
 
+* {
+  box-sizing: border-box;
+  outline: none;
+}
+
 html,
 body,
 div,
