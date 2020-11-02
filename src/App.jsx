@@ -6,7 +6,6 @@ import Win from './components/end/Win';
 import Medium from './components/medium/Medium';
 import Lose from './components/end/Lose';
 import End from './components/end/End';
-import Help from './components/help/Help';
 
 const App = () => {
   return (
@@ -18,7 +17,6 @@ const App = () => {
         <Route path="/win" component={Win} />
         <Route path="/lose" component={Lose} />
         <Route path="/end" component={End} />
-        <Route path="/help" component={Help} />
       </Switch>
     </div>
   );
