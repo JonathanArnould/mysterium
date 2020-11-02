@@ -11,24 +11,24 @@
   text-shadow: 3px 3px black;
 }
 
-h2 {
+.title-modal {
   font-size: 3em;
   margin: 0;
 }
 
-h3 {
+.subtitle-modal {
   font-size: 2em;
   margin: 0;
   padding: 0.5em;
   text-align: center;
 }
 
-img {
+.image-modal {
   margin: 0 auto;
   width: 60%;
 }
 
-p {
+.paragraphe-modal {
   font-size: 1.5em;
   margin: 0;
   padding: 1em 3em;
