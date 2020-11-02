@@ -40,7 +40,7 @@
   animation: bounceInLeft 2s both;
 }
 
-.Win .cards > .murderer {
+.Win .cards > .killer {
   animation: bounceInRight 2s both;
 }
 

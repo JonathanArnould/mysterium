@@ -3,15 +3,18 @@ import axios from 'axios';
 import Win from './Win';
 import Lose from './Lose';
 
+/**
+ * Component that manages the data to be recovered to send them to the Win or Lose component
+ */
 const End = () => {
   // ======================================================
   //  To be modified when the main component is finished
   // ======================================================
   localStorage.setItem('playerWin', true);
-  localStorage.setItem('murderId', 2);
+  localStorage.setItem('killerId', 2);
   localStorage.setItem('mediumId', 3);
 
-  const murderId = Number(localStorage.getItem('murderId'));
+  const killerId = Number(localStorage.getItem('killerId'));
   const mediumId = Number(localStorage.getItem('mediumId'));
   const playerWin = localStorage.getItem('playerWin');
 
@@ -19,7 +22,7 @@ const End = () => {
   // ======================================================
 
   const [datasForGameboard, setDataForGameboard] = useState({
-    murder: '',
+    killer: '',
     medium: '',
   });
 
@@ -49,11 +52,11 @@ const End = () => {
     ])
       .then((responses) => responses)
       .then((responses) => {
-        const murder = extractDatas(responses, 0, murderId);
+        const killer = extractDatas(responses, 0, killerId);
         const medium = extractDatas(responses, 1, mediumId);
         setDataForGameboard({
           ...datasForGameboard,
-          murder: murder[0],
+          killer: killer[0],
           medium: medium[0],
         });
       });
@@ -63,11 +66,11 @@ const End = () => {
     <div>
       {playerWin === 'true' ? (
         <Win
-          murder={datasForGameboard.murder}
-          medium={datasForGameboard.medium}
+          killer={datasForGameboard.killer.image}
+          medium={datasForGameboard.medium.image}
         />
       ) : (
-        <Lose medium={datasForGameboard.medium} />
+        <Lose medium={datasForGameboard.medium.image} />
       )}
     </div>
   );
