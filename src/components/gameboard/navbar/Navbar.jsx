@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import '../../../styles/css/Navbar.css';
+
 import crystalBall from '../../../styles/images/image-678070.png';
 import clock from '../../../styles/images/horloge.png';
 import home from '../../../styles/images/home.png';
 import clockhand from '../../../styles/images/aiguille-next.png';
 
-const Navbar = () => {
+const Navbar = ({ setModalIsOpen }) => {
   const [player, setPlayer] = useState('');
-
   useEffect(() => {
     const avatar = localStorage.getItem('medium');
     setPlayer(JSON.parse(avatar));
@@ -63,15 +65,20 @@ const Navbar = () => {
         <Link to="/">
           <img className="nav-item icon-home" src={home} alt="home" />
         </Link>
-        <Link to="/help">
-          <div className="nav-item crystalBall-container">
-            <img id="crystalBall" src={crystalBall} alt="crystal ball" />
-            <span className="interroMark">?</span>
-          </div>
-        </Link>
+        <button
+          type="button"
+          className="nav-item crystalBall-container"
+          onClick={setModalIsOpen}
+        >
+          <img id="crystalBall" src={crystalBall} alt="crystal ball" />
+          <span className="interroMark">?</span>
+        </button>
       </div>
     </nav>
   );
 };
 
+Navbar.propTypes = {
+  setModalIsOpen: PropTypes.func.isRequired,
+};
 export default Navbar;
