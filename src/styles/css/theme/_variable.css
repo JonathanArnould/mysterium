@@ -1,3 +1,11 @@
 /* ========================
         VARIABLES
 ======================== */
+:root {
+  --color-dark: #000;
+  --color-light: #fff;
+
+  --font-family-primary: 'IM Fell DW Pica SC', serif;
+
+  --animation-duration-win-text: 3s;
+}

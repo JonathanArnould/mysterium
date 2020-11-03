@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Card from './Card';
 import '../../styles/css/component/Lose.css';
 
+/**
+ * Component that displays when the player has lost the game
+ */
 const Lose = ({ medium }) => {
   return (
     <div className="Lose">
       <div className="mask" />
       <div className="cards">
-        <div className="medium">
-          <img src={medium.image} alt="" />
-        </div>
+        <Card className="medium" image={medium} />
       </div>
 
       <div className="replay">
@@ -26,8 +28,12 @@ const Lose = ({ medium }) => {
   );
 };
 
+Lose.defaultProps = {
+  medium: null,
+};
+
 Lose.propTypes = {
-  medium: PropTypes.isRequired,
+  medium: PropTypes.string,
 };
 
 export default Lose;
