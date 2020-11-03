@@ -94,6 +94,9 @@ nav a {
   height: 70px;
   font-size: 1.6rem;
   transition: all 0.3s ease-in;
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
 }
 
 #crystalBall {

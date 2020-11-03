@@ -4,7 +4,6 @@ import Home from './components/home/Home';
 import Gameboard from './components/gameboard/GameBoard';
 import Medium from './components/medium/Medium';
 import End from './components/end/End';
-import Help from './components/help/Help';
 
 const App = () => {
   return (
@@ -14,7 +13,6 @@ const App = () => {
         <Route path="/medium" component={Medium} />
         <Route path="/board" component={Gameboard} />
         <Route path="/end" component={End} />
-        <Route path="/help" component={Help} />
       </Switch>
     </div>
   );
