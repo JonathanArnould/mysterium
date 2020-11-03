@@ -1,6 +1,6 @@
 .StockCard {
   border: 1px solid white;
-  min-width: 15em;
+  min-width: 23em;
   min-height: 30em;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -20,4 +20,70 @@
 
 .Card4 {
   border: 1px solid white;
+}
+
+/*panneaux panneaux panneaux panneaux panneaux panneaux panneaux panneaux panneaux*/
+.stockcardleft .open,
+.stockcardright .open {
+  padding: 10px 25px;
+  background: #555;
+  color: #fff;
+  text-decoration: none;
+  position: absolute;
+  border-radius: 0 0 100px 100px;
+}
+
+.stockcardleft {
+  transform: translateX(-388px);
+  transition: transform 1s;
+}
+.stockcardleft.show {
+  transform: translateX(0);
+}
+
+.stockcardleft .open {
+  right: -88px;
+  top: 150px;
+  transform: rotate(270deg);
+}
+
+.stockcardleft .close {
+  padding: 10px 25px;
+  background: #555;
+  color: #fff;
+  text-decoration: none;
+  position: absolute;
+  left: 0;
+  top: 150px;
+  transform: rotate(270deg);
+  border-radius: 0 0 100px 100px;
+  display: none;
+}
+
+/*panneau droit*/ /*panneau droit*/ /*panneau droit*/ /*panneau droit*/
+
+.stockcardright {
+  transform: translateX(388px);
+  transition: transform 1s;
+}
+.stockcardright.show {
+  transform: translateX(0);
+}
+
+.stockcardright .open {
+  right: 362px;
+  top: 150px;
+  transform: rotate(-270deg);
+}
+.stockcardright .close {
+  padding: 10px 25px;
+  background: #555;
+  color: #fff;
+  text-decoration: none;
+  position: absolute;
+  left: 0;
+  top: 150px;
+  transform: rotate(-270deg);
+  border-radius: 0 0 100px 100px;
+  display: none;
 }
