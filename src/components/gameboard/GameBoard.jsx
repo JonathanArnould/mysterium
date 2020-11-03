@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import GameTable from './gametable/GameTable';
 import Navbar from '../navbar/Navbar';
 import '../../styles/css/component/GameBoard.css';
-import Rule from '../help/Rule';
 
 const GameBoard = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -12,8 +11,7 @@ const GameBoard = () => {
   return (
     <div className="GameBoard">
       <Navbar setModalIsOpen={handleSetModalIsOpen} modalIsOpen={modalIsOpen} />
-      <GameTable />
-      {modalIsOpen && <Rule />}
+      <GameTable modalIsOpen={modalIsOpen} />
     </div>
   );
 };
