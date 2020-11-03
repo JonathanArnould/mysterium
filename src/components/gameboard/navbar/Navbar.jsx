@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import '../../styles/css/Navbar.css';
+import '../../../styles/css/Navbar.css';
 
-import crystalBall from '../../styles/images/image-678070.png';
-import clock from '../../styles/images/horloge.png';
-import home from '../../styles/images/home.png';
-import clockhand from '../../styles/images/aiguille-next.png';
+import crystalBall from '../../../styles/images/image-678070.png';
+import clock from '../../../styles/images/horloge.png';
+import home from '../../../styles/images/home.png';
+import clockhand from '../../../styles/images/aiguille-next.png';
 
 const Navbar = ({ setModalIsOpen }) => {
   const [player, setPlayer] = useState('');

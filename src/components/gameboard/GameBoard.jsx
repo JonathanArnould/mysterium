@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import GameTable from './gametable/GameTable';
-import Navbar from '../navbar/Navbar';
+import Navbar from './navbar/Navbar';
 import '../../styles/css/component/GameBoard.css';
 
 const GameBoard = () => {
