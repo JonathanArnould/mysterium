@@ -36,31 +36,41 @@
   width: 200px;
 }
 .buttonHome {
+  position: relative;
   display: flex;
   justify-content: center;
   margin: 30px;
 }
-.buttonHomeStyle {
-  padding: 8px;
-  width: 150px;
-  border-radius: 20px;
-  background-color: antiquewhite;
-  border: none;
-  font-size: 16px;
-  margin: 0 5px;
-  cursor: pointer;
-  color: #333;
-  letter-spacing: 1px;
+.buttonImage {
+  position: absolute;
+  height: 100px;
+  z-index: 1;
 }
-.buttonHomeStyleDisabled {
-  padding: 8px;
+.buttonBackground {
   width: 150px;
-  border-radius: 20px;
+  height: 50px;
+  background: antiquewhite;
+  position: absolute;
+  top: 27px;
+  border-radius: 10px;
+}
+.buttonBackgroundDisabled {
+  opacity: 40%;
+}
+.buttonHomeStyle {
+  position: absolute;
+  top: 27px;
+  padding: 8px;
+  width: 144px;
+  height: 50px;
+  border-radius: 12px;
   border: none;
   font-size: 16px;
+  font-weight: bold;
   margin: 0 5px;
   cursor: pointer;
   color: #333;
+  background-color: transparent;
   letter-spacing: 1px;
-  opacity: 90%;
+  z-index: 2;
 }
