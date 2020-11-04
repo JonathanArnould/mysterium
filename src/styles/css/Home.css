@@ -11,11 +11,20 @@
 .titleHomeStyle {
   width: 600px;
   margin: 40px;
-  margin-top: 120px;
+  margin-top: 160px;
 }
 .titleHome {
   display: flex;
   justify-content: center;
+  animation: bounce 2.3s ease infinite alternate;
+}
+@keyframes bounce {
+  from {
+    transform: translateY(8);
+  }
+  to {
+    transform: translateY(-12px);
+  }
 }
 .inputHome {
   display: flex;
