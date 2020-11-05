@@ -1,89 +1,88 @@
+/* ========================
+      STOCKCARD
+======================== */
 .StockCard {
-  border: 1px solid white;
-  min-width: 23em;
+  border: 1px solid var(--color-light);
+  min-width: 15rem;
   min-height: 30em;
+  display: grid;
+  grid-template-columns: 1fr;
+  font-family: cursive;
+}
+
+.Card {
+  border: 1px solid var(--color-light);
+}
+
+.StockCard {
+  transition: transform 1s;
+}
+
+.StockCard-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
 
-.Card1 {
-  border: 1px solid white;
+.StockCard-container button.hide {
+  display: none;
 }
 
-.Card2 {
-  border: 1px solid white;
-}
-
-.Card3 {
-  border: 1px solid white;
-}
-
-.Card4 {
-  border: 1px solid white;
-}
-
-/*panneaux panneaux panneaux panneaux panneaux panneaux panneaux panneaux panneaux*/
-.stockcardleft .open,
-.stockcardright .open {
+.StockCard-container button {
   padding: 10px 25px;
-  background: #555;
-  color: #fff;
+  background: var(--color-gray-8);
+  color: var(--color-gray-1);
   text-decoration: none;
   position: absolute;
   border-radius: 0 0 100px 100px;
+  border: none;
+  cursor: pointer;
+  top: 150px;
 }
 
-.stockcardleft {
-  transform: translateX(-388px);
-  transition: transform 1s;
+.StockCard-container button:hover {
+  color: var(--color-gray-8);
+  background: var(--color-gray-1);
 }
+
+/* ========================
+      STOCKCARD LEFT
+======================== */
+
+.stockcardleft {
+  transform: translateX(-100%);
+}
+
 .stockcardleft.show {
-  transform: translateX(0);
+  transform: translateX(2px);
 }
 
 .stockcardleft .open {
-  right: -88px;
-  top: 150px;
+  right: -65px;
   transform: rotate(270deg);
 }
 
 .stockcardleft .close {
-  padding: 10px 25px;
-  background: #555;
-  color: #fff;
-  text-decoration: none;
-  position: absolute;
-  left: 0;
-  top: 150px;
+  left: 210px;
   transform: rotate(270deg);
-  border-radius: 0 0 100px 100px;
-  display: none;
 }
 
-/*panneau droit*/ /*panneau droit*/ /*panneau droit*/ /*panneau droit*/
+/* ========================
+      STOCKCARD RIGHT
+======================== */
 
 .stockcardright {
-  transform: translateX(388px);
-  transition: transform 1s;
+  transform: translateX(100%);
 }
+
 .stockcardright.show {
   transform: translateX(0);
 }
 
 .stockcardright .open {
-  right: 362px;
-  top: 150px;
+  right: 212px;
   transform: rotate(-270deg);
 }
 .stockcardright .close {
-  padding: 10px 25px;
-  background: #555;
-  color: #fff;
-  text-decoration: none;
-  position: absolute;
-  left: 0;
-  top: 150px;
+  left: -66px;
   transform: rotate(-270deg);
-  border-radius: 0 0 100px 100px;
-  display: none;
 }

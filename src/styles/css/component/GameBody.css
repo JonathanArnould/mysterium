@@ -1,8 +1,5 @@
 .GameBody {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-bottom: 10px;
-}
-.stockcardleft {
-  font-family: cursive;
 }
