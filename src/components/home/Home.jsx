@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import '../../styles/css/Home.css';
 import titleLogo from '../../styles/images/titleLogo.png';
+import cadreImage from '../../styles/images/cadreBouton.png';
 
 class Home extends Component {
   constructor(props) {
@@ -37,12 +38,16 @@ class Home extends Component {
           ></input>
         </div>
         <div className="buttonHome">
+          <img className="buttonImage" src={cadreImage} alt="Cadre" />
+          <div
+            className={`buttonBackground ${
+              !value && 'buttonBackgroundDisabled'
+            }`}
+          />
           <button
             type="submit"
             onClick={this.hundleOnClickHome}
-            className={`${
-              value ? 'buttonHomeStyle' : 'buttonHomeStyleDisabled'
-            }`}
+            className="buttonHomeStyle"
             disabled={!value}
           >
             Commencer

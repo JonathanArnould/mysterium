@@ -9,25 +9,50 @@
   bottom: 0;
 }
 .titleMedium {
-  margin-top: 30px;
+  margin-top: 50px;
   display: flex;
   justify-content: center;
 }
 .titleMediumStyle {
   color: antiquewhite;
-  font-size: 25px;
+  font-size: 30px;
+  font-weight: bold;
+}
+.buttonMedium {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+}
+.buttonImage {
+  position: absolute;
+  height: 100px;
+  z-index: 1;
+}
+.buttonBackground {
+  width: 150px;
+  height: 50px;
+  background: antiquewhite;
+  position: absolute;
+  top: 27px;
+  border-radius: 10px;
 }
 .buttonMediumStyle {
-  background-color: antiquewhite;
-  margin: 30px 5px;
-  cursor: pointer;
-  color: #333;
-  letter-spacing: 1px;
+  position: absolute;
+  top: 27px;
   padding: 8px;
-  width: 150px;
-  border-radius: 20px;
+  width: 144px;
+  height: 50px;
+  border-radius: 12px;
   border: none;
   font-size: 16px;
+  font-weight: bold;
+  margin: 0 5px;
+  cursor: pointer;
+  color: #333;
+  background-color: transparent;
+  letter-spacing: 1px;
+  z-index: 2;
 }
 .loadingText {
   color: antiquewhite;
