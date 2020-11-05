@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import '../../styles/css/Medium.css';
+import cadreImage from '../../styles/images/cadreBouton.png';
 
 class Medium extends React.Component {
   constructor(props) {
@@ -80,15 +81,17 @@ class Medium extends React.Component {
               <p className="loadingText">Loading...</p>
             )}
           </figure>
-          <nav>
-            <button
-              type="button"
-              className="buttonMediumStyle"
-              onClick={this.next}
-            >
-              Switch
-            </button>
-          </nav>
+        </div>
+        <div className="buttonMedium">
+          <img className="buttonImage" src={cadreImage} alt="Cadre" />
+          <div className="buttonBackground" />
+          <button
+            type="button"
+            className="buttonMediumStyle"
+            onClick={this.next}
+          >
+            Switch
+          </button>
         </div>
       </div>
     );
