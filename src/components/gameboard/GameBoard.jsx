@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import GameTable from './gametable/GameTable';
 import Navbar from './navbar/Navbar';
+import GameTable from './gametable/GameTable';
+import GameFooter from './gamefooter/GameFooter';
 import '../../styles/css/component/GameBoard.css';
 
 const GameBoard = () => {
@@ -12,6 +13,7 @@ const GameBoard = () => {
     <div className="GameBoard">
       <Navbar setModalIsOpen={handleSetModalIsOpen} modalIsOpen={modalIsOpen} />
       <GameTable modalIsOpen={modalIsOpen} />
+      <GameFooter />
     </div>
   );
 };

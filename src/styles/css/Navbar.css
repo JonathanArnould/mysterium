@@ -4,6 +4,7 @@
   height: 80px;
   font-weight: bold;
   position: relative;
+  font-family: var(--font-family-primary);
 }
 
 .nav-left,
@@ -42,6 +43,10 @@ nav .avatar {
   max-width: 35px;
   transform: scale(2);
   margin: 24px;
+}
+
+.nav-pseudo {
+  font-size: 1.8rem;
 }
 
 nav a {
@@ -112,10 +117,14 @@ nav a {
   top: 43%;
   transform: translate(-50%, -50%);
   color: white;
+  font-weight: bold;
+  font-size: 2rem;
+  font-family: cursive;
+  transition: all 0.3s ease-in;
 }
 
-.crystalBall-container:hover {
-  font-size: 2.5rem;
+.crystalBall-container:hover .interroMark {
+  font-size: 3rem;
 }
 
 @media screen and (min-width: 768px) {
