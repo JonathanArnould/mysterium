@@ -1,6 +1,7 @@
 .zoomcard {
   border: 1px solid white;
-  max-width: 23em;
+  min-width: 15rem;
+  max-width: 15em;
   width: 100%;
   height: auto;
   max-height: 30em;
