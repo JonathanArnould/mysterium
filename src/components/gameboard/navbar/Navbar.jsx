@@ -48,7 +48,7 @@ const Navbar = ({ setModalIsOpen }) => {
           ) : (
             <p>Loading</p>
           )}
-          <p>{pseudo}</p>
+          <p className="nav-pseudo">{pseudo}</p>
         </div>
 
         <span className="nav-item counter">

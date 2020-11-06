@@ -5,6 +5,9 @@
   --color-dark: #000;
   --color-light: #fff;
 
+  --color-gray-1: rgb(240, 231, 231);
+  --color-gray-8: #555;
+
   --font-family-primary: 'IM Fell DW Pica SC', serif;
 
   --animation-duration-win-text: 3s;

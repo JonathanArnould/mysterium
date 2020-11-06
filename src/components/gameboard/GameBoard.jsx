@@ -1,57 +1,19 @@
-import React, { useState, useEffect, useContext, createContext } from 'react';
-import axios from 'axios';
-import GameTable from './gametable/GameTable';
+import React, { useState } from 'react';
 import Navbar from './navbar/Navbar';
+import GameTable from './gametable/GameTable';
+import GameFooter from './gamefooter/GameFooter';
 import '../../styles/css/component/GameBoard.css';
 
-export let charWeaponPlace = [];
-
-export const CharWeaponPlaceContext = createContext(charWeaponPlace);
-
 const GameBoard = () => {
-  useEffect(() => {
-    axios('https://mysterium-game.herokuapp.com/api/characters')
-      .then((response) => response.data)
-      .then((data) => {
-        const random = Math.floor(Math.random() * data.length);
-        charWeaponPlace = Object.assign([...charWeaponPlace], data[random]);
-        //localStorage.setItem('murder', JSON.stringify(data[random]));
-        // setCharWeaponPlace({ ...charWeaponPlace, murder: data[random] });
-      });
-    axios('https://mysterium-game.herokuapp.com/api/weapons')
-      .then((response) => response.data)
-      .then((data) => {
-        const random = Math.floor(Math.random() * data.length);
-        charWeaponPlace = Object.assign([...charWeaponPlace], data[random]);
-        // localStorage.setItem('weapon', JSON.stringify(data[random]));
-        // setCharWeaponPlace({ ...charWeaponPlace, weapon: data[random] });
-      });
-    axios('https://mysterium-game.herokuapp.com/api/places')
-      .then((response) => response.data)
-      .then((data) => {
-        const random = Math.floor(Math.random() * data.length);
-        charWeaponPlace = Object.assign([...charWeaponPlace], data[random]);
-        // localStorage.setItem('place', JSON.stringify(data[random]));
-        // setCharWeaponPlace({ ...charWeaponPlace, place: data[random] });
-      });
-  }, []);
-
-  console.log(charWeaponPlace);
-
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const handleSetModalIsOpen = () => {
     setModalIsOpen(!modalIsOpen);
   };
-
   return (
     <div className="GameBoard">
-      <CharWeaponPlaceContext.Provider value={charWeaponPlace}>
-        <Navbar
-          setModalIsOpen={handleSetModalIsOpen}
-          modalIsOpen={modalIsOpen}
-        />
-        <GameTable modalIsOpen={modalIsOpen} />
-      </CharWeaponPlaceContext.Provider>
+      <Navbar setModalIsOpen={handleSetModalIsOpen} modalIsOpen={modalIsOpen} />
+      <GameTable modalIsOpen={modalIsOpen} />
+      <GameFooter />
     </div>
   );
 };
