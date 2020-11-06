@@ -78,7 +78,7 @@ class Medium extends React.Component {
                 />
               ))
             ) : (
-              <p className="loadingText">Loading...</p>
+              <p className="loadingText">Loading ...</p>
             )}
           </figure>
         </div>
@@ -90,7 +90,7 @@ class Medium extends React.Component {
             className="buttonMediumStyle"
             onClick={this.next}
           >
-            Switch
+            Suivant
           </button>
         </div>
       </div>

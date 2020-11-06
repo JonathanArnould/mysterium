@@ -31,7 +31,7 @@ class Home extends Component {
         </div>
         <div className="inputHome">
           <input
-            placeHolder="Entrez votre pseudo..."
+            placeHolder="Entrez votre pseudo ..."
             className="inputHomeStyle"
             onChange={this.hundleOnChange}
             value={value}
