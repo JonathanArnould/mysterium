@@ -52,7 +52,7 @@
 /*panneau droit*/ /*panneau droit*/ /*panneau droit*/ /*panneau droit*/
 
 .stockcardright {
-  background-color: rgba(67, 54, 70, 0.8);
+  background-color: rgba(67, 54, 70);
   border: 3px solid #a19149;
   transform: translateX(100%);
   transition: transform 1s;
