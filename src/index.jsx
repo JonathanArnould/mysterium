@@ -13,3 +13,8 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+window.onunload = () => {
+  // Clear the local storage
+  window.MyStorage.clear();
+};
