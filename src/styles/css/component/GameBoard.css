@@ -1,5 +1,6 @@
 .GameBoard {
-  background: url('../../images/Test.jpg') top center no-repeat;
-  color: var(--color-light);
-  overflow-x: hidden;
+  background: url('../../images/Test.jpg') center no-repeat;
+  background-size: cover;
+  color: white;
+
 }

@@ -1,0 +1,19 @@
+.GameFooter {
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 200px;
+}
+
+.card {
+  width: 33%;
+  min-width: 150px;
+  max-width: 150px;
+  height: 180px;
+  margin: 0 30px;
+  border: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

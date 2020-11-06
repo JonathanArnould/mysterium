@@ -1,5 +1,5 @@
 .GameBody {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
+  justify-content: space-around;
+  margin-bottom: 30px;
 }

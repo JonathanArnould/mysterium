@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../../../../styles/css/component/StockCard.css';
 
-const StockCard = ({ className, id }) => {
+const StockCard = ({ className, id, content }) => {
   const handleClick = (e) => {
     e.target.parentNode.parentNode.classList.toggle('show');
 
@@ -24,17 +24,14 @@ const StockCard = ({ className, id }) => {
         <button type="button" className="close hide" onClick={handleClick}>
           CLOSE
         </button>
-
-        <div className="Card Card1">CARD 1</div>
-        <div className="Card Card2">CARD 2</div>
-        <div className="Card Card3">CARD 3</div>
-        <div className="Card Card4">CARD 4</div>
+        {content}
       </div>
     </div>
   );
 };
 StockCard.propTypes = {
   className: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
 };
 
