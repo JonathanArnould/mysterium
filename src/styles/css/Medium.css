@@ -15,8 +15,10 @@
 }
 .titleMediumStyle {
   color: antiquewhite;
-  font-size: 30px;
+  font-size: 38px;
   font-weight: bold;
+  font-family: var(--font-family-primary);
+  letter-spacing: 1px;
 }
 .buttonMedium {
   position: relative;
@@ -45,8 +47,9 @@
   height: 50px;
   border-radius: 12px;
   border: none;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
+  font-family: var(--font-family-primary);
   margin: 0 5px;
   cursor: pointer;
   color: #333;
