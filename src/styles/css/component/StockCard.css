@@ -16,8 +16,13 @@
   position: absolute;
 }
 
-.StockCard {
-  transition: transform 1s;
+.StockCard.hide {
+  transition: transform 1s 1s;
+}
+
+.immediately.hide,
+.immediatly.show {
+  transition-delay: 0s;
 }
 
 .StockCard-container {
@@ -33,6 +38,7 @@
   padding: 10px 25px;
   background: var(--color-secondary);
   color: var(--color-gray-1);
+  font-family: var(--font-family-primary);
   text-decoration: none;
   position: absolute;
   border-radius: 0 0 100px 100px;
@@ -46,6 +52,10 @@
   background: var(--color-gray-1);
 }
 
+/* ========================
+      CARDS
+======================== */
+
 .stockcard-card {
   display: flex;
   justify-content: center;
@@ -53,8 +63,16 @@
 }
 
 .stockcard-image {
-  width: 100px;
-  height: 80px;
+  width: 90%;
+  height: auto;
+}
+
+.stockcard-card.hide {
+  animation: bounceOut 1s both;
+}
+
+.stockcard-card.show {
+  animation: bounceIn 2s 0.5s both;
 }
 
 /* ========================

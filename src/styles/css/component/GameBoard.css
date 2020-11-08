@@ -3,4 +3,7 @@
   background-size: cover;
   color: var(--color-light);
   overflow-x: hidden;
+  position: relative;
+  width: 100%;
+  height: 100vh;
 }

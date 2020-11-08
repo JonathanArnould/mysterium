@@ -4,7 +4,22 @@ import '../../../../styles/css/component/StockCard.css';
 
 const StockCard = ({ className, id, content }) => {
   const handleClick = (e) => {
-    e.target.parentNode.parentNode.classList.toggle('show');
+    const cards = e.target.parentNode.children;
+    const stockcard = e.target.parentNode.parentNode;
+
+    Object.values(cards).forEach((card) => {
+      if (card.classList.contains('stockcard-card')) {
+        card.classList.toggle('hide');
+        card.classList.toggle('show');
+      }
+    });
+
+    stockcard.classList.toggle('hide');
+    stockcard.classList.toggle('show');
+
+    if (content === undefined) {
+      stockcard.classList.add('immediately');
+    }
 
     if (e.target.classList.contains('open')) {
       e.target.nextSibling.classList.toggle('hide');
@@ -29,6 +44,7 @@ const StockCard = ({ className, id, content }) => {
     </div>
   );
 };
+
 StockCard.propTypes = {
   className: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
