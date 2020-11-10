@@ -14,17 +14,17 @@ const GameBody = () => {
   }, []);
 
   const createStockcard = cards.map((card) => (
-    <div key={card.id} className="stockcard-card">
+    <div key={card.id} className="stockcard-card hide">
       <img className="stockcard-image" src={card.image} alt={card.name} />
     </div>
   ));
 
   return (
     <div className="GameBody">
-      <StockCard className="stockcardleft" content={createStockcard} />
+      <StockCard className="stockcardleft hide" content={createStockcard} />
       <ZoomCard className="zoomcardleft" />
       <ZoomCard className="zoomcardright" />
-      <StockCard className="stockcardright" />
+      <StockCard className="stockcardright hide" />
     </div>
   );
 };

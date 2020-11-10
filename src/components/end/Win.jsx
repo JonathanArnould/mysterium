@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from './Card';
 import '../../styles/css/component/Win.css';
+import loader from '../../styles/images/loader.gif';
 
 /**
  * Component that displays when the player has won the game
@@ -25,8 +26,17 @@ const Win = ({ killer, medium }) => {
     <div className="Win">
       <div className="mask" />
       <div className="cards">
-        <Card className="medium" image={medium} />
-        <Card className="killer" image={killer} />
+        {medium && killer ? (
+          <div className="cards-container">
+            <Card className="medium" image={medium} />
+            <Card className="killer" image={killer} />
+          </div>
+        ) : (
+          <div>
+            <img src={loader} className="loading" alt="loading..." />
+            <p className="loading-text">Loading...</p>
+          </div>
+        )}
       </div>
 
       <div className="win-text">{generateDivText(40)}</div>

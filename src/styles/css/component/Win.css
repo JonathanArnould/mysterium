@@ -8,6 +8,7 @@
   background: url('../../images/bg-end.jpg') no-repeat center;
   background-size: cover;
   overflow: hidden;
+  text-align: center;
 }
 
 .Win .mask {
@@ -20,31 +21,47 @@
   opacity: 0.65;
 }
 
+.Win .loading {
+  position: relative;
+  z-index: 10;
+  margin: 0 auto;
+}
+
+.Win .loading-text {
+  position: relative;
+  font-size: 3rem;
+  color: var(--color-light);
+  text-align: center;
+  margin-top: 0.75rem;
+  font-family: var(--font-family-primary);
+}
+
 /* =============================
     CARDS
 ============================= */
 
-.Win .cards {
+.Win .cards,
+.Win .cards .cards-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.Win .cards > div {
+.Win .cards > .cards-container > div {
   width: 400px;
   margin: 0 20px;
   z-index: 100;
 }
 
-.Win .cards > .medium {
+.Win .cards .medium {
   animation: bounceInLeft 2s both;
 }
 
-.Win .cards > .killer {
+.Win .cards .killer {
   animation: bounceInRight 2s both;
 }
 
-.Win .cards > div > img {
+.Win .cards .cards-container > div > img {
   width: 100%;
   height: 300px;
 }
