@@ -50,37 +50,45 @@ const GameBody = ({ visionCards, choicesCards }) => {
     }
   };
 
+  /**
+   * Show the 'zoomcard' which has the class show
+   * Hide or show the stockcard
+   *
+   * @param {Event} e
+   */
   const handleClick = (e) => {
-    Object.values(e.target.parentNode.parentNode.children).forEach((link) => {
+    const currentElement = e.target;
+    const stockcardContainer = currentElement.parentNode.parentNode;
+    const cards = stockcardContainer.children;
+    const stockcard = stockcardContainer.parentNode;
+
+    Object.values(cards).forEach((link) => {
       if (link.classList.contains('stockcard-card')) {
         link.children[0].classList.remove('active');
       }
     });
-    e.target.classList.add('active');
+    currentElement.classList.add('active');
 
-    const idNumber = e.target.parentNode.id.slice(-1);
+    const idNumber = currentElement.parentNode.id.slice(-1);
     const imageToDisplay = document.getElementById(
       `zoomcard-choice-${idNumber}`
     );
 
-    Object.values(
-      e.target.parentNode.parentNode.parentNode.parentNode.children
-    ).forEach((link) => {
-      if (link.classList.contains('zoomcardright')) {
-        Object.values(link.children).forEach((item) => {
-          item.classList.remove('show');
+    Object.values(stockcardContainer.parentNode.parentNode.children).forEach(
+      (link) => {
+        if (link.classList.contains('zoomcardright')) {
+          Object.values(link.children).forEach((item) => {
+            item.classList.remove('show');
 
-          if (item.id.slice(-1) === idNumber) {
-            item.classList.add('show');
-          }
-        });
+            if (item.id.slice(-1) === idNumber) {
+              item.classList.add('show');
+            }
+          });
+        }
       }
-    });
+    );
     imageToDisplay.classList.add('show');
 
-    const cards = e.target.parentNode.parentNode.children;
-    const stockcard = e.target.parentNode.parentNode.parentNode;
-    const currentElement = e.target;
     hideOrShowCard(cards);
     hideOrShowStockcard(stockcard);
     changeButtonLabel(currentElement);
