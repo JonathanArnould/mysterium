@@ -65,8 +65,14 @@ const GameBody = () => {
     </div>
   ));
 
-  const createZoomCardLeft = <img src={zoomCards.image} alt={zoomCards.name} />;
-
+   const createZoomCardLeft = (
+    <img
+      className="zoomcard-image"
+      src={zoomCards.image}
+      alt={zoomCards.name}
+    />
+  );
+  
   return (
     <div className="GameBody">
       <StockCard className="stockcardleft hide" content={createStockcard} />
