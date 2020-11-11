@@ -45,10 +45,16 @@ const StockCard = ({ className, id, content }) => {
   );
 };
 
+StockCard.defaultProps = {
+  className: null,
+  id: null,
+  content: null,
+};
+
 StockCard.propTypes = {
-  className: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  content: PropTypes.string,
+  id: PropTypes.string,
 };
 
 export default StockCard;
