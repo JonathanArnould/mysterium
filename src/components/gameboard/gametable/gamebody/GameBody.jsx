@@ -49,7 +49,7 @@ const GameBody = () => {
   }, []);
 
   const createStockcard = leftCards.items.map((card) => (
-    <div key={card.id} className="stockcard-card">
+    <div key={card.id} className="stockcard-card hide">
       <img
         onClick={() => {
           setZoomCards(card);
@@ -69,10 +69,10 @@ const GameBody = () => {
 
   return (
     <div className="GameBody">
-      <StockCard className="stockcardleft" content={createStockcard} />
+      <StockCard className="stockcardleft hide" content={createStockcard} />
       <ZoomCard className="zoomcardleft" content={createZoomCardLeft} />
       <ZoomCard className="zoomcardright" />
-      <StockCard className="stockcardright" />
+      <StockCard className="stockcardright hide" />
     </div>
   );
 };

@@ -3,21 +3,42 @@
 ======================== */
 .StockCard {
   width: 100%;
-  min-width: 300px;
+  width: 300px;
   max-width: 300px;
   height: 350px;
 
   display: grid;
   grid-template-columns: 1fr;
   font-family: cursive;
+  border: 3px solid var(--color-secondary);
+  background-color: var(--color-primary);
+  transition: transform 1s;
+  position: absolute;
 }
 
-/*panneaux panneaux panneaux panneaux panneaux panneaux panneaux panneaux panneaux*/
-.stockcardleft .open,
-.stockcardright .open {
+.StockCard.hide {
+  transition: transform 1s 1s;
+}
+
+.immediately.hide,
+.immediatly.show {
+  transition-delay: 0s;
+}
+
+.StockCard-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.StockCard-container button.hide {
+  display: none;
+}
+
+.StockCard-container button {
   padding: 10px 25px;
-  background: var(--color-gray-8);
+  background: var(--color-secondary);
   color: var(--color-gray-1);
+  font-family: var(--font-family-primary);
   text-decoration: none;
   position: absolute;
   border-radius: 0 0 100px 100px;
@@ -27,20 +48,38 @@
 }
 
 .StockCard-container button:hover {
-  color: var(--color-gray-8);
+  color: var(--color-primary);
   background: var(--color-gray-1);
+}
+
+/* ========================
+      CARDS
+======================== */
+
+.stockcard-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stockcard-image {
+  width: 90%;
+  height: auto;
+}
+
+.stockcard-card.hide {
+  animation: bounceOut 1s both;
+}
+
+.stockcard-card.show {
+  animation: bounceIn 2s 0.5s both;
 }
 
 /* ========================
       STOCKCARD LEFT
 ======================== */
-
 .stockcardleft {
-  border: 3px solid #a19149;
-  background-color: rgb(67, 54, 70);
   transform: translateX(-100%);
-  transition: transform 1s;
-  position: absolute;
   left: 0;
 }
 
@@ -49,26 +88,20 @@
 }
 
 .stockcardleft .open {
-  right: -23%;
-  top: 150px;
+  right: -65px;
   transform: rotate(270deg);
 }
 
 .stockcardleft .close {
-  left: 210px;
+  left: 267px;
   transform: rotate(270deg);
 }
 
 /* ========================
       STOCKCARD RIGHT
 ======================== */
-
 .stockcardright {
-  background-color: rgba(67, 54, 70);
-  border: 3px solid #a19149;
   transform: translateX(100%);
-  transition: transform 1s;
-  position: absolute;
   right: 0;
 }
 
@@ -77,26 +110,10 @@
 }
 
 .stockcardright .open {
-  left: -23%;
-  top: 150px;
+  right: 270px;
   transform: rotate(-270deg);
 }
 .stockcardright .close {
-  left: -66px;
+  left: -68px;
   transform: rotate(-270deg);
-}
-
-.stockcard-card {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-.stockcard-image {
-  width: 100px;
-  height: 80px;
-}
-
-.stockcard-image.active {
-  border: 1px solid #a19149;
 }
