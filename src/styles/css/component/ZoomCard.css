@@ -11,7 +11,7 @@
   align-items: center;
 }
 
-.zoomcard img {
+.zoomcard-image {
   height: 320px;
   width: 360px;
 }
