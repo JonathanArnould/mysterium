@@ -1,4 +1,5 @@
 .zoomcard {
+  position: relative;
   border: 1px solid var(--color-light);
   width: 100%;
   min-width: 300px;
@@ -8,4 +9,37 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+}
+
+.zoomcardright {
+  max-width: 400px;
+}
+
+.zoomcardright .zoomcard-card {
+  display: none;
+}
+
+.zoomcardright .zoomcard-card.show {
+  display: block;
+}
+
+.zoomcardleft .zoomcard-card {
+  width: 100%;
+  height: auto;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.zoomcard .zoomcard-card img {
+  display: block;
+  width: auto;
+  height: 340px;
+}
+
+.zoomcardright .zoomcard-card img {
+  display: block;
+  width: 100%;
+  height: auto;
 }

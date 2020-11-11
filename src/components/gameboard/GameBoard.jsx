@@ -7,7 +7,14 @@ import '../../styles/css/component/GameBoard.css';
 
 const GameBoard = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  // const [visonCard, setVisionCard] = useState([]);
+  const [visionCards, setVisionCards] = useState({
+    place: [],
+    weapon: [],
+  });
+  const [choicesCards, setChoicesCards] = useState({
+    place: [],
+    weapon: [],
+  });
 
   /*
    * Générer un nombre aléatoire
@@ -26,37 +33,31 @@ const GameBoard = () => {
   // afficher la carte sélectionnée
 
   useEffect(() => {
-    // axios
-    //   .get('https://mysterium-game.herokuapp.com/api/characters')
-    //   .then((response) => response.data)
-    //   .then((data) => {
-    //     const randomMurderId = getRandomIntInclusive(1, data.length);
-    //     const murder = data.filter((character) => console.log(character));
-
-    //     console.log(murder);
-    //   });
     axios
       .get('https://mysterium-game.herokuapp.com/api/visions/places')
       .then((responses) => responses.data)
       .then((data) => {
-        // const medium = JSON.parse(localStorage.getItem('medium'));
-        const randomPlaceId = getRandomIntInclusive(1, data.length);
-        const randomPlace = data.filter((place) => place.id === randomPlaceId);
-
-        const samePlacesIds = data.filter(
-          (place) => place.id_place === randomPlace[0].id_place
+        const placeWin = JSON.parse(localStorage.getItem('PlaceWin'));
+        const places = data.filter(
+          (place) => place.id_place === placeWin[0].id
         );
 
-        const min = samePlacesIds[0].id; // valeur minimale de l'id vision
-        const max = samePlacesIds[samePlacesIds.length - 1].id; // valeur maximale de l'id vision
-
-        // /* eslint-disable */
-        const randomPlaceToDisplay = getRandomIntInclusive(min, max);
-        const placeToDisplay = samePlacesIds.filter(
-          (vision) => vision.id === randomPlaceToDisplay
+        const min = places[0].id; // valeur minimale de l'id vision
+        const max = places[places.length - 1].id; // valeur maximale de l'id vision
+        /* eslint-disable */
+        const randomVisionPlaceId = getRandomIntInclusive(min, max);
+        const visionPlace = places.filter(
+          (vision) => vision.id === randomVisionPlaceId
         );
 
-        localStorage.setItem('visonCard', JSON.stringify(placeToDisplay[0]));
+        setVisionCards({ ...visionCards, place: visionPlace });
+      });
+
+    axios
+      .get('https://mysterium-game.herokuapp.com/api/places')
+      .then((responses) => responses.data)
+      .then((data) => {
+        setChoicesCards({ ...choicesCards, place: data });
       });
   }, []);
 
@@ -67,7 +68,11 @@ const GameBoard = () => {
   return (
     <div className="GameBoard">
       <Navbar setModalIsOpen={handleSetModalIsOpen} modalIsOpen={modalIsOpen} />
-      <GameTable modalIsOpen={modalIsOpen} />
+      <GameTable
+        modalIsOpen={modalIsOpen}
+        visionCards={visionCards}
+        choicesCards={choicesCards}
+      />
       <GameFooter />
     </div>
   );

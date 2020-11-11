@@ -4,6 +4,12 @@ import PropTypes from 'prop-types';
 import '../../styles/css/Medium.css';
 import cadreImage from '../../styles/images/cadreBouton.png';
 
+const getRandomIntInclusive = (min, max) => {
+  const minimale = Math.ceil(min);
+  const maximale = Math.floor(max);
+  return Math.floor(Math.random() * (maximale - minimale + 1)) + minimale;
+};
+
 class Medium extends React.Component {
   constructor(props) {
     super(props);
@@ -48,6 +54,18 @@ class Medium extends React.Component {
 
   hundleOnClickMedium(medium) {
     const { history } = this.props;
+
+    //
+    axios
+      .get('https://mysterium-game.herokuapp.com/api/places')
+      .then((responses) => responses.data)
+      .then((data) => {
+        const randomPlaceId = getRandomIntInclusive(1, data.length);
+        const places = data.filter((place) => place.id === randomPlaceId);
+        localStorage.setItem('PlaceWin', JSON.stringify(places));
+      });
+
+    //
     localStorage.setItem('medium', JSON.stringify(medium));
     history.push('/board');
   }
@@ -63,6 +81,7 @@ class Medium extends React.Component {
           <figure>
             {mediumCards ? (
               mediumCards.map((card, index) => (
+                /* eslint-disable */
                 <img
                   key={card.id}
                   style={
