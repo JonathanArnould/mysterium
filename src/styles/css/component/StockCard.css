@@ -88,10 +88,15 @@
 
 .stockcard-card {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 .stockcard-image {
   width: 100px;
   height: 80px;
+}
+
+.stockcard-image.active {
+  border: 1px solid #a19149;
 }

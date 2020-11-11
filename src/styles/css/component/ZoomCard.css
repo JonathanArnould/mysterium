@@ -1,5 +1,4 @@
 .zoomcard {
-  border: 1px solid white;
   width: 100%;
   min-width: 300px;
   max-width: 300px;
@@ -8,4 +7,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.zoomcard img {
+  height: 300px;
+  width: 350px;
 }
