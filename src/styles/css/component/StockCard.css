@@ -14,6 +14,7 @@
   background-color: var(--color-primary);
   transition: transform 1s;
   position: absolute;
+  z-index: 1000;
 }
 
 .StockCard.hide {
@@ -65,10 +66,19 @@
 .stockcard-image {
   width: 90%;
   height: auto;
+  cursor: pointer;
+}
+
+.stockcard-image.active {
+  opacity: 0.4;
 }
 
 .stockcard-card.hide {
   animation: bounceOut 1s both;
+}
+
+.stockcard-card.show {
+  animation: bounceIn 2s 0.5s both;
 }
 
 .stockcard-card.show {
