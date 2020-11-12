@@ -3,17 +3,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px 200px;
+  padding: 50px 200px;
+  height: 220px;
+  margin-top: 100px;
 }
 
-.card {
-  width: 33%;
-  min-width: 150px;
-  max-width: 150px;
-  height: 180px;
-  margin: 0 30px;
-  border: 1px solid white;
+.cardfooter-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+.cardfooter-container img {
+  width: 230px;
+  height: 150px;
+  object-fit: cover;
+  padding: 15px;
+}
+
+.card-not-found {
+  display: none;
 }

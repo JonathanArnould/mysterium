@@ -1,12 +1,48 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import MurderContext from '../MurderContext';
 import '../../../styles/css/component/GameFooter.css';
 
 const GameFooter = () => {
+  const { charWeaponPlace } = useContext(MurderContext);
+
   return (
     <div className="GameFooter">
-      <div className="card">Carte Arme</div>
-      <div className="card">Carte Lieu</div>
-      <div className="card">Carte Meurtrier</div>
+      {Object.keys(charWeaponPlace).length !== 0 && (
+        <div className="cardfooter-container">
+          <div
+            className={`card ${
+              charWeaponPlace.weapon.isFound ? 'card-found' : 'card-not-found'
+            }`}
+          >
+            <img
+              src={charWeaponPlace.weapon.content.image}
+              alt={charWeaponPlace.weapon.content.name}
+            />
+          </div>
+          <div
+            className={`card ${
+              charWeaponPlace.character.isFound
+                ? 'card-found'
+                : 'card-not-found'
+            }`}
+          >
+            <img
+              src={charWeaponPlace.place.content.image}
+              alt={charWeaponPlace.place.content.name}
+            />
+          </div>
+          <div
+            className={`card ${
+              charWeaponPlace.place.isFound ? 'card-found' : 'card-not-found'
+            }`}
+          >
+            <img
+              src={charWeaponPlace.character.content.image}
+              alt={charWeaponPlace.place.content.name}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

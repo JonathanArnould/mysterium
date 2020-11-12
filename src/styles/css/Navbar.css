@@ -34,13 +34,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 35px;
 }
 
 nav .avatar {
   border-radius: 50%;
   border: 2px solid #a19149;
   vertical-align: top;
-  max-width: 35px;
+  width: 100%;
   transform: scale(2);
   margin: 24px;
 }
@@ -57,6 +58,7 @@ nav a {
 
 .counter {
   font-size: 1.4em;
+  margin: auto;
 }
 
 .clock-container {
