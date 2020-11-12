@@ -5,9 +5,15 @@ import '../../../../styles/css/component/ZoomCard.css';
 const ZoomCard = ({ className, content }) => {
   return <div className={`zoomcard ${className}`}>{content}</div>;
 };
+
+ZoomCard.defaultProps = {
+  className: null,
+  content: null,
+};
+
 ZoomCard.propTypes = {
-  className: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  content: PropTypes.string,
 };
 
 export default ZoomCard;

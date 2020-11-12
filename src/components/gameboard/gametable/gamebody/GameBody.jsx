@@ -1,86 +1,176 @@
-import React, { useEffect, useState } from 'react';
-import Axios from 'axios';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import StockCard from './StockCard';
 import ZoomCard from './ZoomCard';
 import '../../../../styles/css/component/GameBody.css';
+import Card from './Card';
 
-const GameBody = () => {
-  const [leftCards, setLeftCards] = useState({ items: [], activeItem: null });
-  const [step] = useState({
-    step1: true,
-    step2: false,
-    step3: false,
-  });
-  const [zoomCards, setZoomCards] = useState('');
+const GameBody = ({ visionCards, choicesCards }) => {
+  const [leftCards] = useState({ items: [], activeItem: null });
 
-  useEffect(() => {
-    Axios('https://mysterium-game.herokuapp.com/api/weapons')
-      .then((responses) => responses.data)
-      .then((data) => {
-        localStorage.setItem('weapons', JSON.stringify(data));
-        const weapons = localStorage.getItem('weapons');
-        return (
-          step.step1 &&
-          setLeftCards({ ...leftCards, items: JSON.parse(weapons) })
-        );
-      });
+  /**
+   * Show or hide the current stockcard
+   *
+   * @param {object} stockcard  Element with the StockCard class
+   */
+  const hideOrShowStockcard = (stockcard) => {
+    stockcard.classList.toggle('hide');
+    stockcard.classList.toggle('show');
+  };
 
-    Axios('https://mysterium-game.herokuapp.com/api/places')
-      .then((responses) => responses.data)
-      .then((data) => {
-        localStorage.setItem('places', JSON.stringify(data));
-        const places = localStorage.getItem('places');
-        return (
-          step.step2 &&
-          setLeftCards({ ...leftCards, items: JSON.parse(places) })
-        );
-      });
+  /**
+   * Show or hide the images of the current stockcard
+   *
+   * @param {HTMLCollection} stockcardCards  Container  Element of each image of the current stockard which have class stockcard-card
+   */
+  const hideOrShowCard = (stockcardCards) => {
+    Object.values(stockcardCards).forEach((card) => {
+      if (card.classList.contains('stockcard-card')) {
+        card.classList.toggle('hide');
+        card.classList.toggle('show');
+      }
+    });
+  };
 
-    Axios('https://mysterium-game.herokuapp.com/api/characters')
-      .then((responses) => responses.data)
-      .then((data) => {
-        localStorage.setItem('characters', JSON.stringify(data));
-        const characters = localStorage.getItem('characters');
-        return (
-          step.step3 &&
-          setLeftCards({ ...leftCards, items: JSON.parse(characters) })
-        );
-      });
-  }, []);
+  /**
+   * Change the label of the button that opens or closes the current stockcard
+   *
+   * @param {object} currentElement  The clicked item
+   */
+  const changeButtonLabel = (currentElement) => {
+    if (currentElement.classList.contains('open')) {
+      currentElement.nextSibling.classList.toggle('hide');
+      currentElement.classList.toggle('hide');
+    } else {
+      currentElement.parentNode.children[0].classList.toggle('hide');
+      currentElement.classList.toggle('hide');
+    }
+  };
 
-  const createStockcard = leftCards.items.map((card) => (
-    <div key={card.id} className="stockcard-card hide">
-      <img
-        onClick={() => {
-          setZoomCards(card);
-          setLeftCards({ ...leftCards, activeItem: card.name });
-        }}
-        aria-hidden="true"
-        className={`stockcard-image ${
-          leftCards.activeItem === card.name ? 'active' : ''
-        }`}
-        src={card.image}
-        alt={card.name}
-      />
-    </div>
+  /**
+   * Show the 'zoomcard' which has the class show
+   * Hide or show the stockcard
+   *
+   * @param {Event} e
+   */
+  const handleClick = (e) => {
+    const currentElement = e.target;
+    const stockcardContainer = currentElement.parentNode.parentNode;
+    const cards = stockcardContainer.children;
+    const stockcard = stockcardContainer.parentNode;
+
+    Object.values(cards).forEach((link) => {
+      if (link.classList.contains('stockcard-card')) {
+        link.children[0].classList.remove('active');
+      }
+    });
+    currentElement.classList.add('active');
+
+    const idNumber = currentElement.parentNode.id.slice(-1);
+    const imageToDisplay = document.getElementById(
+      `zoomcard-choice-${idNumber}`
+    );
+
+    Object.values(stockcardContainer.parentNode.parentNode.children).forEach(
+      (link) => {
+        if (link.classList.contains('zoomcardleft')) {
+          Object.values(link.children).forEach((item) => {
+            item.classList.remove('begin-hide');
+            item.classList.remove('begin-show');
+            item.classList.remove('show');
+            item.classList.add('hide');
+
+            if (item.id.slice(-1) === idNumber) {
+              item.classList.remove('hide');
+              item.classList.add('show');
+            }
+          });
+        }
+      }
+    );
+    imageToDisplay.classList.add('show');
+
+    hideOrShowCard(cards);
+    hideOrShowStockcard(stockcard);
+    changeButtonLabel(currentElement);
+  };
+
+  const createStockcardVisions = visionCards.place.map((card) => (
+    <Card
+      key={card.id}
+      card={card}
+      className="stockcard-card hide"
+      id={`stockcard-vision-${card.id}`}
+      classNameImage="stockcard-image"
+      handleClick={handleClick}
+    />
   ));
 
-  const createZoomCardLeft = (
-    <img
-      className="zoomcard-image"
-      src={zoomCards.image}
-      alt={zoomCards.name}
+  const createZoomcardVisions = visionCards.place.map((card) => (
+    <Card
+      key={card.id}
+      card={card}
+      className="zoomcard-card"
+      id={`zoomcard-vision-${card.id}`}
+      classNameImage="zoomcard-image"
     />
-  );
+  ));
+
+  const createStockcardChoices = choicesCards.place.map((card) => (
+    <Card
+      key={card.id}
+      card={card}
+      className="stockcard-card hide"
+      id={`stockcard-choice-${card.id}`}
+      classNameImage={`stockcard-image ${
+        leftCards.activeItem === card.name ? 'active' : ''
+      }`}
+      handleClick={handleClick}
+    />
+  ));
+
+  const createZoomcardChoices = choicesCards.place.map((card) => (
+    <Card
+      key={card.id}
+      card={card}
+      className={`zoomcard-card${
+        card.id !== 1 ? ' begin-hide' : ' begin-show'
+      }`}
+      id={`zoomcard-choice-${card.id}`}
+      classNameImage="zoomcard-image"
+    />
+  ));
 
   return (
     <div className="GameBody">
-      <StockCard className="stockcardleft hide" content={createStockcard} />
-      <ZoomCard className="zoomcardleft" content={createZoomCardLeft} />
-      <ZoomCard className="zoomcardright" />
-      <StockCard className="stockcardright hide" />
+      <StockCard
+        className="stockcardleft hide"
+        content={createStockcardChoices}
+        hideOrShowStockcard={hideOrShowStockcard}
+        hideOrShowCard={hideOrShowCard}
+        changeButtonLabel={changeButtonLabel}
+      />
+      <ZoomCard className="zoomcardleft" content={createZoomcardChoices} />
+      <ZoomCard className="zoomcardright" content={createZoomcardVisions} />
+      <StockCard
+        className="stockcardright hide"
+        content={createStockcardVisions}
+        hideOrShowStockcard={hideOrShowStockcard}
+        hideOrShowCard={hideOrShowCard}
+        changeButtonLabel={changeButtonLabel}
+      />
     </div>
   );
+};
+
+GameBody.defaultProps = {
+  visionCards: {},
+  choicesCards: {},
+};
+
+GameBody.propTypes = {
+  visionCards: PropTypes.string,
+  choicesCards: PropTypes.string,
 };
 
 export default GameBody;
