@@ -1,3 +1,7 @@
+/* ========================
+      ZOOMCARD
+======================== */
+
 .zoomcard {
   position: relative;
   border: 1px solid var(--color-light);
@@ -12,17 +16,54 @@
   overflow: hidden;
 }
 
+/* ========================
+      ZOOMCARD IMG
+======================== */
+.zoomcard .zoomcard-card img {
+  display: block;
+  width: auto;
+  height: 340px;
+}
+
+/* ========================
+      ZOOMCARD RIGHT
+======================== */
+
 .zoomcardright {
   max-width: 400px;
 }
 
 .zoomcardright .zoomcard-card {
+  position: absolute;
+}
+
+.zoomcardright .zoomcard-card.hide {
   display: none;
+  transition: all 1s 2s;
 }
 
 .zoomcardright .zoomcard-card.show {
   display: block;
+  animation: bounceIn 1s both;
 }
+
+.zoomcardright .zoomcard-card.begin-hide {
+  display: none;
+}
+
+.zoomcardright .zoomcard-card.begin-show {
+  animation: bounceIn 1s both;
+}
+
+.zoomcardright .zoomcard-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ========================
+      ZOOMCARD LEFT
+======================== */
 
 .zoomcardleft .zoomcard-card {
   width: 100%;
@@ -30,16 +71,4 @@
   margin: 5px;
   display: flex;
   justify-content: center;
-}
-
-.zoomcard .zoomcard-card img {
-  display: block;
-  width: auto;
-  height: 340px;
-}
-
-.zoomcardright .zoomcard-card img {
-  display: block;
-  width: 100%;
-  height: auto;
 }

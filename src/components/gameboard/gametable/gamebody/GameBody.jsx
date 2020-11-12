@@ -78,9 +78,13 @@ const GameBody = ({ visionCards, choicesCards }) => {
       (link) => {
         if (link.classList.contains('zoomcardright')) {
           Object.values(link.children).forEach((item) => {
+            item.classList.remove('begin-hide');
+            item.classList.remove('begin-show');
             item.classList.remove('show');
+            item.classList.add('hide');
 
             if (item.id.slice(-1) === idNumber) {
+              item.classList.remove('hide');
               item.classList.add('show');
             }
           });
@@ -130,7 +134,9 @@ const GameBody = ({ visionCards, choicesCards }) => {
     <Card
       key={card.id}
       card={card}
-      className={`zoomcard-card${card.id === 1 ? ' show' : ''}`}
+      className={`zoomcard-card${
+        card.id !== 1 ? ' begin-hide' : ' begin-show'
+      }`}
       id={`zoomcard-choice-${card.id}`}
       classNameImage="zoomcard-image"
     />
