@@ -21,6 +21,16 @@ const GameBoard = () => {
 
   const [leftCards, setLeftCards] = useState({ items: [], activeItem: null });
 
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [visionCards, setVisionCards] = useState({
+    place: [],
+    weapon: [],
+  });
+  const [choicesCards, setChoicesCards] = useState({
+    place: [],
+    weapon: [],
+  });
+
   useEffect(() => {
     axios('https://mysterium-game.herokuapp.com/api/characters')
       .then((response) => response.data)
@@ -56,16 +66,6 @@ const GameBoard = () => {
           });
       });
   }, []);
-
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [visionCards, setVisionCards] = useState({
-    place: [],
-    weapon: [],
-  });
-  const [choicesCards, setChoicesCards] = useState({
-    place: [],
-    weapon: [],
-  });
 
   /*
    * Générer un nombre aléatoire
@@ -142,7 +142,7 @@ const GameBoard = () => {
   };
 
   return (
-    <div className="GameBoard">
+    <div className={`GameBoard${modalIsOpen ? ' is-open' : ''}`}>
       <MurderContext.Provider value={murderContextValue}>
         <Navbar
           setModalIsOpen={handleSetModalIsOpen}

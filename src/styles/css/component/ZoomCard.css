@@ -4,7 +4,6 @@
 
 .zoomcard {
   position: relative;
-  border: 1px solid var(--color-light);
   border-radius: 20px;
   width: 100%;
   min-width: 350px;
@@ -24,6 +23,7 @@
   display: block;
   width: auto;
   height: 340px;
+  border-radius: 20px;
 }
 
 /* ========================
