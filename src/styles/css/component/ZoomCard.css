@@ -1,11 +1,17 @@
 .zoomcard {
-  border: 1px solid white;
+  border: 1px solid var(--color-light);
+  border-radius: 20px;
   width: 100%;
-  min-width: 300px;
-  max-width: 300px;
-  height: 350px;
+  min-width: 350px;
+  max-width: 350px;
+  height: 300px;
   margin: 0 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.zoomcard-image {
+  height: 320px;
+  width: 360px;
 }
