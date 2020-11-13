@@ -7,12 +7,6 @@ import GameFooter from './gamefooter/GameFooter';
 import '../../styles/css/component/GameBoard.css';
 
 const GameBoard = () => {
-  const [charWeaponPlace, setCharWeaponPlace] = useState({});
-
-  const murderContextValue = {
-    charWeaponPlace,
-  };
-
   const [step] = useState({
     step1: true,
     step2: false,
@@ -20,8 +14,6 @@ const GameBoard = () => {
   });
 
   const [leftCards, setLeftCards] = useState({ items: [], activeItem: null });
-
-  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [visionCards, setVisionCards] = useState({
     place: [],
     weapon: [],
@@ -30,6 +22,17 @@ const GameBoard = () => {
     place: [],
     weapon: [],
   });
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const [charWeaponPlace, setCharWeaponPlace] = useState({});
+  const murderContextValue = {
+    charWeaponPlace,
+  };
+
+  const handleSetModalIsOpen = () => {
+    setModalIsOpen(!modalIsOpen);
+  };
 
   useEffect(() => {
     axios('https://mysterium-game.herokuapp.com/api/characters')
@@ -137,10 +140,6 @@ const GameBoard = () => {
     callAPIChoices('places', choicesCards, 'place');
   }, []);
 
-  const handleSetModalIsOpen = () => {
-    setModalIsOpen(!modalIsOpen);
-  };
-
   return (
     <div className={`GameBoard${modalIsOpen ? ' is-open' : ''}`}>
       <MurderContext.Provider value={murderContextValue}>
@@ -149,6 +148,7 @@ const GameBoard = () => {
           modalIsOpen={modalIsOpen}
         />
         <GameTable
+          setModalIsOpen={handleSetModalIsOpen}
           modalIsOpen={modalIsOpen}
           visionCards={visionCards}
           choicesCards={choicesCards}

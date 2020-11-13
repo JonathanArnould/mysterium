@@ -6,6 +6,7 @@ import Rule from '../../help/Rule';
 
 const GameTable = ({
   modalIsOpen,
+  setModalIsOpen,
   visionCards,
   choicesCards,
   getRandomIntInclusive,
@@ -21,7 +22,7 @@ const GameTable = ({
         callAPIChoices={callAPIChoices}
         callAPIVisions={callAPIVisions}
       />{' '}
-      {modalIsOpen && <Rule />}
+      {modalIsOpen && <Rule setModalIsOpen={setModalIsOpen} />}
     </div>
   );
 };
@@ -32,10 +33,12 @@ GameTable.defaultProps = {
   getRandomIntInclusive: null,
   callAPIChoices: null,
   callAPIVisions: null,
+  setModalIsOpen: null,
 };
 
 GameTable.propTypes = {
   modalIsOpen: PropTypes.bool.isRequired,
+  setModalIsOpen: PropTypes.func,
   visionCards: PropTypes.string,
   choicesCards: PropTypes.string,
   getRandomIntInclusive: PropTypes.func,

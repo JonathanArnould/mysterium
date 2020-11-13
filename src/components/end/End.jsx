@@ -10,7 +10,7 @@ const End = () => {
   // ======================================================
   //  To be modified when the main component is finished
   // ======================================================
-  localStorage.setItem('playerWin', true);
+  localStorage.setItem('playerWin', false);
   localStorage.setItem('killerId', 2);
   localStorage.setItem('mediumId', 3);
 
