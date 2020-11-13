@@ -95,7 +95,7 @@ const GameBody = ({ visionCards, choicesCards }) => {
     changeButtonLabel(currentElement);
   };
 
-  const createStockcardVisions = visionCards.place.map((card) => (
+  const createStockcardVisions = visionCards.places.map((card) => (
     <Card
       key={card.id}
       card={card}
@@ -106,7 +106,7 @@ const GameBody = ({ visionCards, choicesCards }) => {
     />
   ));
 
-  const createZoomcardVisions = visionCards.place.map((card) => (
+  const createZoomcardVisions = visionCards.places.map((card) => (
     <Card
       key={card.id}
       card={card}
@@ -116,7 +116,7 @@ const GameBody = ({ visionCards, choicesCards }) => {
     />
   ));
 
-  const createStockcardChoices = choicesCards.place.map((card) => (
+  const createStockcardChoices = choicesCards.places.map((card) => (
     <Card
       key={card.id}
       card={card}
@@ -129,7 +129,7 @@ const GameBody = ({ visionCards, choicesCards }) => {
     />
   ));
 
-  const createZoomcardChoices = choicesCards.place.map((card) => (
+  const createZoomcardChoices = choicesCards.places.map((card) => (
     <Card
       key={card.id}
       card={card}
