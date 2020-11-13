@@ -1,10 +1,11 @@
 import React from 'react';
 import Slider from 'react-slick';
 import '../../styles/css/Rule.css';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-const Rule = () => {
+const Rule = ({ setModalIsOpen }) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -16,7 +17,7 @@ const Rule = () => {
   return (
     <div className="modal-container">
       <div className="rule-container">
-        <button type="button">
+        <button type="button" onClick={setModalIsOpen}>
           <FontAwesomeIcon icon={faTimes} />
         </button>
         <h2 className="title-modal"> Règles de jeu</h2>
@@ -96,6 +97,14 @@ const Rule = () => {
       </div>
     </div>
   );
+};
+
+Rule.defaultProps = {
+  setModalIsOpen: null,
+};
+
+Rule.propTypes = {
+  setModalIsOpen: PropTypes.func,
 };
 
 export default Rule;
