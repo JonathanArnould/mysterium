@@ -1,0 +1,17 @@
+element.style {
+  position: absolute;
+  box-sizing: border-box;
+  pointer-events: none;
+  width: 200px;
+  height: 250px;
+  top: 0px;
+  overflow: hidden;
+  left: 0px;
+  visibility: hidden;
+  border-radius: 50%;
+  z-index: 1;
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  transform: translate(323px, 21.7656px);
+  background-color: rgba(225, 225, 225, 0.5);
+  background-clip: padding-box;
+}
