@@ -9,14 +9,14 @@ class Home extends Component {
     super(props);
     this.state = {};
     this.state = { value: '' };
-    this.hundleOnChange = this.hundleOnChange.bind(this);
-    this.hundleOnClickHome = this.hundleOnClickHome.bind(this);
+    this.handleOnChange = this.handleOnChange.bind(this);
+    this.handleOnClickHome = this.handleOnClickHome.bind(this);
   }
-  hundleOnChange(event) {
+  handleOnChange(event) {
     this.setState({ value: event.target.value });
   }
 
-  hundleOnClickHome(event) {
+  handleOnClickHome(event) {
     event.preventDefault();
     localStorage.setItem('username', this.state.value);
     this.props.history.push('/medium');
@@ -29,30 +29,32 @@ class Home extends Component {
         <div className="titleHome">
           <img className="titleHomeStyle" src={titleLogo} alt="Game Title" />
         </div>
-        <div className="inputHome">
-          <input
-            placeHolder="Entrez votre pseudo ..."
-            className="inputHomeStyle"
-            onChange={this.hundleOnChange}
-            value={value}
-          ></input>
-        </div>
-        <div className="buttonHome">
-          <img className="buttonImage" src={cadreImage} alt="Cadre" />
-          <div
-            className={`buttonBackground ${
-              !value && 'buttonBackgroundDisabled'
-            }`}
-          />
-          <button
-            type="submit"
-            onClick={this.hundleOnClickHome}
-            className="buttonHomeStyle"
-            disabled={!value}
-          >
-            Commencer
-          </button>
-        </div>
+        <form>
+          <div className="inputHome">
+            <input
+              placeHolder="Entrez votre pseudo ..."
+              className="inputHomeStyle"
+              onChange={this.handleOnChange}
+              value={value}
+            ></input>
+          </div>
+          <div className="buttonHome">
+            <img className="buttonImage" src={cadreImage} alt="Cadre" />
+            <div
+              className={`buttonBackground ${
+                !value && 'buttonBackgroundDisabled'
+              }`}
+            />
+            <button
+              type="submit"
+              onClick={this.handleOnClickHome}
+              className="buttonHomeStyle"
+              disabled={!value}
+            >
+              Commencer
+            </button>
+          </div>
+        </form>
       </div>
     );
   }

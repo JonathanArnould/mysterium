@@ -9,9 +9,9 @@
   bottom: 0;
 }
 .titleHomeStyle {
-  width: 600px;
-  margin: 40px;
-  margin-top: 160px;
+  width: 60%;
+  margin: 4%;
+  margin-top: 10%;
 }
 .titleHome {
   display: flex;
@@ -20,20 +20,20 @@
 }
 @keyframes bounce {
   from {
-    transform: translateY(8);
+    transform: translateY(8px);
   }
   to {
-    transform: translateY(-12px);
+    transform: translateY(-14px);
   }
 }
 .inputHome {
   display: flex;
   justify-content: center;
-  margin: 30px;
+  margin: 2%;
 }
 .inputHomeStyle {
-  padding: 8px;
-  width: 200px;
+  padding: 1%;
+  width: 22%;
 }
 .buttonHome {
   position: relative;

@@ -42,7 +42,7 @@
 .buttonMediumStyle {
   position: absolute;
   top: 27px;
-  padding: 8px;
+  line-height: 75%;
   width: 144px;
   height: 50px;
   border-radius: 12px;
@@ -67,10 +67,9 @@
 /* ______________________________________________ */
 
 .carousel {
-  margin-top: 50px;
-  padding: 20px;
+  padding-top: 6%;
   -webkit-perspective: 500px;
-  perspective: 500px;
+  perspective: 600px;
   overflow: hidden;
   display: -webkit-box;
   display: flex;
@@ -99,6 +98,7 @@
 .carousel figure img {
   width: 100%;
   box-sizing: border-box;
+  cursor: pointer;
 }
 .carousel figure img:not(:first-of-type) {
   position: absolute;
