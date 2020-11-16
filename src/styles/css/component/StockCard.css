@@ -127,3 +127,7 @@
   left: -68px;
   transform: rotate(-270deg);
 }
+
+.stockcardright .stockcard-image {
+  width: 75%;
+}
