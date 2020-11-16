@@ -48,32 +48,22 @@ const GameBody = ({ visionCards, choicesCards }) => {
   };
 
   /**
-   * Show the 'zoomcard' which has the class show
-   * Hide or show the stockcard
+   * Show or hide cards in zoomcard components
    *
-   * @param {Event} e
+   * @param {object} stockcardContainer  parent of the current element which has the StockCard-container class
+   * @param {string} classZoomcard   zoomcardleft or zoomcardright
+   * @param {number} idNumber   the last character of the id of the card to display
+   * @param {object} imageToDisplay  The card to display
    */
-  const handleClick = (e) => {
-    const currentElement = e.target;
-    const stockcardContainer = currentElement.parentNode.parentNode;
-    const cards = stockcardContainer.children;
-    const stockcard = stockcardContainer.parentNode;
-
-    Object.values(cards).forEach((link) => {
-      if (link.classList.contains('stockcard-card')) {
-        link.children[0].classList.remove('active');
-      }
-    });
-    currentElement.classList.add('active');
-
-    const idNumber = currentElement.parentNode.id.slice(-1);
-    const imageToDisplay = document.getElementById(
-      `zoomcard-choice-${idNumber}`
-    );
-
+  const showOrHideZoomcard = (
+    stockcardContainer,
+    classZoomcard,
+    idNumber,
+    imageToDisplay
+  ) => {
     Object.values(stockcardContainer.parentNode.parentNode.children).forEach(
       (link) => {
-        if (link.classList.contains('zoomcardleft')) {
+        if (link.classList.contains(classZoomcard)) {
           Object.values(link.children).forEach((item) => {
             item.classList.remove('begin-hide');
             item.classList.remove('begin-show');
@@ -89,39 +79,94 @@ const GameBody = ({ visionCards, choicesCards }) => {
       }
     );
     imageToDisplay.classList.add('show');
+  };
+
+  /**
+   * Show the 'zoomcard' which has the class show
+   * Hide or show the stockcard
+   *
+   * @param {Event} e
+   */
+  const handleClick = (e) => {
+    const currentElement = e.target;
+    const stockcardContainer = currentElement.parentNode.parentNode;
+    const cards = stockcardContainer.children;
+    const stockcard = stockcardContainer.parentNode;
+    let stockcardLeft = false;
+    let stockcardRight = false;
+
+    if (stockcardContainer.parentNode.classList.contains('stockcardleft')) {
+      stockcardLeft = true;
+    } else {
+      stockcardRight = true;
+    }
+
+    Object.values(cards).forEach((link) => {
+      if (link.classList.contains('stockcard-card')) {
+        link.children[0].classList.remove('active');
+      }
+    });
+    currentElement.classList.add('active');
+
+    const idNumber = currentElement.parentNode.id.slice(-1);
+
+    let imageToDisplay = '';
+    if (idNumber <= '4') {
+      imageToDisplay = document.getElementById(`zoomcard-choice-${idNumber}`);
+    } else {
+      imageToDisplay = document.getElementById(`zoomcard-vision-${idNumber}`);
+    }
+
+    if (stockcardLeft) {
+      showOrHideZoomcard(
+        stockcardContainer,
+        'zoomcardleft',
+        idNumber,
+        imageToDisplay
+      );
+    } else if (stockcardRight) {
+      showOrHideZoomcard(
+        stockcardContainer,
+        'zoomcardright',
+        idNumber,
+        imageToDisplay
+      );
+    }
 
     hideOrShowCard(cards);
     hideOrShowStockcard(stockcard);
     changeButtonLabel(currentElement);
   };
 
-  const createStockcardVisions = visionCards.places.map((card) => (
+  const createStockcardVisions = visionCards.places.map((card, index) => (
     <Card
       key={card.id}
       card={card}
       className="stockcard-card hide"
-      id={`stockcard-vision-${card.id}`}
+      id={`stockcard-vision-${index + 5}`}
       classNameImage="stockcard-image"
       handleClick={handleClick}
     />
   ));
 
-  const createZoomcardVisions = visionCards.places.map((card) => (
+  const createZoomcardVisions = visionCards.places.map((card, index) => (
     <Card
       key={card.id}
       card={card}
-      className="zoomcard-card"
-      id={`zoomcard-vision-${card.id}`}
+      className={`zoomcard-card${
+        index + 5 !== 5 ? ' begin-hide' : ' begin-show'
+      }`}
+      id={`zoomcard-vision-${index + 5}`}
       classNameImage="zoomcard-image"
     />
   ));
 
-  const createStockcardChoices = choicesCards.places.map((card) => (
+  const createStockcardChoices = choicesCards.places.map((card, index) => (
     <Card
       key={card.id}
       card={card}
       className="stockcard-card hide"
-      id={`stockcard-choice-${card.id}`}
+      id={`stockcard-choice-${index}`}
       classNameImage={`stockcard-image ${
         leftCards.activeItem === card.name ? 'active' : ''
       }`}
@@ -129,14 +174,12 @@ const GameBody = ({ visionCards, choicesCards }) => {
     />
   ));
 
-  const createZoomcardChoices = choicesCards.places.map((card) => (
+  const createZoomcardChoices = choicesCards.places.map((card, index) => (
     <Card
       key={card.id}
       card={card}
-      className={`zoomcard-card${
-        card.id !== 1 ? ' begin-hide' : ' begin-show'
-      }`}
-      id={`zoomcard-choice-${card.id}`}
+      className={`zoomcard-card${index !== 1 ? ' begin-hide' : ' begin-show'}`}
+      id={`zoomcard-choice-${index}`}
       classNameImage="zoomcard-image"
     />
   ));
