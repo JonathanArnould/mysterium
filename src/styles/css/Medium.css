@@ -9,7 +9,7 @@
   bottom: 0;
 }
 .titleMedium {
-  margin-top: 50px;
+  margin-top: 6%;
   display: flex;
   justify-content: center;
 }
@@ -42,7 +42,7 @@
 .buttonMediumStyle {
   position: absolute;
   top: 27px;
-  padding: 8px;
+  line-height: 75%;
   width: 144px;
   height: 50px;
   border-radius: 12px;
@@ -67,10 +67,9 @@
 /* ______________________________________________ */
 
 .carousel {
-  margin-top: 50px;
-  padding: 20px;
+  padding: 6% 0 2% 0;
   -webkit-perspective: 500px;
-  perspective: 500px;
+  perspective: 600px;
   overflow: hidden;
   display: -webkit-box;
   display: flex;
@@ -86,7 +85,7 @@
 }
 .carousel figure {
   margin: 0;
-  width: 400px;
+  width: 450px;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   -webkit-transition: -webkit-transform 0.5s;
@@ -97,8 +96,9 @@
   transform-origin: 50% 50% -482.8427124746px;
 }
 .carousel figure img {
-  width: 100%;
+  width: 90%;
   box-sizing: border-box;
+  cursor: pointer;
 }
 .carousel figure img:not(:first-of-type) {
   position: absolute;
@@ -113,4 +113,41 @@
   -webkit-box-pack: center;
   justify-content: center;
   margin: 20px 0 0;
+}
+
+/* ______________________Media Query____________________________ */
+
+@media screen and (min-width: 500px) and (max-width: 990px) {
+  .carousel figure {
+    width: 350px;
+  }
+  .titleMedium {
+    margin-top: 30px;
+  }
+}
+
+@media screen and (min-width: 1350px) {
+  .titleMedium {
+    margin-top: 10%;
+  }
+  .titleMediumStyle {
+    font-size: 50px;
+  }
+  .carousel figure {
+    width: 550px;
+  }
+  .carousel {
+    perspective: 800px;
+  }
+  .buttonImage {
+    width: 250px;
+    height: 105px;
+  }
+  .buttonBackground {
+    width: 214px;
+    height: 56px;
+  }
+  .buttonMediumStyle {
+    font-size: 24px;
+  }
 }

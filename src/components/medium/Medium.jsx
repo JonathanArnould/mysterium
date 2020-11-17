@@ -19,7 +19,7 @@ class Medium extends React.Component {
       theta: null,
     };
     this.next = this.next.bind(this);
-    this.hundleOnClickMedium = this.hundleOnClickMedium.bind(this);
+    this.handleOnClickMedium = this.handleOnClickMedium.bind(this);
   }
 
   componentDidMount() {
@@ -52,7 +52,7 @@ class Medium extends React.Component {
     this.setState({ currentCard: currentCard + 1 });
   }
 
-  hundleOnClickMedium(medium) {
+  handleOnClickMedium(medium) {
     const { history } = this.props;
 
     //
@@ -93,7 +93,7 @@ class Medium extends React.Component {
                   }
                   src={card.image}
                   alt={card.name}
-                  onClick={() => this.hundleOnClickMedium(card)}
+                  onClick={() => this.handleOnClickMedium(card)}
                 />
               ))
             ) : (
@@ -109,7 +109,7 @@ class Medium extends React.Component {
             className="buttonMediumStyle"
             onClick={this.next}
           >
-            Suivant
+            Medium suivant
           </button>
         </div>
       </div>
