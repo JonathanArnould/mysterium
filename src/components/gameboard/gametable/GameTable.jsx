@@ -9,19 +9,10 @@ const GameTable = ({
   setModalIsOpen,
   visionCards,
   choicesCards,
-  getRandomIntInclusive,
-  callAPIChoices,
-  callAPIVisions,
 }) => {
   return (
     <div className="GameTable">
-      <GameBody
-        visionCards={visionCards}
-        choicesCards={choicesCards}
-        getRandomIntInclusive={getRandomIntInclusive}
-        callAPIChoices={callAPIChoices}
-        callAPIVisions={callAPIVisions}
-      />{' '}
+      <GameBody visionCards={visionCards} choicesCards={choicesCards} />{' '}
       {modalIsOpen && <Rule setModalIsOpen={setModalIsOpen} />}
     </div>
   );
@@ -30,9 +21,6 @@ const GameTable = ({
 GameTable.defaultProps = {
   visionCards: {},
   choicesCards: {},
-  getRandomIntInclusive: null,
-  callAPIChoices: null,
-  callAPIVisions: null,
   setModalIsOpen: null,
 };
 
@@ -41,9 +29,6 @@ GameTable.propTypes = {
   setModalIsOpen: PropTypes.func,
   visionCards: PropTypes.string,
   choicesCards: PropTypes.string,
-  getRandomIntInclusive: PropTypes.func,
-  callAPIChoices: PropTypes.func,
-  callAPIVisions: PropTypes.func,
 };
 
 export default GameTable;

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import MurderContext from './MurderContext';
+import ChoiceContext from './ChoiceContext';
 import Navbar from './navbar/Navbar';
 import GameTable from './gametable/GameTable';
 import GameFooter from './gamefooter/GameFooter';
@@ -29,6 +30,19 @@ const GameBoard = () => {
   const [charWeaponPlace, setCharWeaponPlace] = useState({});
   const murderContextValue = {
     charWeaponPlace,
+  };
+
+  const [choices, setChoices] = useState({
+    places: null,
+    weapons: null,
+    characters: null,
+  });
+  const choiceContextValue = {
+    choices,
+  };
+
+  const updateChoice = (value) => {
+    setChoices(value);
   };
 
   const handleSetModalIsOpen = () => {
@@ -121,17 +135,19 @@ const GameBoard = () => {
   return (
     <div className={`GameBoard${modalIsOpen ? ' is-open' : ''}`}>
       <MurderContext.Provider value={murderContextValue}>
-        <Navbar
-          setModalIsOpen={handleSetModalIsOpen}
-          modalIsOpen={modalIsOpen}
-        />
-        <GameTable
-          setModalIsOpen={handleSetModalIsOpen}
-          modalIsOpen={modalIsOpen}
-          visionCards={visionCards}
-          choicesCards={choicesCards}
-        />
-        <GameFooter />
+        <ChoiceContext.Provider value={{ choiceContextValue, updateChoice }}>
+          <Navbar
+            setModalIsOpen={handleSetModalIsOpen}
+            modalIsOpen={modalIsOpen}
+          />
+          <GameTable
+            setModalIsOpen={handleSetModalIsOpen}
+            modalIsOpen={modalIsOpen}
+            visionCards={visionCards}
+            choicesCards={choicesCards}
+          />
+          <GameFooter />
+        </ChoiceContext.Provider>
       </MurderContext.Provider>
     </div>
   );

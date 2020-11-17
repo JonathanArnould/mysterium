@@ -166,7 +166,7 @@ const GameBody = ({ visionCards, choicesCards }) => {
       key={card.id}
       card={card}
       className="stockcard-card hide"
-      id={`stockcard-choice-${index}`}
+      id={`stockcard-choice-${index + 1}`}
       classNameImage={`stockcard-image ${
         leftCards.activeItem === card.name ? 'active' : ''
       }`}
@@ -178,8 +178,10 @@ const GameBody = ({ visionCards, choicesCards }) => {
     <Card
       key={card.id}
       card={card}
-      className={`zoomcard-card${index !== 1 ? ' begin-hide' : ' begin-show'}`}
-      id={`zoomcard-choice-${index}`}
+      className={`zoomcard-card${
+        index + 1 !== 1 ? ' begin-hide' : ' begin-show'
+      }`}
+      id={`zoomcard-choice-${index + 1}`}
       classNameImage="zoomcard-image"
     />
   ));
