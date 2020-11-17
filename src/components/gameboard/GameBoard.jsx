@@ -2,23 +2,32 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import MurderContext from './MurderContext';
 import ChoiceContext from './ChoiceContext';
+import StepContext from './StepContext';
 import Navbar from './navbar/Navbar';
 import GameTable from './gametable/GameTable';
 import GameFooter from './gamefooter/GameFooter';
 import '../../styles/css/component/GameBoard.css';
 
 const GameBoard = () => {
-  const [step] = useState({
+  const [step, setStep] = useState({
     step1: false,
     step2: true,
     step3: false,
   });
+  const stepContextValue = {
+    step,
+  };
+
+  const updateStepValue = (value) => {
+    setStep(value);
+  };
 
   const [visionCards, setVisionCards] = useState({
     places: [],
     weapons: [],
     characters: [],
   });
+
   const [choicesCards, setChoicesCards] = useState({
     places: [],
     weapons: [],
@@ -136,17 +145,19 @@ const GameBoard = () => {
     <div className={`GameBoard${modalIsOpen ? ' is-open' : ''}`}>
       <MurderContext.Provider value={murderContextValue}>
         <ChoiceContext.Provider value={{ choiceContextValue, updateChoice }}>
-          <Navbar
-            setModalIsOpen={handleSetModalIsOpen}
-            modalIsOpen={modalIsOpen}
-          />
-          <GameTable
-            setModalIsOpen={handleSetModalIsOpen}
-            modalIsOpen={modalIsOpen}
-            visionCards={visionCards}
-            choicesCards={choicesCards}
-          />
-          <GameFooter />
+          <StepContext.Provider value={{ stepContextValue, updateStepValue }}>
+            <Navbar
+              setModalIsOpen={handleSetModalIsOpen}
+              modalIsOpen={modalIsOpen}
+            />
+            <GameTable
+              setModalIsOpen={handleSetModalIsOpen}
+              modalIsOpen={modalIsOpen}
+              visionCards={visionCards}
+              choicesCards={choicesCards}
+            />
+            <GameFooter />
+          </StepContext.Provider>
         </ChoiceContext.Provider>
       </MurderContext.Provider>
     </div>
