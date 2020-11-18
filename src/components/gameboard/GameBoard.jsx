@@ -10,8 +10,8 @@ import '../../styles/css/component/GameBoard.css';
 
 const GameBoard = () => {
   const [step, setStep] = useState({
-    step1: false,
-    step2: true,
+    step1: true,
+    step2: false,
     step3: false,
   });
   const stepContextValue = {

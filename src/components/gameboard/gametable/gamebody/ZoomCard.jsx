@@ -14,16 +14,16 @@ const ZoomCard = ({ className, content }) => {
     const idChoice = e.target.parentNode.parentNode.id.slice(-1);
 
     updateChoice({
-      places: Number(idChoice),
-      weapons: null,
+      places: null,
+      weapons: Number(idChoice),
       characters: null,
     });
 
     if (
-      choiceContextValue.choices.places !== null &&
-      choiceContextValue.choices.places === charWeaponPlace.place.content.id
+      choiceContextValue.choices.weapons !== null &&
+      choiceContextValue.choices.weapons === charWeaponPlace.weapon.content.id
     ) {
-      charWeaponPlace.place.isFound = true;
+      charWeaponPlace.weapon.isFound = true;
 
       let currentStep = '';
       let stepNumber = '';

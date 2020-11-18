@@ -138,7 +138,7 @@ const GameBody = ({ visionCards, choicesCards }) => {
     changeButtonLabel(currentElement);
   };
 
-  const createStockcardVisions = visionCards.places.map((card, index) => (
+  const createStockcardVisions = visionCards.weapons.map((card, index) => (
     <Card
       key={card.id}
       card={card}
@@ -149,7 +149,7 @@ const GameBody = ({ visionCards, choicesCards }) => {
     />
   ));
 
-  const createZoomcardVisions = visionCards.places.map((card, index) => (
+  const createZoomcardVisions = visionCards.weapons.map((card, index) => (
     <Card
       key={card.id}
       card={card}
@@ -161,7 +161,7 @@ const GameBody = ({ visionCards, choicesCards }) => {
     />
   ));
 
-  const createStockcardChoices = choicesCards.places.map((card, index) => (
+  const createStockcardChoices = choicesCards.weapons.map((card, index) => (
     <Card
       key={card.id}
       card={card}
@@ -174,7 +174,7 @@ const GameBody = ({ visionCards, choicesCards }) => {
     />
   ));
 
-  const createZoomcardChoices = choicesCards.places.map((card, index) => (
+  const createZoomcardChoices = choicesCards.weapons.map((card, index) => (
     <Card
       key={card.id}
       card={card}
