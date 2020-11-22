@@ -10,8 +10,8 @@ import '../../styles/css/component/GameBoard.css';
 
 const GameBoard = () => {
   const [step, setStep] = useState({
-    step1: true,
-    step2: false,
+    step1: false,
+    step2: true,
     step3: false,
   });
   const stepContextValue = {
@@ -65,7 +65,10 @@ const GameBoard = () => {
       .then((data) =>
         setVisionCards({
           ...visionCards,
-          [type]: data.filter((vision) => vision[idType] === id),
+          [type]: data
+            .filter((vision) => vision[idType] === id)
+            .sort(() => 0.3 - Math.random())
+            .slice(0, 2),
         })
       );
   };
@@ -150,11 +153,13 @@ const GameBoard = () => {
               setModalIsOpen={handleSetModalIsOpen}
               modalIsOpen={modalIsOpen}
             />
+
             <GameTable
               setModalIsOpen={handleSetModalIsOpen}
               modalIsOpen={modalIsOpen}
               visionCards={visionCards}
               choicesCards={choicesCards}
+              step={step}
             />
             <GameFooter />
           </StepContext.Provider>
