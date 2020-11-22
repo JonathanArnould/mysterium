@@ -138,9 +138,34 @@ const GameBody = ({ visionCards, choicesCards }) => {
     changeButtonLabel(currentElement);
   };
 
-  const { places } = visionCards;
+  const createStockcardVisions = (type) => {
+    type.map((card, index) => (
+      <Card
+        key={card.id}
+        card={card}
+        className="stockcard-card hide"
+        id={`stockcard-vision-${index + 5}`}
+        classNameImage="stockcard-image"
+        handleClick={handleClick}
+      />
+    ));
+  };
 
-  const createStockcardVisions = places.map((card, index) => (
+  createStockcardVisions(visionCards.weapons);
+
+  const createZoomcardVisions = visionCards.weapons.map((card, index) => (
+    <Card
+      key={card.id}
+      card={card}
+      className={`zoomcard-card${
+        index + 5 !== 5 ? ' begin-hide' : ' begin-show'
+      }`}
+      id={`zoomcard-vision-${index + 5}`}
+      classNameImage="zoomcard-image"
+    />
+  ));
+
+  /* const createStockcardVisions = places.map((card, index) => (
     <Card
       key={card.id}
       card={card}
@@ -161,9 +186,9 @@ const GameBody = ({ visionCards, choicesCards }) => {
       id={`zoomcard-vision-${index + 5}`}
       classNameImage="zoomcard-image"
     />
-  ));
+  )); */
 
-  const createStockcardChoices = choicesCards.places.map((card, index) => (
+  const createStockcardChoices = choicesCards.weapons.map((card, index) => (
     <Card
       key={card.id}
       card={card}
@@ -176,7 +201,7 @@ const GameBody = ({ visionCards, choicesCards }) => {
     />
   ));
 
-  const createZoomcardChoices = choicesCards.places.map((card, index) => (
+  const createZoomcardChoices = choicesCards.weapons.map((card, index) => (
     <Card
       key={card.id}
       card={card}

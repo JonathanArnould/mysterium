@@ -11,3 +11,16 @@
 .GameBoard.is-open {
   /* filter: blur(5px); */
 }
+
+button {
+  position: absolute;
+  top: 50%;
+}
+
+.button-1 {
+  left: 40%;
+}
+
+.button-2 {
+  left: 55%;
+}

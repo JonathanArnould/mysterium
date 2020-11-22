@@ -9,61 +9,17 @@ import GameFooter from './gamefooter/GameFooter';
 import '../../styles/css/component/GameBoard.css';
 
 const GameBoard = () => {
-  // ETAPES DE JEU
-  const [step, setStep] = useState({
-    step1: false,
-    step2: true,
-    step3: false,
-  });
-
   // COMBINAISON GAGNANTE WEAPON PLACE CHARACTER
+
   const [charWeaponPlace, setCharWeaponPlace] = useState({});
+
   const murderContextValue = {
     charWeaponPlace,
   };
 
-  // 2 CARTES VISIONS GENEREES PAR ETAPE DE JEU WEAPON, PLACE, CHARACTER
-  const [visionCards, setVisionCards] = useState({
-    weapons: [],
-    places: [],
-    characters: [],
-  });
+  const { weapon, place } = charWeaponPlace;
 
-  const handleVisions = (type, id, idType) => {
-    axios
-      .get(`https://mysterium-game.herokuapp.com/api/visions/${type}`)
-      .then((response4) => response4.data)
-      .then((data) =>
-        setVisionCards({
-          ...visionCards,
-          [type]: data
-            .filter((vision) => vision[idType] === id)
-            .sort(() => 0.3 - Math.random())
-            .slice(0, 2),
-        })
-      );
-  };
-
-  // 4 CARTES DE JEU GENEREES PAR ETAPE DE JEU WEAPON, PLACE, CHARACTER
-  const [choicesCards, setChoicesCards] = useState({
-    weapons: [],
-    places: [],
-    characters: [],
-  });
-
-  const handleChoices = (type) => {
-    axios
-      .get(`https://mysterium-game.herokuapp.com/api/${type}`)
-      .then((response5) => response5.data)
-      .then((data) =>
-        setChoicesCards({
-          ...choicesCards,
-          [type]: data,
-        })
-      );
-  };
-
-  useEffect(() => {
+  const handleAxios = () => {
     axios('https://mysterium-game.herokuapp.com/api/characters')
       .then((response) => response.data)
       .then((dataCharacter) => {
@@ -94,42 +50,106 @@ const GameBoard = () => {
                     isFound: false,
                   },
                 });
-
-                if (step.step1) {
-                  handleVisions(
-                    'weapons',
-                    dataWeapon[randomWeapon].id,
-                    'id_weapon'
-                  );
-                  handleChoices('weapons');
-                } else if (step.step2) {
-                  handleVisions(
-                    'places',
-                    dataPlace[randomPlace].id,
-                    'id_place'
-                  );
-                  handleChoices('places');
-                } else if (step.step3) {
-                  handleVisions(
-                    'characters',
-                    dataCharacter[randomCharacter].id,
-                    'id_character'
-                  );
-                  handleChoices('characters');
-                }
               });
           });
       });
+  };
+
+  useEffect(() => {
+    handleAxios();
   }, []);
 
-  // CONTEXTE ETAPE DE JEU
-  const stepContextValue = {
-    step,
+  // ETAT DE PARTIE
+  const [gameOn, setGameOn] = useState(false);
+
+  // ETAPES DE JEU
+  const [step, setStep] = useState({
+    step1: false,
+    step2: false,
+    step3: false,
+  });
+
+  // TIMER (DEMARRE AU CLIC SUR BOUTON)
+  const [timeLeft, setTimeLeft] = useState(60);
+  const [timerActive, setTimerActive] = useState(false);
+
+  useEffect(() => {
+    if (timeLeft && timerActive === true) {
+      const intervalId = setInterval(() => {
+        setTimeLeft(timeLeft - 1);
+      }, 1000);
+      return () => clearInterval(intervalId);
+    }
+    return timeLeft;
+  }, [timeLeft, timerActive]);
+
+  // 2 CARTES VISIONS GENEREES PAR ETAPE DE JEU WEAPON, PLACE, CHARACTER
+  const [visionCards, setVisionCards] = useState({
+    weapons: [],
+    places: [],
+    characters: [],
+  });
+
+  // 4 CARTES DE JEU GENEREES PAR ETAPE DE JEU WEAPON, PLACE, CHARACTER
+  const [choicesCards, setChoicesCards] = useState({
+    weapons: [],
+    places: [],
+    characters: [],
+  });
+
+  const handleVisions = (type, id, idType) => {
+    axios
+      .get(`https://mysterium-game.herokuapp.com/api/visions/${type}`)
+      .then((response4) => response4.data)
+      .then((data) =>
+        setVisionCards({
+          ...visionCards,
+          [type]: data
+            .filter((vision) => vision[idType] === id)
+            .sort(() => 0.3 - Math.random())
+            .slice(0, 2),
+        })
+      );
+  };
+  const handleChoices = (type) => {
+    axios
+      .get(`https://mysterium-game.herokuapp.com/api/${type}`)
+      .then((response5) => response5.data)
+      .then((data) =>
+        setChoicesCards({
+          ...choicesCards,
+          [type]: data,
+        })
+      );
   };
 
-  const updateStepValue = (value) => {
-    setStep(value);
+  // FONCTION DE DEMARRAGE DU JEU AU CLIC
+  // STEP 1
+
+  const startGame = () => {
+    setGameOn(true);
+    setTimerActive(true);
+    setStep({ ...step, step1: true });
+    handleVisions('weapons', weapon.content.id, 'id_weapon');
+    handleChoices('weapons');
   };
+
+  // VERIFIER CHOIX DU JOUEUR
+
+  // STEP 2
+
+  const handleStep2 = () => {
+    setTimerActive(true);
+    setStep({ ...step, step1: false, step2: true });
+    handleVisions('places', place.content.id, 'id_place');
+    handleChoices('places');
+  };
+
+  // STEP 3
+
+  /*  const updateStepValue = (value) => {
+    setStep(value);
+  }; */
 
   // CONTEXTE CHOIX DU JOUEUR
   const [choices, setChoices] = useState({
@@ -156,18 +176,25 @@ const GameBoard = () => {
     <div className={`GameBoard${modalIsOpen ? ' is-open' : ''}`}>
       <MurderContext.Provider value={murderContextValue}>
         <ChoiceContext.Provider value={{ choiceContextValue, updateChoice }}>
-          <StepContext.Provider value={{ stepContextValue, updateStepValue }}>
+          <StepContext.Provider value={{ ...step }}>
             <Navbar
               setModalIsOpen={handleSetModalIsOpen}
               modalIsOpen={modalIsOpen}
+              timer={timeLeft}
             />
-
+            {!gameOn && (
+              <button type="button" className="button-1" onClick={startGame}>
+                READY TO PLAY
+              </button>
+            )}
+            <button type="button" className="button-2" onClick={handleStep2}>
+              ETAPE 2
+            </button>
             <GameTable
               setModalIsOpen={handleSetModalIsOpen}
               modalIsOpen={modalIsOpen}
               visionCards={visionCards}
               choicesCards={choicesCards}
-              step={step}
             />
             <GameFooter />
           </StepContext.Provider>
