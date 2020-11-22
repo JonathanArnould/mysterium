@@ -138,7 +138,9 @@ const GameBody = ({ visionCards, choicesCards }) => {
     changeButtonLabel(currentElement);
   };
 
-  const createStockcardVisions = visionCards.places.map((card, index) => (
+  const { places } = visionCards;
+
+  const createStockcardVisions = places.map((card, index) => (
     <Card
       key={card.id}
       card={card}
@@ -149,7 +151,7 @@ const GameBody = ({ visionCards, choicesCards }) => {
     />
   ));
 
-  const createZoomcardVisions = visionCards.places.map((card, index) => (
+  const createZoomcardVisions = places.map((card, index) => (
     <Card
       key={card.id}
       card={card}

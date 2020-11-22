@@ -9,54 +9,25 @@ import GameFooter from './gamefooter/GameFooter';
 import '../../styles/css/component/GameBoard.css';
 
 const GameBoard = () => {
+  // ETAPES DE JEU
   const [step, setStep] = useState({
     step1: false,
     step2: true,
     step3: false,
   });
-  const stepContextValue = {
-    step,
-  };
 
-  const updateStepValue = (value) => {
-    setStep(value);
-  };
-
-  const [visionCards, setVisionCards] = useState({
-    places: [],
-    weapons: [],
-    characters: [],
-  });
-
-  const [choicesCards, setChoicesCards] = useState({
-    places: [],
-    weapons: [],
-    characters: [],
-  });
-
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
+  // COMBINAISON GAGNANTE WEAPON PLACE CHARACTER
   const [charWeaponPlace, setCharWeaponPlace] = useState({});
   const murderContextValue = {
     charWeaponPlace,
   };
 
-  const [choices, setChoices] = useState({
-    places: null,
-    weapons: null,
-    characters: null,
+  // 2 CARTES VISIONS GENEREES PAR ETAPE DE JEU WEAPON, PLACE, CHARACTER
+  const [visionCards, setVisionCards] = useState({
+    weapons: [],
+    places: [],
+    characters: [],
   });
-  const choiceContextValue = {
-    choices,
-  };
-
-  const updateChoice = (value) => {
-    setChoices(value);
-  };
-
-  const handleSetModalIsOpen = () => {
-    setModalIsOpen(!modalIsOpen);
-  };
 
   const handleVisions = (type, id, idType) => {
     axios
@@ -72,6 +43,13 @@ const GameBoard = () => {
         })
       );
   };
+
+  // 4 CARTES DE JEU GENEREES PAR ETAPE DE JEU WEAPON, PLACE, CHARACTER
+  const [choicesCards, setChoicesCards] = useState({
+    weapons: [],
+    places: [],
+    characters: [],
+  });
 
   const handleChoices = (type) => {
     axios
@@ -143,6 +121,36 @@ const GameBoard = () => {
           });
       });
   }, []);
+
+  // CONTEXTE ETAPE DE JEU
+  const stepContextValue = {
+    step,
+  };
+
+  const updateStepValue = (value) => {
+    setStep(value);
+  };
+
+  // CONTEXTE CHOIX DU JOUEUR
+  const [choices, setChoices] = useState({
+    places: null,
+    weapons: null,
+    characters: null,
+  });
+  const choiceContextValue = {
+    choices,
+  };
+
+  const updateChoice = (value) => {
+    setChoices(value);
+  };
+
+  // GESTION MODALE TUTO
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const handleSetModalIsOpen = () => {
+    setModalIsOpen(!modalIsOpen);
+  };
 
   return (
     <div className={`GameBoard${modalIsOpen ? ' is-open' : ''}`}>
