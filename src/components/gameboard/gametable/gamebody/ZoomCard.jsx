@@ -10,47 +10,47 @@ const ZoomCard = ({ className, content }) => {
   const { choiceContextValue, updateChoice } = useContext(ChoiceContext);
   const { stepContextValue, updateStepValue } = useContext(StepContext);
 
-  const handleChoice = (e) => {
-    const idChoice = e.target.parentNode.parentNode.id.slice(-1);
+  // const handleChoice = (e) => {
+  //   const idChoice = e.target.parentNode.parentNode.id.slice(-1);
 
-    updateChoice({
-      places: null,
-      weapons: Number(idChoice),
-      characters: null,
-    });
+  //   updateChoice({
+  //     places: null,
+  //     weapons: Number(idChoice),
+  //     characters: null,
+  //   });
 
-    if (
-      choiceContextValue.choices.weapons !== null &&
-      choiceContextValue.choices.weapons === charWeaponPlace.weapon.content.id
-    ) {
-      charWeaponPlace.weapon.isFound = true;
+  //   if (
+  //     choiceContextValue.choices.weapons !== null &&
+  //     choiceContextValue.choices.weapons === charWeaponPlace.weapon.content.id
+  //   ) {
+  //     charWeaponPlace.weapon.isFound = true;
 
-      let currentStep = '';
-      let stepNumber = '';
-      const newStep = { step1: false, step2: false, step3: false };
+  //     let currentStep = '';
+  //     let stepNumber = '';
+  //     const newStep = { step1: false, step2: false, step3: false };
 
-      /* eslint-disable */
-      for (const property in stepContextValue.step) {
-        currentStep = stepContextValue.step[property] && property;
+  //     /* eslint-disable */
+  //     for (const property in stepContextValue.step) {
+  //       currentStep = stepContextValue.step[property] && property;
 
-        if (currentStep === property) {
-          stepNumber = currentStep.slice(-1);
+  //       if (currentStep === property) {
+  //         stepNumber = currentStep.slice(-1);
 
-          if (stepNumber <= 2) {
-            newStep[`step${Number(stepNumber) + 1}`] = true;
-          } else {
-            newStep.step3 = true;
-          }
-        }
-      }
+  //         if (stepNumber <= 2) {
+  //           newStep[`step${Number(stepNumber) + 1}`] = true;
+  //         } else {
+  //           newStep.step3 = true;
+  //         }
+  //       }
+  //     }
 
-      updateStepValue(newStep);
-    }
-  };
+  //     updateStepValue(newStep);
+  //   }
+  // };
 
   return (
     <div
-      onClick={handleChoice}
+      // onClick={handleChoice}
       role="button"
       className={`zoomcard ${className}`}
       tabIndex={0}

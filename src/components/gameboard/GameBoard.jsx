@@ -197,7 +197,7 @@ const GameBoard = () => {
     <div className={`GameBoard${modalIsOpen ? ' is-open' : ''}`}>
       <MurderContext.Provider value={murderContextValue}>
         <ChoiceContext.Provider value={{ choiceContextValue, updateChoice }}>
-          <StepContext.Provider value={{ ...step }}>
+          <StepContext.Provider value={{ ...step, setStep }}>
             <Navbar
               setModalIsOpen={handleSetModalIsOpen}
               modalIsOpen={modalIsOpen}

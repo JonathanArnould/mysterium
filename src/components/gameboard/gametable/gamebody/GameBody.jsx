@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import StepContext from '../../StepContext';
+import ChoiceContext from '../../ChoiceContext';
 import StockCard from './StockCard';
 import ZoomCard from './ZoomCard';
 import '../../../../styles/css/component/GameBody.css';
@@ -8,7 +9,8 @@ import Card from './Card';
 
 const GameBody = ({ visionCards, choicesCards }) => {
   const [leftCards] = useState({ items: [], activeItem: null });
-  const { ...step } = useContext(StepContext);
+  const { setStep, ...step } = useContext(StepContext);
+  const { updateChoice, ...choices } = useContext(ChoiceContext);
 
   /**
    * Show or hide the current stockcard
@@ -148,7 +150,7 @@ const GameBody = ({ visionCards, choicesCards }) => {
         className="stockcard-card hide"
         id={`stockcard-vision-${index + 5}`}
         classNameImage="stockcard-image"
-        handleClick={handleClick}
+        // handleClick={handleClick}
       />
     ));
   };
@@ -177,7 +179,7 @@ const GameBody = ({ visionCards, choicesCards }) => {
         classNameImage={`stockcard-image ${
           leftCards.activeItem === card.name ? 'active' : ''
         }`}
-        handleClick={handleClick}
+        // handleClick={handleClick}
       />
     ));
 
@@ -223,6 +225,8 @@ const GameBody = ({ visionCards, choicesCards }) => {
     stockcardChoices = createStockcardChoices(choicesCards.characters);
     zoomcardChoices = createZoomcardChoices(choicesCards.characters);
   }
+  console.log(zoomcardChoices);
+  const handleValidation = () => {};
 
   return (
     <div className="GameBody">
@@ -234,7 +238,11 @@ const GameBody = ({ visionCards, choicesCards }) => {
         changeButtonLabel={changeButtonLabel}
       />
       <ZoomCard className="zoomcardleft" content={zoomcardChoices} />
-      <button type="button" className="choiceButton">
+      <button
+        type="button"
+        className="choiceButton"
+        onClick={() => handleValidation()}
+      >
         Valider mon choix
       </button>
       <ZoomCard className="zoomcardright" content={zoomcardVisions} />
