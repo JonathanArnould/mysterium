@@ -4,9 +4,10 @@ import MurderContext from './MurderContext';
 import ChoiceContext from './ChoiceContext';
 import StepContext from './StepContext';
 import Navbar from './navbar/Navbar';
-import GameTable from './gametable/GameTable';
 import GameFooter from './gamefooter/GameFooter';
 import '../../styles/css/component/GameBoard.css';
+import GameBody from './gametable/gamebody/GameBody';
+import Rule from '../help/Rule';
 
 const GameBoard = () => {
   // COMBINAISON GAGNANTE WEAPON PLACE CHARACTER
@@ -69,7 +70,7 @@ const GameBoard = () => {
     step3: false,
   });
 
-  const [secondChance, setSecondChance] = useState(false);
+  // const [secondChance, setSecondChance] = useState(false);
 
   // TIMER (DEMARRE AU CLIC SUR BOUTON)
   const [timeLeft, setTimeLeft] = useState(60);
@@ -139,8 +140,8 @@ const GameBoard = () => {
 
   // VERIFIER CHOIX DU JOUEUR
 
-  const handleValidation = () => {};
-
+  /* const handleValidation = () => {};
+   */
   /* 
       2ème chance: const [secondTry, setSecondTry] = useState(false);
       Bouton valide le choix du joueur - présent tout au long de la partie
@@ -210,19 +211,8 @@ const GameBoard = () => {
             <button type="button" className="button-2" onClick={handleStep2}>
               ETAPE 2
             </button>
-            <button
-              type="button"
-              className="choiceButton"
-              onClick={handleValidation}
-            >
-              Valider mon choix
-            </button>
-            <GameTable
-              setModalIsOpen={handleSetModalIsOpen}
-              modalIsOpen={modalIsOpen}
-              visionCards={visionCards}
-              choicesCards={choicesCards}
-            />
+            <GameBody visionCards={visionCards} choicesCards={choicesCards} />{' '}
+            {modalIsOpen && <Rule setModalIsOpen={setModalIsOpen} />}
             <GameFooter />
           </StepContext.Provider>
         </ChoiceContext.Provider>

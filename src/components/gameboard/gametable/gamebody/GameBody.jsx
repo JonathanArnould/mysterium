@@ -9,9 +9,7 @@ import Card from './Card';
 const GameBody = ({ visionCards, choicesCards }) => {
   const [leftCards] = useState({ items: [], activeItem: null });
   const { ...step } = useContext(StepContext);
-  console.log(step);
-  console.log(step);
-  console.log(step);
+
   /**
    * Show or hide the current stockcard
    *
@@ -196,8 +194,13 @@ const GameBody = ({ visionCards, choicesCards }) => {
       />
     ));
 
-  let stockcardVisions, zoomcardVisions, stockcardChoices, zoomcardChoices;
-  let secondChance = true;
+  let stockcardVisions;
+  let zoomcardVisions;
+  let stockcardChoices;
+  let zoomcardChoices;
+
+  const secondChance = true;
+
   if (step.step1) {
     stockcardVisions = !secondChance
       ? createStockcardVisions(visionCards.weapons)[0]
@@ -231,6 +234,9 @@ const GameBody = ({ visionCards, choicesCards }) => {
         changeButtonLabel={changeButtonLabel}
       />
       <ZoomCard className="zoomcardleft" content={zoomcardChoices} />
+      <button type="button" className="choiceButton">
+        Valider mon choix
+      </button>
       <ZoomCard className="zoomcardright" content={zoomcardVisions} />
       <StockCard
         className="stockcardright hide"
