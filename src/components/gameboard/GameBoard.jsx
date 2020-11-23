@@ -69,6 +69,8 @@ const GameBoard = () => {
     step3: false,
   });
 
+  const [secondChance, setSecondChance] = useState(false);
+
   // TIMER (DEMARRE AU CLIC SUR BOUTON)
   const [timeLeft, setTimeLeft] = useState(60);
   const [timerActive, setTimerActive] = useState(false);
@@ -111,6 +113,7 @@ const GameBoard = () => {
         })
       );
   };
+
   const handleChoices = (type) => {
     axios
       .get(`https://mysterium-game.herokuapp.com/api/${type}`)
@@ -135,6 +138,23 @@ const GameBoard = () => {
   };
 
   // VERIFIER CHOIX DU JOUEUR
+
+  const handleValidation = () => {};
+
+  /* 
+      2ème chance: const [secondTry, setSecondTry] = useState(false);
+      Bouton valide le choix du joueur - présent tout au long de la partie
+      + confirm du choix par le joueur - si confirmation => stop chrono
+
+      onClick => compare ID de ZoomCard avec ID carte de charWeaponPlace
+
+      si Id zoomCard === Id charWeaponPlace => handleStep2 + setCharWeaponPlace(isFound : true)
+
+      sinon setSecondChance(true) => afficher la 2ème carte vision + reset chrono
+
+      si isNotFound  => End/Lose
+      
+  */
 
   // STEP 2
 
@@ -189,6 +209,13 @@ const GameBoard = () => {
             )}
             <button type="button" className="button-2" onClick={handleStep2}>
               ETAPE 2
+            </button>
+            <button
+              type="button"
+              className="choiceButton"
+              onClick={handleValidation}
+            >
+              Valider mon choix
             </button>
             <GameTable
               setModalIsOpen={handleSetModalIsOpen}
