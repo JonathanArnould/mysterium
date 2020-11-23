@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import MurderContext from '../../MurderContext';
 import ChoiceContext from '../../ChoiceContext';
 import StepContext from '../../StepContext';
+import { GlassMagnifier } from 'react-image-magnifiers';
 import '../../../../styles/css/component/ZoomCard.css';
+import Card from './Card';
 
 const ZoomCard = ({ className, content }) => {
   const { charWeaponPlace } = useContext(MurderContext);
   const { choiceContextValue, updateChoice } = useContext(ChoiceContext);
   const { stepContextValue, updateStepValue } = useContext(StepContext);
-
+  console.log(content);
   // const handleChoice = (e) => {
   //   const idChoice = e.target.parentNode.parentNode.id.slice(-1);
 
@@ -47,16 +49,19 @@ const ZoomCard = ({ className, content }) => {
   //     updateStepValue(newStep);
   //   }
   // };
-
   return (
-    <div
-      // onClick={handleChoice}
-      role="button"
-      className={`zoomcard ${className}`}
-      tabIndex={0}
-      aria-hidden="true"
-    >
-      {content}
+    <div class="zoomcard zoomcardleft">
+      <Card
+        card={content}
+        className="zoomcard-card"
+        classNameImage="zoomcard-image"
+      >
+        <GlassMagnifier
+          imageSrc={content.image}
+          alt={content.name}
+          magnifierSize="150"
+        />
+      </Card>
     </div>
   );
 };

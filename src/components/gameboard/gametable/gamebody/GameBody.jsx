@@ -91,7 +91,7 @@ const GameBody = ({ visionCards, choicesCards }) => {
    *
    * @param {Event} e
    */
-  const handleClick = (e) => {
+  /* const handleClick = (e) => {
     const currentElement = e.target;
     const stockcardContainer = currentElement.parentNode.parentNode;
     const cards = stockcardContainer.children;
@@ -140,11 +140,15 @@ const GameBody = ({ visionCards, choicesCards }) => {
     hideOrShowCard(cards);
     hideOrShowStockcard(stockcard);
     changeButtonLabel(currentElement);
-  };
+  }; */
+
+  const [zoomCardVisions, setZoomCardVisions] = useState('');
+  const [zoomCardChoices, setZoomCardChoices] = useState('');
 
   const createStockcardVisions = (type) => {
     return type.map((card, index) => (
       <Card
+        onClick={card}
         key={card.id}
         card={card}
         className="stockcard-card hide"
@@ -155,23 +159,26 @@ const GameBody = ({ visionCards, choicesCards }) => {
     ));
   };
 
-  const createZoomcardVisions = (type) => {
-    return type.map((card, index) => (
+  /* const createZoomcardVisions = () => {
+    return (
       <Card
-        key={card.id}
-        card={card}
-        className={`zoomcard-card${
-          index + 5 !== 5 ? ' begin-hide' : ' begin-show'
-        }`}
-        id={`zoomcard-vision-${index + 5}`}
+        card={zoomCards}
+        className="zoomcard-card"
         classNameImage="zoomcard-image"
       />
-    ));
+    );
+  }; */
+
+  const handleZoom = (card) => {
+    setZoomCardChoices(card);
   };
 
-  const createStockcardChoices = (type) =>
-    type.map((card, index) => (
+  console.log(zoomCardChoices);
+
+  const createStockcardChoices = (type) => {
+    return type.map((card, index) => (
       <Card
+        handleZoom={() => handleZoom(card)}
         key={card.id}
         card={card}
         className="stockcard-card hide"
@@ -182,24 +189,24 @@ const GameBody = ({ visionCards, choicesCards }) => {
         // handleClick={handleClick}
       />
     ));
-
-  const createZoomcardChoices = (type) =>
-    type.map((card, index) => (
-      <Card
-        key={card.id}
-        card={card}
-        className={`zoomcard-card${
-          index + 1 !== 1 ? ' begin-hide' : ' begin-show'
-        }`}
-        id={`zoomcard-choice-${index + 1}`}
-        classNameImage="zoomcard-image"
-      />
-    ));
+  };
+  // const createZoomcardChoices = (type) =>
+  //   type.map((card, index) => (
+  //     <Card
+  //       key={card.id}
+  //       card={card}
+  //       className={`zoomcard-card${
+  //         index + 1 !== 1 ? ' begin-hide' : ' begin-show'
+  //       }`}
+  //       id={`zoomcard-choice-${index + 1}`}
+  //       classNameImage="zoomcard-image"
+  //     />
+  //   ));
 
   let stockcardVisions;
-  let zoomcardVisions;
+  /* let zoomcardVisions; */
   let stockcardChoices;
-  let zoomcardChoices;
+  /* let zoomcardChoices; */
 
   const secondChance = true;
 
@@ -207,25 +214,24 @@ const GameBody = ({ visionCards, choicesCards }) => {
     stockcardVisions = !secondChance
       ? createStockcardVisions(visionCards.weapons)[0]
       : createStockcardVisions(visionCards.weapons);
-    zoomcardVisions = createZoomcardVisions(visionCards.weapons);
+    /* zoomcardVisions = createZoomcardVisions(visionCards.weapons); */
     stockcardChoices = createStockcardChoices(choicesCards.weapons);
-    zoomcardChoices = createZoomcardChoices(choicesCards.weapons);
+    /*   zoomcardChoices = createZoomcardChoices(choicesCards.weapons); */
   } else if (step.step2) {
     stockcardVisions = !secondChance
       ? createStockcardVisions(visionCards.places)[0]
       : createStockcardVisions(visionCards.places);
-    zoomcardVisions = createZoomcardVisions(visionCards.places);
+    /* zoomcardVisions = createZoomcardVisions(visionCards.places); */
     stockcardChoices = createStockcardChoices(choicesCards.places);
-    zoomcardChoices = createZoomcardChoices(choicesCards.places);
+    /* zoomcardChoices = createZoomcardChoices(choicesCards.places); */
   } else if (step.step3) {
     stockcardVisions = !secondChance
       ? createStockcardVisions(visionCards.characters)[0]
       : createStockcardVisions(visionCards.characters);
-    zoomcardVisions = createZoomcardVisions(visionCards.characters);
+    /* zoomcardVisions = createZoomcardVisions(visionCards.characters); */
     stockcardChoices = createStockcardChoices(choicesCards.characters);
-    zoomcardChoices = createZoomcardChoices(choicesCards.characters);
+    /* zoomcardChoices = createZoomcardChoices(choicesCards.characters); */
   }
-  console.log(zoomcardChoices);
   const handleValidation = () => {};
 
   return (
@@ -237,7 +243,7 @@ const GameBody = ({ visionCards, choicesCards }) => {
         hideOrShowCard={hideOrShowCard}
         changeButtonLabel={changeButtonLabel}
       />
-      <ZoomCard className="zoomcardleft" content={zoomcardChoices} />
+      <ZoomCard className="zoomcardleft" content={zoomCardChoices} />
       <button
         type="button"
         className="choiceButton"
@@ -245,7 +251,7 @@ const GameBody = ({ visionCards, choicesCards }) => {
       >
         Valider mon choix
       </button>
-      <ZoomCard className="zoomcardright" content={zoomcardVisions} />
+      <ZoomCard className="zoomcardright" content={zoomCardVisions} />
       <StockCard
         className="stockcardright hide"
         content={stockcardVisions}
