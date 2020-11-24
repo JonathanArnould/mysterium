@@ -284,7 +284,7 @@ const GameBoard = () => {
             handleValidation={handleValidation}
             gameOn={gameOn}
           />{' '}
-          {modalIsOpen && <Rule setModalIsOpen={setModalIsOpen} />}
+          {modalIsOpen && <Rule setModalIsOpen={handleSetModalIsOpen} />}
           <GameFooter />
         </StepContext.Provider>
       </ChoiceContext.Provider>
