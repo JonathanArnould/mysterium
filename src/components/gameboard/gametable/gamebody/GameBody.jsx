@@ -56,96 +56,6 @@ const GameBody = ({
     }
   };
 
-  /**
-   * Show or hide cards in zoomcard components
-   *
-   * @param {object} stockcardContainer  parent of the current element which has the StockCard-container class
-   * @param {string} classZoomcard   zoomcardleft or zoomcardright
-   * @param {number} idNumber   the last character of the id of the card to display
-   * @param {object} imageToDisplay  The card to display
-   */
-  const showOrHideZoomcard = (
-    stockcardContainer,
-    classZoomcard,
-    idNumber,
-    imageToDisplay
-  ) => {
-    Object.values(stockcardContainer.parentNode.parentNode.children).forEach(
-      (link) => {
-        if (link.classList.contains(classZoomcard)) {
-          Object.values(link.children).forEach((item) => {
-            item.classList.remove('begin-hide');
-            item.classList.remove('begin-show');
-            item.classList.remove('show');
-            item.classList.add('hide');
-
-            if (item.id.slice(-1) === idNumber) {
-              item.classList.remove('hide');
-              item.classList.add('show');
-            }
-          });
-        }
-      }
-    );
-    imageToDisplay.classList.add('show');
-  };
-
-  /**
-   * Show the 'zoomcard' which has the class show
-   * Hide or show the stockcard
-   *
-   * @param {Event} e
-   */
-  /* const handleClick = (e) => {
-    const currentElement = e.target;
-    const stockcardContainer = currentElement.parentNode.parentNode;
-    const cards = stockcardContainer.children;
-    const stockcard = stockcardContainer.parentNode;
-    let stockcardLeft = false;
-    let stockcardRight = false;
-
-    if (stockcardContainer.parentNode.classList.contains('stockcardleft')) {
-      stockcardLeft = true;
-    } else {
-      stockcardRight = true;
-    }
-
-    Object.values(cards).forEach((link) => {
-      if (link.classList.contains('stockcard-card')) {
-        link.children[0].classList.remove('active');
-      }
-    });
-    currentElement.classList.add('active');
-
-    const idNumber = currentElement.parentNode.id.slice(-1);
-
-    let imageToDisplay = '';
-    if (idNumber <= '4') {
-      imageToDisplay = document.getElementById(`zoomcard-choice-${idNumber}`);
-    } else {
-      imageToDisplay = document.getElementById(`zoomcard-vision-${idNumber}`);
-    }
-
-    if (stockcardLeft) {
-      showOrHideZoomcard(
-        stockcardContainer,
-        'zoomcardleft',
-        idNumber,
-        imageToDisplay
-      );
-    } else if (stockcardRight) {
-      showOrHideZoomcard(
-        stockcardContainer,
-        'zoomcardright',
-        idNumber,
-        imageToDisplay
-      );
-    }
-
-    hideOrShowCard(cards);
-    hideOrShowStockcard(stockcard);
-    changeButtonLabel(currentElement);
-  }; */
   const firstImageVision = weapons[0];
   const firstImageChoice = choicesCards.weapons[0];
   console.log(firstImageChoice);
@@ -175,20 +85,9 @@ const GameBody = ({
         className="stockcard-card hide"
         id={`stockcard-vision-${index + 5}`}
         classNameImage="stockcard-image"
-        // handleClick={handleClick}
       />
     ));
   };
-
-  /* const createZoomcardVisions = () => {
-    return (
-      <Card
-        card={zoomCards}
-        className="zoomcard-card"
-        classNameImage="zoomcard-image"
-      />
-    );
-  }; */
 
   const handleZoomChoices = (card) => {
     setZoomCardChoices(card);
@@ -205,27 +104,12 @@ const GameBody = ({
         classNameImage={`stockcard-image ${
           leftCards.activeItem === card.name ? 'active' : ''
         }`}
-        // handleClick={handleClick}
       />
     ));
   };
-  // const createZoomcardChoices = (type) =>
-  //   type.map((card, index) => (
-  //     <Card
-  //       key={card.id}
-  //       card={card}
-  //       className={`zoomcard-card${
-  //         index + 1 !== 1 ? ' begin-hide' : ' begin-show'
-  //       }`}
-  //       id={`zoomcard-choice-${index + 1}`}
-  //       classNameImage="zoomcard-image"
-  //     />
-  //   ));
 
   let stockcardVisions;
-  /* let zoomcardVisions; */
   let stockcardChoices;
-  /* let zoomcardChoices; */
 
   const { updateChoice, ...choices } = useContext(ChoiceContext);
 
@@ -233,23 +117,17 @@ const GameBody = ({
     stockcardVisions = !secondChance
       ? createStockcardVisions(weapons)[0]
       : createStockcardVisions(weapons);
-    /* zoomcardVisions = createZoomcardVisions(weapons); */
     stockcardChoices = createStockcardChoices(choicesCards.weapons);
-    /*   zoomcardChoices = createZoomcardChoices(choicesCards.weapons); */
   } else if (step.step2) {
     stockcardVisions = !secondChance
       ? createStockcardVisions(places)[0]
       : createStockcardVisions(places);
-    /* zoomcardVisions = createZoomcardVisions(places); */
     stockcardChoices = createStockcardChoices(choicesCards.places);
-    /* zoomcardChoices = createZoomcardChoices(choicesCards.places); */
   } else if (step.step3) {
     stockcardVisions = !secondChance
       ? createStockcardVisions(characters)[0]
       : createStockcardVisions(characters);
-    /* zoomcardVisions = createZoomcardVisions(characters); */
     stockcardChoices = createStockcardChoices(choicesCards.characters);
-    /* zoomcardChoices = createZoomcardChoices(choicesCards.characters); */
   }
 
   return (

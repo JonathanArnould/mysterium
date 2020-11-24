@@ -148,7 +148,7 @@ const GameBoard = () => {
     choices,
   };
 
-  let history = useHistory('/win');
+  let history = useHistory();
   const handleValidation = () => {
     if (count === 1) {
       if (choices === weapon.content.id) {
@@ -157,7 +157,7 @@ const GameBoard = () => {
         setSecondChance(false);
       } else {
         if (secondChance) {
-          return 'ko';
+          return history.push('/lose');
         } else {
           handleSecondChance();
         }
@@ -169,7 +169,7 @@ const GameBoard = () => {
         setSecondChance(false);
       } else {
         if (secondChance) {
-          return 'ko';
+          return history.push('/lose');
         } else {
           handleSecondChance();
         }
@@ -181,7 +181,7 @@ const GameBoard = () => {
         setSecondChance(false);
       } else {
         if (secondChance) {
-          return 'ko';
+          return history.push('/lose');
         } else {
           handleSecondChance();
         }
@@ -204,22 +204,7 @@ const GameBoard = () => {
     //   ? handleStep4()
     //   : ''; // écran lose;
   };
-  /* const handleValidation = () => {};
-   */
-  /* 
-      2ème chance: const [secondChance, setSecondChance] = useState(false);
-      Bouton valide le choix du joueur - présent tout au long de la partie
-      + confirm du choix par le joueur - si confirmation => stop chrono
 
-      onClick => compare ID de ZoomCard avec ID carte de charWeaponPlace
-
-      si Id zoomCard === Id charWeaponPlace => handleStep2 + setCharWeaponPlace(isFound : true)
-
-      sinon setSecondChance(true) => afficher la 2ème carte vision + reset chrono
-
-      si isNotFound  => End/Lose
-      
-  */
   // SECOND CHANCE
   const handleSecondChance = () => {
     setTimerActive(false);
@@ -255,12 +240,8 @@ const GameBoard = () => {
   const handleStep4 = () => {
     setCharWeaponPlace({ ...charWeaponPlace, ...character, isFound: true });
     setTimerActive(false);
-    // écran WIN;
+    history.push('/win');
   };
-
-  /*  const updateStepValue = (value) => {
-    setStep(value);
-  }; */
 
   // CONTEXTE CHOIX DU JOUEUR
 
@@ -290,9 +271,6 @@ const GameBoard = () => {
                 READY TO PLAY
               </button>
             )}
-            <button type="button" className="button-2" onClick={handleStep2}>
-              ETAPE 2
-            </button>
             <GameBody
               visionCards={visionCards && visionCards}
               choicesCards={choicesCards && choicesCards}
