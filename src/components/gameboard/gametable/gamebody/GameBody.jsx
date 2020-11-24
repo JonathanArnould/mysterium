@@ -12,6 +12,7 @@ const GameBody = ({
   choicesCards,
   secondChance,
   handleValidation,
+  gameOn,
 }) => {
   const { weapons, places, characters } = visionCards;
   const [leftCards] = useState({ items: [], activeItem: null });
@@ -56,8 +57,19 @@ const GameBody = ({
     }
   };
 
-  const firstImageVision = weapons[0];
-  const firstImageChoice = choicesCards.weapons[0];
+  let firstImageVision;
+  let firstImageChoice;
+
+  if (step.step1) {
+    firstImageVision = weapons[0];
+    firstImageChoice = choicesCards.weapons[0];
+  } else if (step.step2) {
+    firstImageVision = places[0];
+    firstImageChoice = choicesCards.places[0];
+  } else if (step.step3) {
+    firstImageVision = characters[0];
+    firstImageChoice = choicesCards.characters[0];
+  }
 
   const [zoomCardVisions, setZoomCardVisions] = useState({});
   const [zoomCardChoices, setZoomCardChoices] = useState({});
@@ -136,6 +148,7 @@ const GameBody = ({
         hideOrShowStockcard={hideOrShowStockcard}
         hideOrShowCard={hideOrShowCard}
         changeButtonLabel={changeButtonLabel}
+        gameOn={gameOn}
       />
       <ZoomCard
         className="zoomcardleft"
@@ -158,6 +171,7 @@ const GameBody = ({
         hideOrShowStockcard={hideOrShowStockcard}
         hideOrShowCard={hideOrShowCard}
         changeButtonLabel={changeButtonLabel}
+        gameOn={gameOn}
       />
     </div>
   );

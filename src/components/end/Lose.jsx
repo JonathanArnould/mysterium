@@ -12,7 +12,7 @@ const Lose = () => {
 
   const history = useHistory();
   const handleGameover = () => {
-    history.push('/');
+    history.push('/medium');
   };
   return (
     <div className="Lose">
@@ -29,11 +29,14 @@ const Lose = () => {
       </div>
 
       <div className="replay">
-        <h1>Rejouer</h1>
+        <h1>
+          Le coupable court toujours! <br /> L'esprit qui hante ces lieux ne
+          trouvera pas la paix!
+        </h1>
         <button type="button" onClick={handleGameover}>
           <span>
             <span>
-              <span data-attr-span="Start">Start</span>
+              <span data-attr-span="Start">Rejouer</span>
             </span>
           </span>
         </button>

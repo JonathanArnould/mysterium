@@ -282,6 +282,7 @@ const GameBoard = () => {
             choicesCards={choicesCards && choicesCards}
             secondChance={secondChance}
             handleValidation={handleValidation}
+            gameOn={gameOn}
           />{' '}
           {modalIsOpen && <Rule setModalIsOpen={setModalIsOpen} />}
           <GameFooter />

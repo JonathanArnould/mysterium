@@ -9,7 +9,7 @@ import MurderContext from '../gameboard/MurderContext';
  * Component that displays when the player has won the game
  */
 const Win = () => {
-  const { charWeaponPlace } = useContext(MurderContext);
+  const { charWeaponPlace, setCharWeaponPlace } = useContext(MurderContext);
 
   const medium = JSON.parse(localStorage.getItem('medium'));
   const killer =
@@ -17,7 +17,13 @@ const Win = () => {
 
   const history = useHistory();
   const handleGameover = () => {
-    history.push('/');
+    setCharWeaponPlace({
+      ...charWeaponPlace,
+      weapon: { ...charWeaponPlace.weapon, isFound: false },
+      place: { ...charWeaponPlace.place, isFound: false },
+      character: { ...charWeaponPlace.character, isFound: false },
+    });
+    history.push('/medium');
   };
   /**
    * Generate a div with the same content multiple times
@@ -27,7 +33,7 @@ const Win = () => {
   const generateDivText = (repeat) => {
     const output = [];
     for (let i = 0; i < repeat; i += 1) {
-      output.push(<div className="text">The end</div>);
+      output.push(<div className="text">Enquête résolue !</div>);
     }
 
     return output;
