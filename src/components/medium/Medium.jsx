@@ -3,6 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import '../../styles/css/Medium.css';
 import cadreImage from '../../styles/images/cadreBouton.png';
+import MediumContext from '../../MediumContext';
 
 const getRandomIntInclusive = (min, max) => {
   const minimale = Math.ceil(min);

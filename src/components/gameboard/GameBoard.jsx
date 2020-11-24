@@ -215,8 +215,10 @@ const GameBoard = () => {
   // STEP 2
 
   const handleStep2 = () => {
-    console.log('handleStep');
-    setCharWeaponPlace({ ...charWeaponPlace, ...weapon, isFound: true });
+    setCharWeaponPlace({
+      ...charWeaponPlace,
+      weapon: { ...weapon, isFound: true },
+    });
     setTimerActive(false);
     setTimeLeft(60);
     setTimerActive(true);
@@ -227,7 +229,10 @@ const GameBoard = () => {
 
   // STEP 3
   const handleStep3 = () => {
-    setCharWeaponPlace({ ...charWeaponPlace, ...place, isFound: true });
+    setCharWeaponPlace({
+      ...charWeaponPlace,
+      place: { ...place, isFound: true },
+    });
     setTimerActive(false);
     setTimeLeft(60);
     setTimerActive(true);
@@ -238,7 +243,10 @@ const GameBoard = () => {
 
   // STEP 4
   const handleStep4 = () => {
-    setCharWeaponPlace({ ...charWeaponPlace, ...character, isFound: true });
+    setCharWeaponPlace({
+      ...charWeaponPlace,
+      character: { ...character, isFound: true },
+    });
     setTimerActive(false);
     history.push('/win');
   };
