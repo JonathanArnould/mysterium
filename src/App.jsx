@@ -3,7 +3,8 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './components/home/Home';
 import Gameboard from './components/gameboard/GameBoard';
 import Medium from './components/medium/Medium';
-import End from './components/end/End';
+import Win from './components/end/Win';
+import Lose from './components/end/Lose';
 
 const App = () => {
   return (
@@ -12,7 +13,8 @@ const App = () => {
         <Route exact path="/" component={Home} />
         <Route path="/medium" component={Medium} />
         <Route path="/board" component={Gameboard} />
-        <Route path="/end" component={End} />
+        <Route path="/win" component={Win} />
+        <Route path="/lose" component={Lose} />
       </Switch>
     </div>
   );

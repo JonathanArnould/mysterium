@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import MurderContext from './MurderContext';
 import ChoiceContext from './ChoiceContext';
@@ -18,7 +19,7 @@ const GameBoard = () => {
     charWeaponPlace,
   };
 
-  const { weapon, place } = charWeaponPlace;
+  const { weapon, place, character } = charWeaponPlace;
 
   const handleAxios = () => {
     axios('https://mysterium-game.herokuapp.com/api/characters')
@@ -69,6 +70,8 @@ const GameBoard = () => {
     step2: false,
     step3: false,
   });
+
+  const [count, setCount] = useState(1);
 
   // const [secondChance, setSecondChance] = useState(false);
 
@@ -139,11 +142,72 @@ const GameBoard = () => {
   };
 
   // VERIFIER CHOIX DU JOUEUR
+  const [secondChance, setSecondChance] = useState(false);
+  const [choices, setChoices] = useState({});
+  const choiceContextValue = {
+    choices,
+  };
 
+  let history = useHistory('/win');
+  const handleValidation = () => {
+    if (count === 1) {
+      if (choices === weapon.content.id) {
+        handleStep2();
+        setCount(2);
+        setSecondChance(false);
+      } else {
+        if (secondChance) {
+          return 'ko';
+        } else {
+          handleSecondChance();
+        }
+      }
+    } else if (count === 2) {
+      if (choices === place.content.id) {
+        handleStep3();
+        setCount(3);
+        setSecondChance(false);
+      } else {
+        if (secondChance) {
+          return 'ko';
+        } else {
+          handleSecondChance();
+        }
+      }
+    } else if (count === 3) {
+      if (choices === character.content.id) {
+        handleStep4();
+        setCount(4);
+        setSecondChance(false);
+      } else {
+        if (secondChance) {
+          return 'ko';
+        } else {
+          handleSecondChance();
+        }
+      }
+    }
+
+    // step.step1 && !secondChance && choices.id === weapon.id
+    //   ? handleStep2()
+    //   : handleSecondChance();
+
+    // step.step1 && secondChance && choices.id === weapon.id && handleStep2(); // écran lose;
+    // step.step2 && !secondChance && choices.id === place.id
+    //   ? handleStep3()
+    //   : handleSecondChance();
+    // step.step2 && secondChance && choices.id === place.id ? handleStep3() : ''; // écran lose;
+    // step.step3 && !secondChance && choices.id === character.id
+    //   ? handleStep4()
+    //   : handleSecondChance();
+    // step.step3 && secondChance && choices.id === character.id
+    //   ? handleStep4()
+    //   : ''; // écran lose;
+  };
   /* const handleValidation = () => {};
    */
   /* 
-      2ème chance: const [secondTry, setSecondTry] = useState(false);
+      2ème chance: const [secondChance, setSecondChance] = useState(false);
       Bouton valide le choix du joueur - présent tout au long de la partie
       + confirm du choix par le joueur - si confirmation => stop chrono
 
@@ -156,10 +220,20 @@ const GameBoard = () => {
       si isNotFound  => End/Lose
       
   */
-
+  // SECOND CHANCE
+  const handleSecondChance = () => {
+    setTimerActive(false);
+    setTimeLeft(60);
+    setSecondChance(true);
+    setTimerActive(true);
+  };
   // STEP 2
 
   const handleStep2 = () => {
+    console.log('handleStep');
+    setCharWeaponPlace({ ...charWeaponPlace, ...weapon, isFound: true });
+    setTimerActive(false);
+    setTimeLeft(60);
     setTimerActive(true);
     setStep({ ...step, step1: false, step2: true });
     handleVisions('places', place.content.id, 'id_place');
@@ -167,20 +241,28 @@ const GameBoard = () => {
   };
 
   // STEP 3
+  const handleStep3 = () => {
+    setCharWeaponPlace({ ...charWeaponPlace, ...place, isFound: true });
+    setTimerActive(false);
+    setTimeLeft(60);
+    setTimerActive(true);
+    setStep({ ...step, step2: false, step3: true });
+    handleVisions('characters', character.content.id, 'id_character');
+    handleChoices('characters');
+  };
+
+  // STEP 4
+  const handleStep4 = () => {
+    setCharWeaponPlace({ ...charWeaponPlace, ...character, isFound: true });
+    setTimerActive(false);
+    // écran WIN;
+  };
 
   /*  const updateStepValue = (value) => {
     setStep(value);
   }; */
 
   // CONTEXTE CHOIX DU JOUEUR
-  const [choices, setChoices] = useState({
-    places: null,
-    weapons: null,
-    characters: null,
-  });
-  const choiceContextValue = {
-    choices,
-  };
 
   const updateChoice = (value) => {
     setChoices(value);
@@ -211,7 +293,12 @@ const GameBoard = () => {
             <button type="button" className="button-2" onClick={handleStep2}>
               ETAPE 2
             </button>
-            <GameBody visionCards={visionCards} choicesCards={choicesCards} />{' '}
+            <GameBody
+              visionCards={visionCards && visionCards}
+              choicesCards={choicesCards && choicesCards}
+              secondChance={secondChance}
+              handleValidation={handleValidation}
+            />{' '}
             {modalIsOpen && <Rule setModalIsOpen={setModalIsOpen} />}
             <GameFooter />
           </StepContext.Provider>

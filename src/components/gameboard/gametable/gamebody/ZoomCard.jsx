@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import MurderContext from '../../MurderContext';
 import ChoiceContext from '../../ChoiceContext';
@@ -15,6 +15,13 @@ const ZoomCard = ({ className, content }) => {
   const { charWeaponPlace } = useContext(MurderContext);
   const { choiceContextValue, updateChoice } = useContext(ChoiceContext);
   const { stepContextValue, updateStepValue } = useContext(StepContext);
+
+  useEffect(() => {
+    content && updateChoice(content.id);
+  }, [content]);
+
+  /* const [choices, setChoices] = useState({});
+   */
 
   // const handleChoice = (e) => {
   //   const idChoice = e.target.parentNode.parentNode.id.slice(-1);

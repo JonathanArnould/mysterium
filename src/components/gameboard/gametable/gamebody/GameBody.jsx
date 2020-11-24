@@ -7,11 +7,15 @@ import ZoomCard from './ZoomCard';
 import '../../../../styles/css/component/GameBody.css';
 import Card from './Card';
 
-const GameBody = ({ visionCards, choicesCards }) => {
+const GameBody = ({
+  visionCards,
+  choicesCards,
+  secondChance,
+  handleValidation,
+}) => {
   const { weapons, places, characters } = visionCards;
   const [leftCards] = useState({ items: [], activeItem: null });
   const { setStep, ...step } = useContext(StepContext);
-  const { updateChoice, ...choices } = useContext(ChoiceContext);
 
   /**
    * Show or hide the current stockcard
@@ -142,9 +146,21 @@ const GameBody = ({ visionCards, choicesCards }) => {
     hideOrShowStockcard(stockcard);
     changeButtonLabel(currentElement);
   }; */
+  const firstImageVision = weapons[0];
+  const firstImageChoice = choicesCards.weapons[0];
+  console.log(firstImageChoice);
 
-  const [zoomCardVisions, setZoomCardVisions] = useState('');
-  const [zoomCardChoices, setZoomCardChoices] = useState('');
+  const [zoomCardVisions, setZoomCardVisions] = useState({});
+  const [zoomCardChoices, setZoomCardChoices] = useState({});
+  console.log(zoomCardVisions);
+
+  useEffect(() => {
+    setZoomCardVisions(firstImageVision);
+  }, [firstImageVision]);
+
+  useEffect(() => {
+    setZoomCardChoices(firstImageChoice);
+  }, [firstImageChoice]);
 
   const handleZoomVisions = (card) => {
     setZoomCardVisions(card);
@@ -211,7 +227,7 @@ const GameBody = ({ visionCards, choicesCards }) => {
   let stockcardChoices;
   /* let zoomcardChoices; */
 
-  const secondChance = true;
+  const { updateChoice, ...choices } = useContext(ChoiceContext);
 
   if (step.step1) {
     stockcardVisions = !secondChance
@@ -235,7 +251,6 @@ const GameBody = ({ visionCards, choicesCards }) => {
     stockcardChoices = createStockcardChoices(choicesCards.characters);
     /* zoomcardChoices = createZoomcardChoices(choicesCards.characters); */
   }
-  const handleValidation = () => {};
 
   return (
     <div className="GameBody">
@@ -246,7 +261,10 @@ const GameBody = ({ visionCards, choicesCards }) => {
         hideOrShowCard={hideOrShowCard}
         changeButtonLabel={changeButtonLabel}
       />
-      <ZoomCard className="zoomcardleft" content={zoomCardChoices} />
+      <ZoomCard
+        className="zoomcardleft"
+        content={zoomCardChoices && zoomCardChoices}
+      />
       <button
         type="button"
         className="choiceButton"
@@ -254,7 +272,10 @@ const GameBody = ({ visionCards, choicesCards }) => {
       >
         Valider mon choix
       </button>
-      <ZoomCard className="zoomcardright" content={zoomCardVisions} />
+      <ZoomCard
+        className="zoomcardright"
+        content={zoomCardVisions && zoomCardVisions}
+      />
       <StockCard
         className="stockcardright hide"
         content={stockcardVisions}
