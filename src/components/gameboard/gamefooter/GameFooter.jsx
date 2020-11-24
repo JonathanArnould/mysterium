@@ -5,8 +5,6 @@ import '../../../styles/css/component/GameFooter.css';
 const GameFooter = () => {
   const { charWeaponPlace } = useContext(MurderContext);
 
-  console.log(charWeaponPlace);
-
   return (
     <div className="GameFooter">
       {Object.keys(charWeaponPlace).length !== 0 && (

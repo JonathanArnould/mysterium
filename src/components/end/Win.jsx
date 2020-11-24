@@ -1,13 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React /* , { useContext } */ from 'react';
 import Card from './Card';
 import '../../styles/css/component/Win.css';
 import loader from '../../styles/images/loader.gif';
+/* import MurderContext from '../gameboard/MurderContext'; */
 
 /**
  * Component that displays when the player has won the game
  */
-const Win = ({ killer, medium }) => {
+const Win = () => {
+  /*   const { charWeaponPlace } = useContext(MurderContext); */
+
+  const medium = JSON.parse(localStorage.getItem('medium'));
   /**
    * Generate a div with the same content multiple times
    *
@@ -26,10 +29,10 @@ const Win = ({ killer, medium }) => {
     <div className="Win">
       <div className="mask" />
       <div className="cards">
-        {medium && killer ? (
+        {medium ? (
           <div className="cards-container">
-            <Card className="medium" image={medium} />
-            <Card className="killer" image={killer} />
+            <Card className="medium" image={medium.image} />
+            {/* <Card className="killer" image={killer} /> */}
           </div>
         ) : (
           <div>
@@ -42,16 +45,6 @@ const Win = ({ killer, medium }) => {
       <div className="win-text">{generateDivText(40)}</div>
     </div>
   );
-};
-
-Win.defaultProps = {
-  medium: null,
-  killer: null,
-};
-
-Win.propTypes = {
-  medium: PropTypes.string,
-  killer: PropTypes.string,
 };
 
 export default Win;

@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import StepContext from '../../StepContext';
-import ChoiceContext from '../../ChoiceContext';
+/* import ChoiceContext from '../../ChoiceContext'; */
 import StockCard from './StockCard';
 import ZoomCard from './ZoomCard';
 import '../../../../styles/css/component/GameBody.css';
@@ -58,11 +58,9 @@ const GameBody = ({
 
   const firstImageVision = weapons[0];
   const firstImageChoice = choicesCards.weapons[0];
-  console.log(firstImageChoice);
 
   const [zoomCardVisions, setZoomCardVisions] = useState({});
   const [zoomCardChoices, setZoomCardChoices] = useState({});
-  console.log(zoomCardVisions);
 
   useEffect(() => {
     setZoomCardVisions(firstImageVision);
@@ -111,7 +109,7 @@ const GameBody = ({
   let stockcardVisions;
   let stockcardChoices;
 
-  const { updateChoice, ...choices } = useContext(ChoiceContext);
+  /* const { updateChoice, ...choices } = useContext(ChoiceContext); */
 
   if (step.step1) {
     stockcardVisions = !secondChance
@@ -173,6 +171,8 @@ GameBody.defaultProps = {
 GameBody.propTypes = {
   visionCards: PropTypes.string,
   choicesCards: PropTypes.string,
+  secondChance: PropTypes.bool.isRequired,
+  handleValidation: PropTypes.func.isRequired,
 };
 
 export default GameBody;
