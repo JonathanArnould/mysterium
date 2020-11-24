@@ -1,16 +1,24 @@
-import React /* , { useContext } */ from 'react';
+import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import Card from './Card';
 import '../../styles/css/component/Win.css';
 import loader from '../../styles/images/loader.gif';
-/* import MurderContext from '../gameboard/MurderContext'; */
+import MurderContext from '../gameboard/MurderContext';
 
 /**
  * Component that displays when the player has won the game
  */
 const Win = () => {
-  /*   const { charWeaponPlace } = useContext(MurderContext); */
+  const { charWeaponPlace } = useContext(MurderContext);
 
   const medium = JSON.parse(localStorage.getItem('medium'));
+  const killer =
+    charWeaponPlace.character && charWeaponPlace.character.content.image;
+
+  const history = useHistory();
+  const handleGameover = () => {
+    history.push('/');
+  };
   /**
    * Generate a div with the same content multiple times
    *
@@ -32,7 +40,7 @@ const Win = () => {
         {medium ? (
           <div className="cards-container">
             <Card className="medium" image={medium.image} />
-            {/* <Card className="killer" image={killer} /> */}
+            <Card className="killer" image={killer} />
           </div>
         ) : (
           <div>
@@ -43,6 +51,15 @@ const Win = () => {
       </div>
 
       <div className="win-text">{generateDivText(40)}</div>
+      <div className="replay">
+        <button type="button" onClick={handleGameover}>
+          <span>
+            <span>
+              <span data-attr-span="Start">Rejouer ?</span>
+            </span>
+          </span>
+        </button>
+      </div>
     </div>
   );
 };

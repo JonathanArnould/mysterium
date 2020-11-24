@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import MurderContext from './MurderContext';
@@ -13,13 +13,7 @@ import Rule from '../help/Rule';
 const GameBoard = () => {
   // COMBINAISON GAGNANTE WEAPON PLACE CHARACTER
 
-  const [charWeaponPlace, setCharWeaponPlace] = useState({});
-
-  const murderContextValue = {
-    charWeaponPlace,
-  };
-
-  const { weapon, place, character } = charWeaponPlace;
+  const { charWeaponPlace, setCharWeaponPlace } = useContext(MurderContext);
 
   const handleAxios = () => {
     axios('https://mysterium-game.herokuapp.com/api/characters')
@@ -137,7 +131,7 @@ const GameBoard = () => {
     setGameOn(true);
     setTimerActive(true);
     setStep({ ...step, step1: true });
-    handleVisions('weapons', weapon.content.id, 'id_weapon');
+    handleVisions('weapons', charWeaponPlace.weapon.content.id, 'id_weapon');
     handleChoices('weapons');
   };
 
@@ -148,40 +142,91 @@ const GameBoard = () => {
     choices,
   };
 
-  let history = useHistory();
+  const history = useHistory();
+
+  // SECOND CHANCE
+  const handleSecondChance = () => {
+    setTimerActive(false);
+    setTimeLeft(60);
+    setSecondChance(true);
+    setTimerActive(true);
+  };
+  // STEP 2
+
+  const handleStep2 = () => {
+    setCharWeaponPlace({
+      ...charWeaponPlace,
+      weapon: { ...charWeaponPlace.weapon, isFound: true },
+    });
+    setTimerActive(false);
+    setTimeLeft(60);
+    setTimerActive(true);
+    setStep({ ...step, step1: false, step2: true });
+    handleVisions('places', charWeaponPlace.place.content.id, 'id_place');
+    handleChoices('places');
+  };
+
+  // STEP 3
+  const handleStep3 = () => {
+    setCharWeaponPlace({
+      ...charWeaponPlace,
+      place: { ...charWeaponPlace.place, isFound: true },
+    });
+    setTimerActive(false);
+    setTimeLeft(60);
+    setTimerActive(true);
+    setStep({ ...step, step2: false, step3: true });
+    handleVisions(
+      'characters',
+      charWeaponPlace.character.content.id,
+      'id_character'
+    );
+    handleChoices('characters');
+  };
+
+  // STEP 4
+  const handleStep4 = () => {
+    setCharWeaponPlace({
+      ...charWeaponPlace,
+      character: { ...charWeaponPlace.character, isFound: true },
+    });
+    setTimerActive(false);
+    history.push('/win');
+  };
+
   const handleValidation = () => {
     if (count === 1) {
-      if (choices === weapon.content.id) {
+      if (choices === charWeaponPlace.weapon.content.id) {
         handleStep2();
         setCount(2);
         setSecondChance(false);
       } else {
         if (secondChance) {
-          return history.push('/lose');
+          history.push('/lose');
         } else {
           handleSecondChance();
         }
       }
     } else if (count === 2) {
-      if (choices === place.content.id) {
+      if (choices === charWeaponPlace.place.content.id) {
         handleStep3();
         setCount(3);
         setSecondChance(false);
       } else {
         if (secondChance) {
-          return history.push('/lose');
+          history.push('/lose');
         } else {
           handleSecondChance();
         }
       }
     } else if (count === 3) {
-      if (choices === character.content.id) {
+      if (choices === charWeaponPlace.character.content.id) {
         handleStep4();
         setCount(4);
         setSecondChance(false);
       } else {
         if (secondChance) {
-          return history.push('/lose');
+          history.push('/lose');
         } else {
           handleSecondChance();
         }
@@ -205,52 +250,6 @@ const GameBoard = () => {
     //   : ''; // écran lose;
   };
 
-  // SECOND CHANCE
-  const handleSecondChance = () => {
-    setTimerActive(false);
-    setTimeLeft(60);
-    setSecondChance(true);
-    setTimerActive(true);
-  };
-  // STEP 2
-
-  const handleStep2 = () => {
-    setCharWeaponPlace({
-      ...charWeaponPlace,
-      weapon: { ...weapon, isFound: true },
-    });
-    setTimerActive(false);
-    setTimeLeft(60);
-    setTimerActive(true);
-    setStep({ ...step, step1: false, step2: true });
-    handleVisions('places', place.content.id, 'id_place');
-    handleChoices('places');
-  };
-
-  // STEP 3
-  const handleStep3 = () => {
-    setCharWeaponPlace({
-      ...charWeaponPlace,
-      place: { ...place, isFound: true },
-    });
-    setTimerActive(false);
-    setTimeLeft(60);
-    setTimerActive(true);
-    setStep({ ...step, step2: false, step3: true });
-    handleVisions('characters', character.content.id, 'id_character');
-    handleChoices('characters');
-  };
-
-  // STEP 4
-  const handleStep4 = () => {
-    setCharWeaponPlace({
-      ...charWeaponPlace,
-      character: { ...character, isFound: true },
-    });
-    setTimerActive(false);
-    history.push('/win');
-  };
-
   // CONTEXTE CHOIX DU JOUEUR
 
   const updateChoice = (value) => {
@@ -266,30 +265,28 @@ const GameBoard = () => {
 
   return (
     <div className={`GameBoard${modalIsOpen ? ' is-open' : ''}`}>
-      <MurderContext.Provider value={murderContextValue}>
-        <ChoiceContext.Provider value={{ choiceContextValue, updateChoice }}>
-          <StepContext.Provider value={{ ...step, setStep }}>
-            <Navbar
-              setModalIsOpen={handleSetModalIsOpen}
-              modalIsOpen={modalIsOpen}
-              timer={timeLeft}
-            />
-            {!gameOn && (
-              <button type="button" className="button-1" onClick={startGame}>
-                READY TO PLAY
-              </button>
-            )}
-            <GameBody
-              visionCards={visionCards && visionCards}
-              choicesCards={choicesCards && choicesCards}
-              secondChance={secondChance}
-              handleValidation={handleValidation}
-            />{' '}
-            {modalIsOpen && <Rule setModalIsOpen={setModalIsOpen} />}
-            <GameFooter />
-          </StepContext.Provider>
-        </ChoiceContext.Provider>
-      </MurderContext.Provider>
+      <ChoiceContext.Provider value={{ choiceContextValue, updateChoice }}>
+        <StepContext.Provider value={{ ...step, setStep }}>
+          <Navbar
+            setModalIsOpen={handleSetModalIsOpen}
+            modalIsOpen={modalIsOpen}
+            timer={timeLeft}
+          />
+          {!gameOn && (
+            <button type="button" className="button-1" onClick={startGame}>
+              READY TO PLAY
+            </button>
+          )}
+          <GameBody
+            visionCards={visionCards && visionCards}
+            choicesCards={choicesCards && choicesCards}
+            secondChance={secondChance}
+            handleValidation={handleValidation}
+          />{' '}
+          {modalIsOpen && <Rule setModalIsOpen={setModalIsOpen} />}
+          <GameFooter />
+        </StepContext.Provider>
+      </ChoiceContext.Provider>
     </div>
   );
 };
