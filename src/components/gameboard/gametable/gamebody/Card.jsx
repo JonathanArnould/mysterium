@@ -3,14 +3,7 @@ import PropTypes from 'prop-types';
 
 import '../../../../styles/css/component/Card.css';
 
-const Card = ({
-  card,
-  className,
-  id,
-  classNameImage,
-  handleClick,
-  handleZoom,
-}) => {
+const Card = ({ card, className, id, classNameImage, handleZoom }) => {
   return (
     <div className={className} id={id}>
       {/* eslint-disable */}

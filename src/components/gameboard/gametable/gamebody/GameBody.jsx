@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import StepContext from '../../StepContext';
 import ChoiceContext from '../../ChoiceContext';
@@ -8,6 +8,7 @@ import '../../../../styles/css/component/GameBody.css';
 import Card from './Card';
 
 const GameBody = ({ visionCards, choicesCards }) => {
+  const { weapons, places, characters } = visionCards;
   const [leftCards] = useState({ items: [], activeItem: null });
   const { setStep, ...step } = useContext(StepContext);
   const { updateChoice, ...choices } = useContext(ChoiceContext);
@@ -145,10 +146,14 @@ const GameBody = ({ visionCards, choicesCards }) => {
   const [zoomCardVisions, setZoomCardVisions] = useState('');
   const [zoomCardChoices, setZoomCardChoices] = useState('');
 
+  const handleZoomVisions = (card) => {
+    setZoomCardVisions(card);
+  };
+
   const createStockcardVisions = (type) => {
     return type.map((card, index) => (
       <Card
-        onClick={card}
+        handleZoom={() => handleZoomVisions(card)}
         key={card.id}
         card={card}
         className="stockcard-card hide"
@@ -169,16 +174,14 @@ const GameBody = ({ visionCards, choicesCards }) => {
     );
   }; */
 
-  const handleZoom = (card) => {
+  const handleZoomChoices = (card) => {
     setZoomCardChoices(card);
   };
-
-  console.log(zoomCardChoices);
 
   const createStockcardChoices = (type) => {
     return type.map((card, index) => (
       <Card
-        handleZoom={() => handleZoom(card)}
+        handleZoom={() => handleZoomChoices(card)}
         key={card.id}
         card={card}
         className="stockcard-card hide"
@@ -212,23 +215,23 @@ const GameBody = ({ visionCards, choicesCards }) => {
 
   if (step.step1) {
     stockcardVisions = !secondChance
-      ? createStockcardVisions(visionCards.weapons)[0]
-      : createStockcardVisions(visionCards.weapons);
-    /* zoomcardVisions = createZoomcardVisions(visionCards.weapons); */
+      ? createStockcardVisions(weapons)[0]
+      : createStockcardVisions(weapons);
+    /* zoomcardVisions = createZoomcardVisions(weapons); */
     stockcardChoices = createStockcardChoices(choicesCards.weapons);
     /*   zoomcardChoices = createZoomcardChoices(choicesCards.weapons); */
   } else if (step.step2) {
     stockcardVisions = !secondChance
-      ? createStockcardVisions(visionCards.places)[0]
-      : createStockcardVisions(visionCards.places);
-    /* zoomcardVisions = createZoomcardVisions(visionCards.places); */
+      ? createStockcardVisions(places)[0]
+      : createStockcardVisions(places);
+    /* zoomcardVisions = createZoomcardVisions(places); */
     stockcardChoices = createStockcardChoices(choicesCards.places);
     /* zoomcardChoices = createZoomcardChoices(choicesCards.places); */
   } else if (step.step3) {
     stockcardVisions = !secondChance
-      ? createStockcardVisions(visionCards.characters)[0]
-      : createStockcardVisions(visionCards.characters);
-    /* zoomcardVisions = createZoomcardVisions(visionCards.characters); */
+      ? createStockcardVisions(characters)[0]
+      : createStockcardVisions(characters);
+    /* zoomcardVisions = createZoomcardVisions(characters); */
     stockcardChoices = createStockcardChoices(choicesCards.characters);
     /* zoomcardChoices = createZoomcardChoices(choicesCards.characters); */
   }
