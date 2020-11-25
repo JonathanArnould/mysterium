@@ -6,61 +6,63 @@ import Medium from './components/medium/Medium';
 import Gameboard from './components/gameboard/GameBoard';
 import Win from './components/end/Win';
 import Lose from './components/end/Lose';
+
 import firstSound from '../src/styles/sounds/mysterium-first.mp3';
+import secondSound from '../src/styles/sounds/Game_Mode.mp3';
+import thirdSound from '../src/styles/sounds/End_win.mp3';
+import fourthSound from '../src/styles/sounds/End_Lose.mp3';
 import './App.css';
 
 const App = () => {
   const location = useLocation();
   const [sound, setSound] = useState(firstSound);
-  const audioElement = useRef(null);
-  
+  // const audioElement = useRef(null);
+
   const [charWeaponPlace, setCharWeaponPlace] = useState({});
-        
-  const isFirstSound =
+
+  const isHomeMedium =
     location.pathname === '/' || location.pathname === '/medium';
-  // const isSecondSound = location.pathname === '/board';
-  // const isThirdSound = location.pathname === '/win';
-  // const isFourthSound = location.pathname === '/loose';
+  const isBoard = location.pathname === '/board';
+  const isWin = location.pathname === '/win';
+  const isLose = location.pathname === '/lose';
 
   useEffect(() => {
-    if (isFirstSound) {
+    if (isHomeMedium) {
       setSound(firstSound);
+    } else if (isBoard) {
+      setSound(secondSound);
+    } else if (isWin) {
+      setSound(thirdSound);
+    } else if (isLose) {
+      setSound(fourthSound);
     } else {
       setSound(firstSound);
     }
-  }, [isFirstSound]);
-
-  // } else if (isSecondSound) {
-  //   return secondSound;
-  // } else if (isThirdSound) {
-  //   return thirdSound;
-  // } else if (isFourthSound) {
-  //   return fourthSound;
-  // } else {
-  //    firstSound;
-  // }
+  }, [isHomeMedium, isBoard, isWin, isLose]);
 
   return (
     <div className="App">
       <div className="controlAudio">
         <audio
           className="controlAudioStyle"
-          ref={audioElement}
+          // ref={audioElement}
           style={{ position: 'absolute', zIndex: 1 }}
           src={sound}
           controls
+          autoPlay
+          loop
           controlsList="nodownload"
           type="audio/mpeg"
         ></audio>
       </div>
       <MurderContext.Provider value={{ charWeaponPlace, setCharWeaponPlace }}>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/medium" component={Medium} />
-        <Route path="/board" component={Gameboard} />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/medium" component={Medium} />
+          <Route path="/board" component={Gameboard} />
           <Route path="/win" component={Win} />
           <Route path="/lose" component={Lose} />
-      </Switch>
+        </Switch>
       </MurderContext.Provider>
     </div>
   );

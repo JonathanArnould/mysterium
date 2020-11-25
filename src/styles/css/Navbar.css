@@ -112,13 +112,13 @@ nav a {
   max-width: 70px;
   position: absolute;
   left: 0;
-  top: 12px;
+  top: 2px;
 }
 
 .interroMark {
   position: absolute;
   left: 50%;
-  top: 55%;
+  top: 46%;
   transform: translate(-50%, -50%);
   color: white;
   font-weight: bold;
