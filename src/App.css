@@ -9,51 +9,21 @@
   margin: 0 auto;
 }
 
-.help-btn {
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  animation-duration: 1s;
-  animation-name: gleam;
-  animation-iteration-count: infinite;
-  transition: 0.5s;
-  color: white;
-  background-image: linear-gradient(
-    to right top,
-    #342000,
-    #372304,
-    #392608,
-    #3c290c,
-    #3f2c0f,
-    #443014,
-    #483519,
-    #4d391e,
-    #544026,
-    #5b472e,
-    #624e37,
-    #69553f
-  );
+audio::-webkit-media-controls-timeline,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display {
+  display: none;
 }
 
-.help-btn:hover {
-  transition: 0.5s;
-  box-shadow: 0px 0px 50px #2fbde6;
+.controlAudio {
+  display: flex;
+  justify-content: flex-end;
+  left: 0;
+  right: 0;
 }
 
-:focus {
-  outline-style: none;
-}
-
-@keyframes gleam {
-  from {
-    box-shadow: 0px 0px 20px #17748b;
-  }
-
-  25% {
-    box-shadow: 0px 0px 50px #2fbde6;
-  }
-
-  to {
-    box-shadow: 0px 0px 20px #17748b;
-  }
+.controlAudioStyle {
+  width: 150px;
+  height: 28px;
+  padding: 0px 4px;
 }

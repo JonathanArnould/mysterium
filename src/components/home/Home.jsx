@@ -7,11 +7,12 @@ import cadreImage from '../../styles/images/cadreBouton.png';
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
-    this.state = { value: '' };
+    this.state = { value: '', open: true };
     this.handleOnChange = this.handleOnChange.bind(this);
     this.handleOnClickHome = this.handleOnClickHome.bind(this);
+    this.handleOnClickPopUp = this.handleOnClickPopUp.bind(this);
   }
+
   handleOnChange(event) {
     this.setState({ value: event.target.value });
   }
@@ -22,10 +23,29 @@ class Home extends Component {
     this.props.history.push('/medium');
   }
 
+  handleOnClickPopUp(event) {
+    event.preventDefault();
+    this.setState({ open: false });
+  }
+
   render() {
     const { value } = this.state;
     return (
       <div className="Home">
+        {this.state.open && (
+          <div className="homePopUpPosition">
+            <div className="blurHome"></div>
+            <div className="homePopUp">
+              <span className="buttonSpan" onClick={this.handleOnClickPopUp}>
+                X
+              </span>
+              <p>
+                Pour une meilleure expérience, nous vous conseillons d'activer
+                le son en haut à droite 😊 ➚  
+              </p>
+            </div>
+          </div>
+        )}
         <div className="titleHome">
           <img className="titleHomeStyle" src={titleLogo} alt="Game Title" />
         </div>
