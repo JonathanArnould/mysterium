@@ -9,7 +9,7 @@ import clock from '../../../styles/images/horloge.png';
 import home from '../../../styles/images/home.png';
 import clockhand from '../../../styles/images/aiguille-next.png';
 
-const Navbar = ({ setModalIsOpen }) => {
+const Navbar = ({ setModalIsOpen, timer }) => {
   const [player, setPlayer] = useState('');
   useEffect(() => {
     const avatar = localStorage.getItem('medium');
@@ -22,18 +22,6 @@ const Navbar = ({ setModalIsOpen }) => {
     const username = localStorage.getItem('username');
     setPseudo(username);
   }, []);
-
-  const [timeLeft, setTimeLeft] = useState(60);
-
-  useEffect(() => {
-    if (timeLeft) {
-      const intervalId = setInterval(() => {
-        setTimeLeft(timeLeft - 1);
-      }, 1000);
-      return () => clearInterval(intervalId);
-    }
-    return timeLeft;
-  }, [timeLeft]);
 
   return (
     <nav className="Navbar">
@@ -52,7 +40,7 @@ const Navbar = ({ setModalIsOpen }) => {
         </div>
 
         <span className="nav-item counter">
-          {!timeLeft ? 'Temps écoulé!' : `: ${timeLeft}`}
+          {!timer ? 'Temps écoulé!' : `: ${timer}`}
         </span>
       </div>
 
@@ -79,6 +67,7 @@ const Navbar = ({ setModalIsOpen }) => {
 };
 
 Navbar.propTypes = {
+  timer: PropTypes.number.isRequired,
   setModalIsOpen: PropTypes.func.isRequired,
 };
 export default Navbar;

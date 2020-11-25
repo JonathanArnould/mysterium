@@ -11,34 +11,48 @@ const GameFooter = () => {
         <div className="cardfooter-container">
           <div
             className={`card ${
-              charWeaponPlace.weapon.isFound ? 'card-found' : 'card-not-found'
-            }`}
-          >
-            <img
-              src={charWeaponPlace.weapon.content.image}
-              alt={charWeaponPlace.weapon.content.name}
-            />
-          </div>
-          <div
-            className={`card ${
-              charWeaponPlace.place.isFound ? 'card-found' : 'card-not-found'
-            }`}
-          >
-            <img
-              src={charWeaponPlace.place.content.image}
-              alt={charWeaponPlace.place.content.name}
-            />
-          </div>
-          <div
-            className={`card ${
-              charWeaponPlace.character.isFound
+              charWeaponPlace.weapon && charWeaponPlace.weapon.isFound
                 ? 'card-found'
                 : 'card-not-found'
             }`}
           >
             <img
-              src={charWeaponPlace.character.content.image}
-              alt={charWeaponPlace.character.content.name}
+              src={
+                charWeaponPlace.weapon && charWeaponPlace.weapon.content.image
+              }
+              alt={
+                charWeaponPlace.weapon && charWeaponPlace.weapon.content.name
+              }
+            />
+          </div>
+          <div
+            className={`card ${
+              charWeaponPlace.place && charWeaponPlace.place.isFound
+                ? 'card-found'
+                : 'card-not-found'
+            }`}
+          >
+            <img
+              src={charWeaponPlace.place && charWeaponPlace.place.content.image}
+              alt={charWeaponPlace.place && charWeaponPlace.place.content.name}
+            />
+          </div>
+          <div
+            className={`card ${
+              charWeaponPlace.character && charWeaponPlace.character.isFound
+                ? 'card-found'
+                : 'card-not-found'
+            }`}
+          >
+            <img
+              src={
+                charWeaponPlace.character &&
+                charWeaponPlace.character.content.image
+              }
+              alt={
+                charWeaponPlace.character &&
+                charWeaponPlace.character.content.name
+              }
             />
           </div>
         </div>

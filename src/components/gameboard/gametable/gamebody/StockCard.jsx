@@ -9,6 +9,7 @@ const StockCard = ({
   hideOrShowStockcard,
   hideOrShowCard,
   changeButtonLabel,
+  gameOn,
 }) => {
   const handleClick = (e) => {
     const cards = e.target.parentNode.children;
@@ -28,7 +29,11 @@ const StockCard = ({
   return (
     <div className={`StockCard ${className}`}>
       <div className="StockCard-container" id={id}>
-        <button type="button" className="open" onClick={handleClick}>
+        <button
+          type="button"
+          className={gameOn ? 'open' : 'open hide'}
+          onClick={handleClick}
+        >
           OPEN
         </button>
         <button type="button" className="close hide" onClick={handleClick}>

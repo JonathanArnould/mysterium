@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import StepContext from '../../StepContext';
+/* import ChoiceContext from '../../ChoiceContext'; */
 import StockCard from './StockCard';
 import ZoomCard from './ZoomCard';
 import '../../../../styles/css/component/GameBody.css';
 import Card from './Card';
 import { useEffect } from 'react';
 
-const GameBody = ({ visionCards, choicesCards }) => {
-  const { weapons } = visionCards;
-
+const GameBody = ({
+  visionCards,
+  choicesCards,
+  secondChance,
+  handleValidation,
+  gameOn,
+}) => {
+  const { weapons, places, characters } = visionCards;
   const [leftCards] = useState({ items: [], activeItem: null });
-  const [visibleCards, setVisibleCards] = useState([]);
-
-  useEffect(() => {
-    setVisibleCards(weapons[0]);
-    console.log(visibleCards);
-  });
+  const { setStep, ...step } = useContext(StepContext);
 
   /**
    * Show or hide the current stockcard
@@ -56,162 +58,121 @@ const GameBody = ({ visionCards, choicesCards }) => {
     }
   };
 
-  /**
-   * Show or hide cards in zoomcard components
-   *
-   * @param {object} stockcardContainer  parent of the current element which has the StockCard-container class
-   * @param {string} classZoomcard   zoomcardleft or zoomcardright
-   * @param {number} idNumber   the last character of the id of the card to display
-   * @param {object} imageToDisplay  The card to display
-   */
-  const showOrHideZoomcard = (
-    stockcardContainer,
-    classZoomcard,
-    idNumber,
-    imageToDisplay
-  ) => {
-    Object.values(stockcardContainer.parentNode.parentNode.children).forEach(
-      (link) => {
-        if (link.classList.contains(classZoomcard)) {
-          Object.values(link.children).forEach((item) => {
-            item.classList.remove('begin-hide');
-            item.classList.remove('begin-show');
-            item.classList.remove('show');
-            item.classList.add('hide');
+  let firstImageVision;
+  let firstImageChoice;
 
-            if (item.id.slice(-1) === idNumber) {
-              item.classList.remove('hide');
-              item.classList.add('show');
-            }
-          });
-        }
-      }
-    );
-    imageToDisplay.classList.add('show');
+  if (step.step1) {
+    firstImageVision = weapons[0];
+    firstImageChoice = choicesCards.weapons[0];
+  } else if (step.step2) {
+    firstImageVision = places[0];
+    firstImageChoice = choicesCards.places[0];
+  } else if (step.step3) {
+    firstImageVision = characters[0];
+    firstImageChoice = choicesCards.characters[0];
+  }
+
+  const [zoomCardVisions, setZoomCardVisions] = useState({});
+  const [zoomCardChoices, setZoomCardChoices] = useState({});
+
+  useEffect(() => {
+    setZoomCardVisions(firstImageVision);
+  }, [firstImageVision]);
+
+  useEffect(() => {
+    setZoomCardChoices(firstImageChoice);
+  }, [firstImageChoice]);
+
+  const handleZoomVisions = (card) => {
+    setZoomCardVisions(card);
   };
 
-  /**
-   * Show the 'zoomcard' which has the class show
-   * Hide or show the stockcard
-   *
-   * @param {Event} e
-   */
-  const handleClick = (e) => {
-    const currentElement = e.target;
-    const stockcardContainer = currentElement.parentNode.parentNode;
-    const cards = stockcardContainer.children;
-    const stockcard = stockcardContainer.parentNode;
-    let stockcardLeft = false;
-    let stockcardRight = false;
-
-    if (stockcardContainer.parentNode.classList.contains('stockcardleft')) {
-      stockcardLeft = true;
-    } else {
-      stockcardRight = true;
-    }
-
-    Object.values(cards).forEach((link) => {
-      if (link.classList.contains('stockcard-card')) {
-        link.children[0].classList.remove('active');
-      }
-    });
-    currentElement.classList.add('active');
-
-    const idNumber = currentElement.parentNode.id.slice(-1);
-
-    let imageToDisplay = '';
-    if (idNumber <= '4') {
-      imageToDisplay = document.getElementById(`zoomcard-choice-${idNumber}`);
-    } else {
-      imageToDisplay = document.getElementById(`zoomcard-vision-${idNumber}`);
-    }
-
-    if (stockcardLeft) {
-      showOrHideZoomcard(
-        stockcardContainer,
-        'zoomcardleft',
-        idNumber,
-        imageToDisplay
-      );
-    } else if (stockcardRight) {
-      showOrHideZoomcard(
-        stockcardContainer,
-        'zoomcardright',
-        idNumber,
-        imageToDisplay
-      );
-    }
-
-    hideOrShowCard(cards);
-    hideOrShowStockcard(stockcard);
-    changeButtonLabel(currentElement);
+  const createStockcardVisions = (type) => {
+    return type.map((card, index) => (
+      <Card
+        handleZoom={() => handleZoomVisions(card)}
+        key={card.id}
+        card={card}
+        className="stockcard-card hide"
+        id={`stockcard-vision-${index + 5}`}
+        classNameImage="stockcard-image"
+      />
+    ));
   };
 
-  const createStockcardVisions = visionCards.weapons.map((card, index) => (
-    <Card
-      key={card.id}
-      card={card}
-      className="stockcard-card hide"
-      id={`stockcard-vision-${index + 5}`}
-      classNameImage="stockcard-image"
-      handleClick={handleClick}
-    />
-  ));
+  const handleZoomChoices = (card) => {
+    setZoomCardChoices(card);
+  };
 
-  const createZoomcardVisions = visionCards.weapons.map((card, index) => (
-    <Card
-      key={card.id}
-      card={card}
-      className={`zoomcard-card${
-        index + 5 !== 5 ? ' begin-hide' : ' begin-show'
-      }`}
-      id={`zoomcard-vision-${index + 5}`}
-      classNameImage="zoomcard-image"
-    />
-  ));
+  const createStockcardChoices = (type) => {
+    return type.map((card, index) => (
+      <Card
+        handleZoom={() => handleZoomChoices(card)}
+        key={card.id}
+        card={card}
+        className="stockcard-card hide"
+        id={`stockcard-choice-${index + 1}`}
+        classNameImage={`stockcard-image ${
+          leftCards.activeItem === card.name ? 'active' : ''
+        }`}
+      />
+    ));
+  };
 
-  const createStockcardChoices = choicesCards.weapons.map((card, index) => (
-    <Card
-      key={card.id}
-      card={card}
-      className="stockcard-card hide"
-      id={`stockcard-choice-${index + 1}`}
-      classNameImage={`stockcard-image ${
-        leftCards.activeItem === card.name ? 'active' : ''
-      }`}
-      handleClick={handleClick}
-    />
-  ));
+  let stockcardVisions;
+  let stockcardChoices;
 
-  const createZoomcardChoices = choicesCards.weapons.map((card, index) => (
-    <Card
-      key={card.id}
-      card={card}
-      className={`zoomcard-card${
-        index + 1 !== 1 ? ' begin-hide' : ' begin-show'
-      }`}
-      id={`zoomcard-choice-${index + 1}`}
-      classNameImage="zoomcard-image"
-    />
-  ));
+  /* const { updateChoice, ...choices } = useContext(ChoiceContext); */
+
+  if (step.step1) {
+    stockcardVisions = !secondChance
+      ? createStockcardVisions(weapons)[0]
+      : createStockcardVisions(weapons);
+    stockcardChoices = createStockcardChoices(choicesCards.weapons);
+  } else if (step.step2) {
+    stockcardVisions = !secondChance
+      ? createStockcardVisions(places)[0]
+      : createStockcardVisions(places);
+    stockcardChoices = createStockcardChoices(choicesCards.places);
+  } else if (step.step3) {
+    stockcardVisions = !secondChance
+      ? createStockcardVisions(characters)[0]
+      : createStockcardVisions(characters);
+    stockcardChoices = createStockcardChoices(choicesCards.characters);
+  }
 
   return (
     <div className="GameBody">
       <StockCard
         className="stockcardleft hide"
-        content={createStockcardChoices}
+        content={stockcardChoices}
         hideOrShowStockcard={hideOrShowStockcard}
         hideOrShowCard={hideOrShowCard}
         changeButtonLabel={changeButtonLabel}
+        gameOn={gameOn}
       />
-      <ZoomCard className="zoomcardleft" content={createZoomcardChoices} />
-      <ZoomCard className="zoomcardright" content={createZoomcardVisions} />
+      <ZoomCard
+        className="zoomcardleft"
+        content={zoomCardChoices && zoomCardChoices}
+      />
+      <button
+        type="button"
+        className="choiceButton"
+        onClick={() => handleValidation()}
+      >
+        Valider mon choix
+      </button>
+      <ZoomCard
+        className="zoomcardright"
+        content={zoomCardVisions && zoomCardVisions}
+      />
       <StockCard
         className="stockcardright hide"
-        content={createStockcardVisions}
+        content={stockcardVisions}
         hideOrShowStockcard={hideOrShowStockcard}
         hideOrShowCard={hideOrShowCard}
         changeButtonLabel={changeButtonLabel}
+        gameOn={gameOn}
       />
     </div>
   );
@@ -225,6 +186,8 @@ GameBody.defaultProps = {
 GameBody.propTypes = {
   visionCards: PropTypes.string,
   choicesCards: PropTypes.string,
+  secondChance: PropTypes.bool.isRequired,
+  handleValidation: PropTypes.func.isRequired,
 };
 
 export default GameBody;
