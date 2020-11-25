@@ -4,9 +4,18 @@ import StockCard from './StockCard';
 import ZoomCard from './ZoomCard';
 import '../../../../styles/css/component/GameBody.css';
 import Card from './Card';
+import { useEffect } from 'react';
 
 const GameBody = ({ visionCards, choicesCards }) => {
+  const { weapons } = visionCards;
+
   const [leftCards] = useState({ items: [], activeItem: null });
+  const [visibleCards, setVisibleCards] = useState([]);
+
+  useEffect(() => {
+    setVisibleCards(weapons[0]);
+    console.log(visibleCards);
+  });
 
   /**
    * Show or hide the current stockcard
