@@ -48,6 +48,7 @@ nav .avatar {
 
 .nav-pseudo {
   font-size: 1.6rem;
+  color: antiquewhite;
 }
 
 nav a {
@@ -59,6 +60,7 @@ nav a {
 .counter {
   font-size: 1.4em;
   margin: auto;
+  color: antiquewhite;
 }
 
 .clock-container {
@@ -110,13 +112,13 @@ nav a {
   max-width: 70px;
   position: absolute;
   left: 0;
-  top: 0;
+  top: 12px;
 }
 
 .interroMark {
   position: absolute;
   left: 50%;
-  top: 43%;
+  top: 55%;
   transform: translate(-50%, -50%);
   color: white;
   font-weight: bold;
