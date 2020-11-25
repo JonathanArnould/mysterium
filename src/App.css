@@ -24,6 +24,6 @@ audio::-webkit-media-controls-time-remaining-display {
 
 .controlAudioStyle {
   width: 150px;
-  height: 28px;
+  height: 20px;
   padding: 0px 4px;
 }
