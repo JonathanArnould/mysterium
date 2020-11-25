@@ -6,7 +6,6 @@ import StockCard from './StockCard';
 import ZoomCard from './ZoomCard';
 import '../../../../styles/css/component/GameBody.css';
 import Card from './Card';
-import { useEffect } from 'react';
 
 const GameBody = ({
   visionCards,
