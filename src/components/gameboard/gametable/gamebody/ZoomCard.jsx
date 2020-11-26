@@ -8,8 +8,9 @@ const ZoomCard = ({ className, content }) => {
   const { choiceContextValue, updateChoice } = useContext(ChoiceContext);
 
   useEffect(() => {
-    content && updateChoice(content.id);
+    content && content.name && updateChoice(content.id);
   }, [content]);
+
   return (
     <div className={`zoomcard ${className}`}>
       <div className="zoomcard-card">

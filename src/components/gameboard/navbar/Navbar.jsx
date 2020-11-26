@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
+import StepContext from '../StepContext';
 import '../../../styles/css/Navbar.css';
 
 import crystalBall from '../../../styles/images/image-678070.png';
@@ -22,6 +22,18 @@ const Navbar = ({ setModalIsOpen, timer }) => {
     const username = localStorage.getItem('username');
     setPseudo(username);
   }, []);
+
+  const { setStep, ...step } = useContext(StepContext);
+  let classClockHand = '';
+  if (step.step1) {
+    classClockHand = 'clockhand';
+  } else if (step.step2) {
+    classClockHand = 'clockhand place-step-rotation';
+  } else if (step.step3) {
+    classClockHand = 'clockhand murder-step-rotation';
+  } else {
+    classClockHand = 'clockhand first-step-rotation';
+  }
 
   return (
     <nav className="Navbar">
@@ -46,7 +58,7 @@ const Navbar = ({ setModalIsOpen, timer }) => {
 
       <div className="clock-container">
         <img className="clock" src={clock} alt="clock" />
-        <img className="clockhand" src={clockhand} alt="clockhand" />
+        <img className={classClockHand} src={clockhand} alt="clockhand" />
       </div>
 
       <div className="nav-right">

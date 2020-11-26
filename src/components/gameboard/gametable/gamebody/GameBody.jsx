@@ -24,7 +24,7 @@ const GameBody = ({
    * @param {object} stockcard  Element with the StockCard class
    */
   const hideOrShowStockcard = (stockcard) => {
-    stockcard.classList.toggle('hide');
+    // stockcard.classList.toggle('hide');
     stockcard.classList.toggle('show');
   };
 
@@ -36,7 +36,7 @@ const GameBody = ({
   const hideOrShowCard = (stockcardCards) => {
     Object.values(stockcardCards).forEach((card) => {
       if (card.classList.contains('stockcard-card')) {
-        card.classList.toggle('hide');
+        // card.classList.toggle('hide');
         card.classList.toggle('show');
       }
     });
@@ -143,7 +143,7 @@ const GameBody = ({
   return (
     <div className="GameBody">
       <StockCard
-        className="stockcardleft hide"
+        className="stockcardleft"
         content={stockcardChoices}
         hideOrShowStockcard={hideOrShowStockcard}
         hideOrShowCard={hideOrShowCard}
@@ -154,13 +154,23 @@ const GameBody = ({
         className="zoomcardleft"
         content={zoomCardChoices && zoomCardChoices}
       />
-      <button
-        type="button"
-        className="choiceButton"
-        onClick={() => handleValidation()}
-      >
-        Valider mon choix
-      </button>
+      {gameOn && (
+        <div className="validate">
+          <button
+            type="button"
+            className="choiceButton"
+            onClick={() => handleValidation()}
+          >
+            <span>
+              <span>
+                <span data-attr-span="Valider mon choix">
+                  Valider mon choix
+                </span>
+              </span>
+            </span>
+          </button>
+        </div>
+      )}
       <ZoomCard
         className="zoomcardright"
         content={zoomCardVisions && zoomCardVisions}

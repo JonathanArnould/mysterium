@@ -78,11 +78,11 @@
 .win-text .text {
   position: absolute;
   color: var(--color-light);
-  margin-top: 1.5rem;
-  line-height: 8rem;
+
   opacity: 0;
   transform: translate(-50%, -50%);
   mix-blend-mode: screen;
+  font-size: 2.4rem;
 }
 
 .win-text .text:nth-child(1) {

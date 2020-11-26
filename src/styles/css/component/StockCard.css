@@ -73,13 +73,9 @@
   opacity: 0.4;
 }
 
-.stockcard-card.hide {
+/* .stockcard-card.hide {
   animation: bounceOut 1s both;
-}
-
-.stockcard-card.show {
-  animation: bounceIn 2s 0.5s both;
-}
+} */
 
 .stockcard-card.show {
   animation: bounceIn 2s 0.5s both;

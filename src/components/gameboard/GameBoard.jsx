@@ -8,6 +8,7 @@ import Navbar from './navbar/Navbar';
 import GameFooter from './gamefooter/GameFooter';
 import '../../styles/css/component/GameBoard.css';
 import GameBody from './gametable/gamebody/GameBody';
+import AlertPlayer from './AlertPlayer';
 import Rule from '../help/Rule';
 
 const GameBoard = () => {
@@ -65,13 +66,17 @@ const GameBoard = () => {
     step3: false,
   });
 
-  const [count, setCount] = useState(1);
-
-  // const [secondChance, setSecondChance] = useState(false);
+  const [count, setCount] = useState(0);
 
   // TIMER (DEMARRE AU CLIC SUR BOUTON)
   const [timeLeft, setTimeLeft] = useState(60);
   const [timerActive, setTimerActive] = useState(false);
+
+  useEffect(() => {
+    if (timeLeft === 0) {
+      handleValidation();
+    }
+  }, [timeLeft]);
 
   useEffect(() => {
     if (timeLeft && timerActive === true) {
@@ -136,7 +141,7 @@ const GameBoard = () => {
   };
 
   // VERIFIER CHOIX DU JOUEUR
-  const [secondChance, setSecondChance] = useState(false);
+
   const [choices, setChoices] = useState({});
   const choiceContextValue = {
     choices,
@@ -146,8 +151,8 @@ const GameBoard = () => {
 
   // SECOND CHANCE
   const handleSecondChance = () => {
-    setTimerActive(false);
     setTimeLeft(60);
+    setAlertUser(true);
     setSecondChance(true);
     setTimerActive(true);
   };
@@ -158,9 +163,7 @@ const GameBoard = () => {
       ...charWeaponPlace,
       weapon: { ...charWeaponPlace.weapon, isFound: true },
     });
-    setTimerActive(false);
     setTimeLeft(60);
-    setTimerActive(true);
     setStep({ ...step, step1: false, step2: true });
     handleVisions('places', charWeaponPlace.place.content.id, 'id_place');
     handleChoices('places');
@@ -172,9 +175,7 @@ const GameBoard = () => {
       ...charWeaponPlace,
       place: { ...charWeaponPlace.place, isFound: true },
     });
-    setTimerActive(false);
     setTimeLeft(60);
-    setTimerActive(true);
     setStep({ ...step, step2: false, step3: true });
     handleVisions(
       'characters',
@@ -194,41 +195,63 @@ const GameBoard = () => {
     history.push('/win');
   };
 
+  // MODALE TRANSITION
+  const [alertUser, setAlertUser] = useState(false);
+  const [secondChance, setSecondChance] = useState(false);
+  const [chanceOn, setChanceOn] = useState(false);
+  const handleAlert = () => {
+    setAlertUser(false);
+    setTimerActive(true);
+  };
   const handleValidation = () => {
-    if (count === 1) {
+    console.log(choices, charWeaponPlace);
+    if (count === 0) {
       if (choices === charWeaponPlace.weapon.content.id) {
+        setTimerActive(false);
+        setAlertUser(true);
         handleStep2();
-        setCount(2);
+        setCount(1);
         setSecondChance(false);
+        setChanceOn(false);
       } else {
         if (secondChance) {
           history.push('/lose');
         } else {
+          setChanceOn(true);
           handleSecondChance();
+          setTimerActive(false);
+        }
+      }
+    } else if (count === 1) {
+      if (choices === charWeaponPlace.place.content.id) {
+        setTimerActive(false);
+        setAlertUser(true);
+        handleStep3();
+        setCount(2);
+        setSecondChance(false);
+        setChanceOn(false);
+      } else {
+        if (secondChance) {
+          history.push('/lose');
+        } else {
+          setChanceOn(true);
+          handleSecondChance();
+          setTimerActive(false);
         }
       }
     } else if (count === 2) {
-      if (choices === charWeaponPlace.place.content.id) {
-        handleStep3();
-        setCount(3);
-        setSecondChance(false);
-      } else {
-        if (secondChance) {
-          history.push('/lose');
-        } else {
-          handleSecondChance();
-        }
-      }
-    } else if (count === 3) {
       if (choices === charWeaponPlace.character.content.id) {
         handleStep4();
-        setCount(4);
+        setCount(3);
         setSecondChance(false);
+        setChanceOn(false);
       } else {
         if (secondChance) {
           history.push('/lose');
         } else {
+          setChanceOn(true);
           handleSecondChance();
+          setTimerActive(false);
         }
       }
     }
@@ -273,9 +296,15 @@ const GameBoard = () => {
             timer={timeLeft}
           />
           {!gameOn && (
-            <button type="button" className="button-1" onClick={startGame}>
-              READY TO PLAY
-            </button>
+            <div className="start">
+              <button type="button" className="button-1" onClick={startGame}>
+                <span>
+                  <span>
+                    <span data-attr-span="Commencer">Commencer</span>
+                  </span>
+                </span>
+              </button>
+            </div>
           )}
           <GameBody
             visionCards={visionCards && visionCards}
@@ -285,6 +314,13 @@ const GameBoard = () => {
             gameOn={gameOn}
           />{' '}
           {modalIsOpen && <Rule setModalIsOpen={handleSetModalIsOpen} />}
+          {alertUser && (
+            <AlertPlayer
+              count={count}
+              handleAlert={handleAlert}
+              chance={chanceOn}
+            />
+          )}
           <GameFooter />
         </StepContext.Provider>
       </ChoiceContext.Provider>

@@ -1,5 +1,5 @@
 .GameBoard {
-  background: url('../../images/Test.jpg') top center no-repeat;
+  background: url('../../images/background_Gameboard.jpg') center no-repeat;
   background-size: cover;
   color: var(--color-light);
   overflow-x: hidden;
@@ -23,4 +23,115 @@ button {
 
 .button-2 {
   left: 55%;
+}
+
+/* =============================
+      BUTTON
+  ============================= */
+.start button {
+  width: 250px;
+  height: 50px;
+  margin: 0;
+  padding: 0;
+  background: rgba(194, 188, 188, 0.5);
+  font-family: var(--font-family-primary);
+  color: var(--color-light);
+  font-size: 1.5rem;
+  transform: translateY(60px);
+  border: none;
+  outline: none;
+  z-index: 100000;
+}
+
+.start button span {
+  display: block;
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+  cursor: pointer;
+}
+
+.start button > span:after,
+.start button > span:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 5px;
+  height: 0;
+  border: 1px solid var(--color-light);
+  border-bottom: none;
+  transition: height 0.15s ease-out, width 0.15s ease-out 0.15s;
+}
+
+.start button > span:after {
+  left: 50%;
+  border-left: none;
+}
+
+.start button > span:before {
+  right: 50%;
+  border-right: none;
+}
+
+.start:hover button > span:after,
+.start:hover button > span:before {
+  width: calc(50% - 1px);
+  height: calc(100% - 2px);
+  transition: width 0.15s ease-out, height 0.15s ease-out 0.15s;
+}
+
+.start button > span > span:before,
+.start button > span > span:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0%;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.start button > span > span:before {
+  right: 0%;
+}
+
+.start button > span > span:after {
+  left: 0%;
+}
+
+.start:hover button > span > span:before,
+.start:hover button > span > span:after {
+  opacity: 1;
+  border-bottom: 1px solid var(--color-light);
+  width: calc(50%);
+  height: 1px;
+  transition: opacity 0s ease-out 0.29s, width 0.15s ease-out 0.3s;
+}
+
+.start:hover button > span > span > span {
+  color: var(--color-light);
+}
+
+.start button > span > span > span:after {
+  content: attr(data-attr-span);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 0%;
+  height: 100%;
+  background: var(--color-light);
+  color: var(--color-dark);
+  white-space: nowrap;
+  text-align: center;
+  margin: auto;
+  overflow: hidden;
+  transition: width 0.2s 0.1s;
+}
+
+.start button:hover > span > span > span:after {
+  width: 100%;
 }
