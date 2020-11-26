@@ -17,6 +17,7 @@ const GameFooter = () => {
             }`}
           >
             <img
+              className="img-footer"
               src={
                 charWeaponPlace.weapon && charWeaponPlace.weapon.content.image
               }

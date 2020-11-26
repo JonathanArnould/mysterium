@@ -1,7 +1,7 @@
 .GameBody {
   display: flex;
   justify-content: space-around;
-  margin-top: 50px;
+  margin-top: 20vh;
 }
 
 /* =============================
@@ -18,10 +18,11 @@
   font-family: var(--font-family-primary);
   color: var(--color-light);
   font-size: 1.5rem;
-  transform: translateY(60px) translateX(-50%);
+  transform: translate(-50%, -50%);
   border: none;
   outline: none;
   z-index: 10;
+  left: 50%;
 }
 
 .validate button span {

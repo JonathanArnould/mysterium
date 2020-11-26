@@ -7,7 +7,7 @@ import Gameboard from './components/gameboard/GameBoard';
 import Win from './components/end/Win';
 import Lose from './components/end/Lose';
 import firstSound from './styles/sounds/mysterium-first.mp3';
-import secondSound from './styles/sounds/Game_Mode.mp3';
+import secondSound from './styles/sounds/Mysterium_Stephaaaaaane.mp3';
 import thirdSound from './styles/sounds/End_win.mp3';
 import fourthSound from './styles/sounds/End_Lose.mp3';
 import './App.css';
@@ -17,7 +17,8 @@ const App = () => {
   const [sound, setSound] = useState(firstSound);
   const audioElement = useRef(null);
   const [charWeaponPlace, setCharWeaponPlace] = useState({});
-  const isHomeMedium = location.pathname === '/' || location.pathname === '/medium';
+  const isHomeMedium =
+    location.pathname === '/' || location.pathname === '/medium';
   const isBoard = location.pathname === '/board';
   const isWin = location.pathname === '/win';
   const isLose = location.pathname === '/lose';

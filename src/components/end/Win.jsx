@@ -36,7 +36,7 @@ const Win = () => {
       output.push(
         <div className="text">
           Vous avez démasqué l&apos;auteur du crime !<br />
-          L&apos;esprit qui hante ces lieux a enfin trouver le repos...
+          L&apos;esprit qui hante ces lieux a enfin trouvé le repos...
         </div>
       );
     }
