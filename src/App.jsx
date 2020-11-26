@@ -7,48 +7,46 @@ import Gameboard from './components/gameboard/GameBoard';
 import Win from './components/end/Win';
 import Lose from './components/end/Lose';
 import firstSound from './styles/sounds/mysterium-first.mp3';
+import secondSound from './styles/sounds/Game_Mode.mp3';
+import thirdSound from './styles/sounds/End_win.mp3';
+import fourthSound from './styles/sounds/End_Lose.mp3';
 import './App.css';
 
 const App = () => {
   const location = useLocation();
   const [sound, setSound] = useState(firstSound);
   const audioElement = useRef(null);
-
   const [charWeaponPlace, setCharWeaponPlace] = useState({});
-
-  const isFirstSound =
-    location.pathname === '/' || location.pathname === '/medium';
-  // const isSecondSound = location.pathname === '/board';
-  // const isThirdSound = location.pathname === '/win';
-  // const isFourthSound = location.pathname === '/loose';
+  const isHomeMedium = location.pathname === '/' || location.pathname === '/medium';
+  const isBoard = location.pathname === '/board';
+  const isWin = location.pathname === '/win';
+  const isLose = location.pathname === '/lose';
 
   useEffect(() => {
-    if (isFirstSound) {
+    if (isHomeMedium) {
       setSound(firstSound);
+    } else if (isBoard) {
+      setSound(secondSound);
+    } else if (isWin) {
+      setSound(thirdSound);
+    } else if (isLose) {
+      setSound(fourthSound);
     } else {
       setSound(firstSound);
     }
-  }, [isFirstSound]);
-
-  // } else if (isSecondSound) {
-  //   return secondSound;
-  // } else if (isThirdSound) {
-  //   return thirdSound;
-  // } else if (isFourthSound) {
-  //   return fourthSound;
-  // } else {
-  //    firstSound;
-  // }
+  }, [isHomeMedium, isBoard, isWin, isLose]);
 
   return (
     <div className="App">
       <div className="controlAudio">
         <audio
           className="controlAudioStyle"
-          ref={audioElement}
+          // ref={audioElement}
           style={{ position: 'absolute', zIndex: 1 }}
           src={sound}
           controls
+          autoPlay
+          loop
           controlsList="nodownload"
           type="audio/mpeg"
         >
