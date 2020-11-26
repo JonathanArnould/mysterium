@@ -16,9 +16,10 @@
 }
 
 .cardfooter-container img {
-  width: 230px;
-  height: 150px;
-  object-fit: cover;
+  max-height: 225px;
+  width: 450px;
+  height: auto;
+  object-fit: contain;
   padding: 15px;
 }
 

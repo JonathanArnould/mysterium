@@ -12,7 +12,7 @@
   display: flex;
   width: 100%;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   padding-top: 10px;
 }
 
@@ -29,7 +29,8 @@
 }
 
 .avatar-container {
-  margin: auto;
+  margin-top: 20px;
+  margin-left: 180px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -59,7 +60,7 @@ nav a {
 
 .counter {
   font-size: 1.4em;
-  margin: auto;
+  margin-right: 180px;
   color: antiquewhite;
 }
 
@@ -112,13 +113,13 @@ nav a {
   max-width: 70px;
   position: absolute;
   left: 0;
-  top: 2px;
+  top: -33px;
 }
 
 .interroMark {
   position: absolute;
   left: 50%;
-  top: 46%;
+  top: -5px;
   transform: translate(-50%, -50%);
   color: white;
   font-weight: bold;

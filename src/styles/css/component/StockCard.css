@@ -18,7 +18,7 @@
 }
 
 .StockCard.hide {
-  transition: transform 1s 1s;
+  transition: transform 1s;
 }
 
 .immediately.hide,
@@ -78,7 +78,7 @@
 } */
 
 .stockcard-card.show {
-  animation: bounceIn 2s 0.5s both;
+  animation: bounceIn 2s both;
 }
 
 /* ========================

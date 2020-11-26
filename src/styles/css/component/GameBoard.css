@@ -37,10 +37,11 @@ button {
   font-family: var(--font-family-primary);
   color: var(--color-light);
   font-size: 1.5rem;
-  transform: translateY(60px);
+  transform: translate(-50%, -50%);
   border: none;
   outline: none;
   z-index: 100000;
+  left: 50%;
 }
 
 .start button span {

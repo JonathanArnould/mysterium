@@ -58,6 +58,7 @@
 
 .zoomcardleft {
   max-width: 400px;
+  width: 100%;
 }
 
 .zoomcardleft .zoomcard-card img {
@@ -72,4 +73,5 @@
 .zoomcardright {
   min-width: auto;
   max-width: 250px;
+  margin-right: 6%;
 }
