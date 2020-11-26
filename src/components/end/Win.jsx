@@ -33,7 +33,12 @@ const Win = () => {
   const generateDivText = (repeat) => {
     const output = [];
     for (let i = 0; i < repeat; i += 1) {
-      output.push(<div className="text">Enquête résolue !</div>);
+      output.push(
+        <div className="text">
+          Vous avez démasqué l&apos;auteur du crime !<br />
+          L&apos;esprit qui hante ces lieux a enfin trouver le repos...
+        </div>
+      );
     }
 
     return output;

@@ -141,3 +141,15 @@ nav a {
     width: 50px;
   }
 }
+
+.place-step-rotation {
+  transform: translate(-11px, 13px) rotate(90deg);
+}
+
+.murder-step-rotation {
+  transform: translate(-25px, 4px) rotate(180deg);
+}
+
+.first-step-rotation {
+  transform: translate(-15px, -10px) rotate(270deg);
+}
