@@ -283,6 +283,7 @@ const GameBoard = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const handleSetModalIsOpen = () => {
+    gameOn && setTimerActive(!timerActive);
     setModalIsOpen(!modalIsOpen);
   };
 

@@ -107,6 +107,7 @@ nav a {
   text-decoration: none;
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
 
 #crystalBall {
@@ -114,6 +115,7 @@ nav a {
   position: absolute;
   left: 0;
   top: -33px;
+  border-radius: 50%;
 }
 
 .interroMark {
