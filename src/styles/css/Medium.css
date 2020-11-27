@@ -96,7 +96,7 @@
   transform-origin: 50% 50% -482.8427124746px;
 }
 .carousel figure img {
-  width: 90%;
+  width: 50%;
   box-sizing: border-box;
   cursor: pointer;
 }
