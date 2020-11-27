@@ -2,7 +2,7 @@
   background: url('../../images/background_Gameboard.jpg') center no-repeat;
   background-size: cover;
   color: var(--color-light);
-  overflow-x: hidden;
+  overflow: hidden;
   position: relative;
   width: 100%;
   height: 100vh;

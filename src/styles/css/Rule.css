@@ -40,6 +40,7 @@
   right: 0;
   margin-top: 0.1em;
   margin-right: 0.1em;
+  cursor: pointer;
 }
 
 .rule-container > button .svg-inline--fa {
@@ -62,9 +63,16 @@
 
 .image-modal {
   margin: 0 auto;
-  width: 60%;
+  width: 50%;
+  height: 350px;
+  object-fit: cover;
 }
 
+.image-modal-1 {
+  margin: 0 auto;
+  width: 40%;
+  object-fit: cover;
+}
 .paragraphe-modal {
   font-size: 1.5em;
   margin: 0;
@@ -103,4 +111,8 @@
 .slick-next:hover,
 .slick-prev:hover {
   content: none;
+}
+
+.slick-dots {
+  bottom: 0;
 }

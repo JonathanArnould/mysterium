@@ -34,6 +34,7 @@ const GameFooter = () => {
             }`}
           >
             <img
+              className="img-footer"
               src={charWeaponPlace.place && charWeaponPlace.place.content.image}
               alt={charWeaponPlace.place && charWeaponPlace.place.content.name}
             />
@@ -46,6 +47,7 @@ const GameFooter = () => {
             }`}
           >
             <img
+              className="img-footer"
               src={
                 charWeaponPlace.character &&
                 charWeaponPlace.character.content.image
