@@ -1,0 +1,132 @@
+.homePopUpPosition {
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.blurHome {
+  position: absolute;
+  background-color: black;
+  opacity: 0.7;
+  backdrop-filter: blur(10px);
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.homePopUp {
+  z-index: 3;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  text-align: center;
+  width: 332px;
+  padding: 15px 20px;
+  line-height: 35px;
+  background-color: antiquewhite;
+  border-radius: 20px;
+  cursor: default;
+  font-size: 18px;
+  font-family: 'Helvetica', 'Arial';
+  position: relative;
+}
+.buttonSpan {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  color: antiquewhite;
+  font-weight: 900;
+  cursor: pointer;
+  font-size: 15px;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+}
+
+.Home {
+  background-attachment: fixed;
+  background-image: url('../images/backgroundHome.jpg');
+  background-size: cover;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.titleHomeStyle {
+  width: 60%;
+  margin: 4%;
+  margin-top: 10%;
+}
+.titleHome {
+  display: flex;
+  justify-content: center;
+  animation: bounce 2.3s ease infinite alternate;
+}
+@keyframes bounce {
+  from {
+    transform: translateY(8px);
+  }
+  to {
+    transform: translateY(-14px);
+  }
+}
+.inputHome {
+  display: flex;
+  justify-content: center;
+  margin: 2%;
+}
+.inputHomeStyle {
+  padding: 1%;
+  width: 22%;
+}
+.buttonHome {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+}
+.buttonImage {
+  position: absolute;
+  height: 100px;
+  z-index: 1;
+}
+.buttonBackground {
+  width: 150px;
+  height: 50px;
+  background: antiquewhite;
+  position: absolute;
+  top: 27px;
+  border-radius: 10px;
+}
+.buttonBackgroundDisabled {
+  opacity: 40%;
+}
+.buttonHomeStyle {
+  position: absolute;
+  top: 27px;
+  padding: 8px;
+  width: 144px;
+  height: 50px;
+  border-radius: 12px;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: var(--font-family-primary);
+  margin: 0 5px;
+  cursor: pointer;
+  color: #333;
+  background-color: transparent;
+  letter-spacing: 1px;
+  z-index: 1;
+}

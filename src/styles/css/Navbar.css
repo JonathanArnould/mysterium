@@ -1,0 +1,158 @@
+.Navbar {
+  display: flex;
+  justify-content: space-around;
+  height: 80px;
+  font-weight: bold;
+  position: relative;
+  font-family: var(--font-family-primary);
+}
+
+.nav-left,
+.nav-right {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  padding-top: 10px;
+}
+
+.nav-left {
+  margin-right: 100px;
+}
+
+.nav-right {
+  margin-left: 100px;
+}
+
+.nav-item {
+  margin: 0 auto;
+}
+
+.avatar-container {
+  margin-top: 20px;
+  margin-left: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+}
+
+nav .avatar {
+  border-radius: 50%;
+  border: 2px solid #a19149;
+  vertical-align: top;
+  width: 100%;
+  transform: scale(2);
+  margin: 24px;
+}
+
+.nav-pseudo {
+  font-size: 1.6rem;
+  color: antiquewhite;
+}
+
+nav a {
+  color: black;
+  text-decoration: none;
+  display: contents;
+}
+
+.counter {
+  font-size: 1.4em;
+  margin-right: 180px;
+  color: antiquewhite;
+}
+
+.clock-container {
+  position: absolute;
+  top: -30%;
+  left: 50%;
+  max-width: 100px;
+}
+
+.clock {
+  transform: translate(-50%, 35%);
+  max-width: 100%;
+}
+
+.clockhand {
+  position: absolute;
+  top: 72%;
+  left: -8%;
+  width: 35px;
+  height: auto;
+  z-index: 3;
+}
+
+.icon-home {
+  border-radius: 50%;
+  border: 3px solid #a19149;
+  vertical-align: middle;
+  width: 50px;
+  opacity: 1;
+  transition: all 0.3s ease-in;
+}
+
+.icon-home:hover {
+  opacity: 0.7;
+}
+
+.crystalBall-container {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  font-size: 1.6rem;
+  transition: all 0.3s ease-in;
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+#crystalBall {
+  max-width: 70px;
+  position: absolute;
+  left: 0;
+  top: -33px;
+  border-radius: 50%;
+}
+
+.interroMark {
+  position: absolute;
+  left: 50%;
+  top: -5px;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  font-size: 2rem;
+  font-family: cursive;
+  transition: all 0.3s ease-in;
+}
+
+.crystalBall-container:hover .interroMark {
+  font-size: 3rem;
+}
+
+@media screen and (min-width: 768px) {
+  .clock-container {
+    max-width: 150px;
+    top: -40%;
+  }
+
+  .clockhand {
+    width: 50px;
+  }
+}
+
+.place-step-rotation {
+  transform: translate(-11px, 13px) rotate(90deg);
+}
+
+.murder-step-rotation {
+  transform: translate(-25px, 4px) rotate(180deg);
+}
+
+.first-step-rotation {
+  transform: translate(-15px, -10px) rotate(270deg);
+}

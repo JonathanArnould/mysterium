@@ -1,0 +1,47 @@
+.AlertPlayer.modal-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(100%);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.alert-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid var(--color-secondary);
+  width: 100%;
+  max-width: 600px;
+  height: 300px;
+  background-color: var(--color-light);
+  color: var(--color-primary);
+  padding: 16px;
+}
+
+.alert-title {
+  font-size: 1.8em;
+}
+
+.alert-message {
+  font-size: 1.5em;
+  padding: 20px 0;
+}
+
+.alert-button {
+  margin: 60px auto;
+  padding: 16px;
+  border-color: transparent;
+  font-family: inherit;
+  color: inherit;
+  font-size: 1.3em;
+  border-radius: 8px;
+  background-color: var(--color-gray-1);
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+.alert-button:hover {
+  background-color: var(--color-primary);
+  color: var(--color-gray-1);
+}

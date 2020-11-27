@@ -1,0 +1,129 @@
+/* ========================
+      STOCKCARD
+======================== */
+.StockCard {
+  width: 100%;
+  width: 300px;
+  max-width: 300px;
+  height: 350px;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  font-family: cursive;
+  border: 3px solid var(--color-secondary);
+  background-color: var(--color-primary);
+  transition: transform 1s;
+  position: absolute;
+  z-index: 1000;
+}
+
+.StockCard.hide {
+  transition: transform 1s;
+}
+
+.immediately.hide,
+.immediatly.show {
+  transition-delay: 0s;
+}
+
+.StockCard-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.StockCard-container button.hide {
+  display: none;
+}
+
+.StockCard-container button {
+  padding: 10px 25px;
+  background: var(--color-secondary);
+  color: var(--color-gray-1);
+  font-family: var(--font-family-primary);
+  text-decoration: none;
+  position: absolute;
+  border-radius: 0 0 100px 100px;
+  border: none;
+  cursor: pointer;
+  top: 150px;
+}
+
+.StockCard-container button:hover {
+  color: var(--color-primary);
+  background: var(--color-gray-1);
+}
+
+/* ========================
+      CARDS
+======================== */
+
+.stockcard-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stockcard-image {
+  width: 90%;
+  height: auto;
+  cursor: pointer;
+}
+
+.stockcard-image.active {
+  opacity: 0.4;
+}
+
+/* .stockcard-card.hide {
+  animation: bounceOut 1s both;
+} */
+
+.stockcard-card.show {
+  animation: bounceIn 2s both;
+}
+
+/* ========================
+      STOCKCARD LEFT
+======================== */
+.stockcardleft {
+  transform: translateX(-100%);
+  left: 0;
+}
+
+.stockcardleft.show {
+  transform: translateX(2px);
+}
+
+.stockcardleft .open {
+  right: -65px;
+  transform: rotate(270deg);
+}
+
+.stockcardleft .close {
+  left: 267px;
+  transform: rotate(270deg);
+}
+
+/* ========================
+      STOCKCARD RIGHT
+======================== */
+.stockcardright {
+  transform: translateX(100%);
+  right: 0;
+}
+
+.stockcardright.show {
+  transform: translateX(0);
+}
+
+.stockcardright .open {
+  right: 270px;
+  transform: rotate(-270deg);
+}
+.stockcardright .close {
+  left: -68px;
+  transform: rotate(-270deg);
+}
+
+.stockcardright .stockcard-image {
+  width: 75%;
+}

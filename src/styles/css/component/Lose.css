@@ -1,0 +1,197 @@
+/* ========================
+        COMPONENT LOSE
+======================== */
+
+.Lose {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100vh;
+  display: flex;
+  background: url('../../images/bg-end.jpg') no-repeat center;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.Lose .mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: var(--color-dark);
+  opacity: 0.65;
+}
+
+.Lose .loading {
+  position: relative;
+  z-index: 10;
+  margin: 0 auto;
+}
+
+.Lose .loading-text {
+  position: relative;
+  font-size: 3rem;
+  color: var(--color-light);
+  text-align: center;
+  margin-top: 0.75rem;
+  font-family: var(--font-family-primary);
+}
+
+/* =============================
+      CARDS
+  ============================= */
+
+.Lose .cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+.Lose .cards > div {
+  width: 400px;
+  margin: 0 20px;
+  animation: bounceInLeft 2s both;
+  z-index: 100;
+}
+
+.Lose .cards > div > img {
+  width: 100%;
+  height: 300px;
+}
+
+/* =============================
+      REPLAY
+  ============================= */
+
+.replay {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  animation: fadeIn 2s 1s both;
+}
+
+.replay h1 {
+  position: relative;
+  color: var(--color-light);
+  font-family: var(--font-family-primary);
+  font-size: 4rem;
+  transition: all 0.15s ease 0s;
+  z-index: 10;
+}
+
+.replay:hover h1 {
+  transform: translateY(-10px);
+}
+
+.replay button {
+  position: absolute;
+  width: 250px;
+  height: 50px;
+  margin: 0;
+  margin-top: 1.5rem;
+  padding: 0;
+  background: none;
+  font-family: var(--font-family-primary);
+  color: var(--color-light);
+  font-size: 1.5rem;
+  transform: translateY(60px);
+  border: none;
+  outline: none;
+  z-index: 10;
+}
+
+.replay button span {
+  display: block;
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+  cursor: pointer;
+}
+
+.replay button > span:after,
+.replay button > span:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 5px;
+  height: 0;
+  border: 1px solid var(--color-light);
+  border-bottom: none;
+  transition: height 0.15s ease-out, width 0.15s ease-out 0.15s;
+}
+
+.replay button > span:after {
+  left: 50%;
+  border-left: none;
+}
+
+.replay button > span:before {
+  right: 50%;
+  border-right: none;
+}
+
+.replay:hover button > span:after,
+.replay:hover button > span:before {
+  width: calc(50% - 1px);
+  height: calc(100% - 2px);
+  transition: width 0.15s ease-out, height 0.15s ease-out 0.15s;
+}
+
+.replay button > span > span:before,
+.replay button > span > span:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0%;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.replay button > span > span:before {
+  right: 0%;
+}
+
+.replay button > span > span:after {
+  left: 0%;
+}
+
+.replay:hover button > span > span:before,
+.replay:hover button > span > span:after {
+  opacity: 1;
+  border-bottom: 1px solid var(--color-light);
+  width: calc(50%);
+  height: 1px;
+  transition: opacity 0s ease-out 0.29s, width 0.15s ease-out 0.3s;
+}
+
+.replay:hover button > span > span > span {
+  color: var(--color-light);
+}
+
+.replay button > span > span > span:after {
+  content: attr(data-attr-span);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 0%;
+  height: 100%;
+  background: var(--color-light);
+  color: var(--color-dark);
+  white-space: nowrap;
+  text-align: center;
+  margin: auto;
+  overflow: hidden;
+  transition: width 0.2s 0.1s;
+}
+
+.replay button:hover > span > span > span:after {
+  width: 100%;
+}
