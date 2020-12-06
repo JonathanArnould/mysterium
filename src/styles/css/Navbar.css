@@ -5,23 +5,25 @@
   font-weight: bold;
   position: relative;
   font-family: var(--font-family-primary);
+  width: 100vw;
 }
 
 .nav-left,
 .nav-right {
   display: flex;
   width: 100%;
+  height: 15vh;
   align-items: center;
   justify-content: space-around;
   padding-top: 10px;
 }
 
 .nav-left {
-  margin-right: 100px;
+  margin-right: 10vw;
 }
 
 .nav-right {
-  margin-left: 100px;
+  margin-left: 10vw;
 }
 
 .nav-item {
@@ -29,8 +31,8 @@
 }
 
 .avatar-container {
-  margin-top: 20px;
-  margin-left: 180px;
+  margin-top: 10px;
+  margin-left: 5vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -114,7 +116,7 @@ nav a {
   max-width: 70px;
   position: absolute;
   left: 0;
-  top: -33px;
+  top: -50%;
   border-radius: 50%;
 }
 
