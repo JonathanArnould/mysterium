@@ -18,6 +18,7 @@
   background-color: var(--color-light);
   color: var(--color-primary);
   padding: 16px;
+  text-align: center;
 }
 
 .alert-title {

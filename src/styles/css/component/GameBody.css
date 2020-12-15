@@ -1,7 +1,7 @@
 .GameBody {
   display: flex;
   justify-content: space-around;
-  margin-top: 20vh;
+  margin-top: 25vh;
 }
 
 /* =============================
@@ -10,7 +10,8 @@
 .validate button {
   position: absolute;
   left: 50%;
-  width: 250px;
+  top: 45%;
+  width: 210px;
   height: 50px;
   margin: 0;
   padding: 0;
@@ -18,11 +19,10 @@
   font-family: var(--font-family-primary);
   color: var(--color-light);
   font-size: 1.5rem;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -40%);
   border: none;
   outline: none;
   z-index: 10;
-  left: 50%;
 }
 
 .validate button span {
