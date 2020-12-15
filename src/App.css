@@ -3,7 +3,6 @@
 } */
 
 .App {
-  text-align: center;
   font-family: 'IM Fell DW Pica SC', serif;
   padding: 0;
   margin: 0 auto;
@@ -27,4 +26,7 @@ audio::-webkit-media-controls-time-remaining-display {
   width: 150px;
   height: 20px;
   padding: 0px 4px;
+  opacity: 0.5;
 }
+
+@media (min-width: 768px);

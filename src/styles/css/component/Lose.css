@@ -71,13 +71,14 @@
   justify-content: center;
   position: relative;
   animation: fadeIn 2s 1s both;
+  text-align: center;
 }
 
 .replay h1 {
   position: relative;
   color: var(--color-light);
   font-family: var(--font-family-primary);
-  font-size: 4rem;
+  font-size: 2.5rem;
   transition: all 0.15s ease 0s;
   z-index: 10;
 }
