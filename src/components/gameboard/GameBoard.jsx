@@ -17,17 +17,17 @@ const GameBoard = () => {
   const { charWeaponPlace, setCharWeaponPlace } = useContext(MurderContext);
 
   const handleAxios = () => {
-    axios('https://mysterium-game.herokuapp.com/api/characters')
+    axios(`${process.env.REACT_APP_BASE_URL}/api/characters`)
       .then((response) => response.data)
       .then((dataCharacter) => {
         const randomCharacter = Math.floor(
           Math.random() * dataCharacter.length
         );
-        axios('https://mysterium-game.herokuapp.com/api/weapons')
+        axios(`${process.env.REACT_APP_BASE_URL}/api/weapons`)
           .then((response2) => response2.data)
           .then((dataWeapon) => {
             const randomWeapon = Math.floor(Math.random() * dataWeapon.length);
-            axios('https://mysterium-game.herokuapp.com/api/places')
+            axios(`${process.env.REACT_APP_BASE_URL}/api/places`)
               .then((response3) => response3.data)
               .then((dataPlace) => {
                 const randomPlace = Math.floor(
@@ -104,7 +104,7 @@ const GameBoard = () => {
 
   const handleVisions = (type, id, idType) => {
     axios
-      .get(`https://mysterium-game.herokuapp.com/api/visions/${type}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/api/visions/${type}`)
       .then((response4) => response4.data)
       .then((data) =>
         setVisionCards({
@@ -119,7 +119,7 @@ const GameBoard = () => {
 
   const handleChoices = (type) => {
     axios
-      .get(`https://mysterium-game.herokuapp.com/api/${type}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/api/${type}`)
       .then((response5) => response5.data)
       .then((data) =>
         setChoicesCards({

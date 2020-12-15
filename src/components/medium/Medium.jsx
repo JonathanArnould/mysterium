@@ -37,7 +37,7 @@ class Medium extends React.Component {
 
   getMedium() {
     axios
-      .get('https://mysterium-game.herokuapp.com/api/mediums')
+      .get(`${process.env.REACT_APP_BASE_URL}/api/mediums`)
       .then((responses) => responses.data)
       .then((data) =>
         this.setState({
@@ -57,7 +57,7 @@ class Medium extends React.Component {
 
     //
     axios
-      .get('https://mysterium-game.herokuapp.com/api/places')
+      .get(`${process.env.REACT_APP_BASE_URL}/api/places`)
       .then((responses) => responses.data)
       .then((data) => {
         const randomPlaceId = getRandomIntInclusive(1, data.length);
