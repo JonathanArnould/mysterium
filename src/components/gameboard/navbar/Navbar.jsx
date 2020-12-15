@@ -36,8 +36,8 @@ const Navbar = ({ setModalIsOpen, timer }) => {
   }
 
   return (
-    <nav className="Navbar">
-      <div className="nav-left">
+    <div>
+      <nav className="Navbar">
         <div className="avatar-container">
           {player ? (
             <img
@@ -51,30 +51,30 @@ const Navbar = ({ setModalIsOpen, timer }) => {
           <p className="nav-pseudo">{pseudo}</p>
         </div>
 
-        <span className="nav-item counter">
-          {!timer ? 'Temps écoulé!' : `: ${timer}`}
-        </span>
-      </div>
+        <div className="nav-item counter">
+          <span> {!timer ? 'Temps écoulé!' : `: ${timer}`}</span>
+        </div>
 
-      <div className="clock-container">
-        <img className="clock" src={clock} alt="clock" />
-        <img className={classClockHand} src={clockhand} alt="clockhand" />
-      </div>
+        <div className="clock-container">
+          <img className="clock" src={clock} alt="clock" />
+          <img className={classClockHand} src={clockhand} alt="clockhand" />
+        </div>
 
-      <div className="nav-right">
-        <Link to="/">
-          <img className="nav-item icon-home" src={home} alt="home" />
-        </Link>
-        <button
-          type="button"
+        <div>
+          <Link to="/">
+            <img className="nav-item icon-home" src={home} alt="home" />
+          </Link>
+        </div>
+
+        <div
           className="nav-item crystalBall-container"
           onClick={setModalIsOpen}
         >
           <img id="crystalBall" src={crystalBall} alt="crystal ball" />
           <span className="interroMark">?</span>
-        </button>
-      </div>
-    </nav>
+        </div>
+      </nav>
+    </div>
   );
 };
 

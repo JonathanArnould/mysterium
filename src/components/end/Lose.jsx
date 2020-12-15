@@ -29,9 +29,9 @@ const Lose = () => {
       </div>
 
       <div className="replay">
-        <h1>
-          Le coupable court toujours! <br /> L'esprit qui hante ces lieux ne
-          trouvera pas la paix!
+        <h1 className="end-title">
+          Le coupable court toujours! <br /> L&apos;esprit qui hante ces lieux
+          ne trouvera pas la paix!
         </h1>
         <button type="button" onClick={handleGameover}>
           <span>
