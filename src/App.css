@@ -27,4 +27,7 @@ audio::-webkit-media-controls-time-remaining-display {
   width: 150px;
   height: 20px;
   padding: 0px 4px;
+  opacity: 0.5;
 }
+
+@media (min-width: 768px);

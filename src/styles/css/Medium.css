@@ -2,7 +2,7 @@
   background-attachment: fixed;
   background: url('../images/backgroundMedium.jpg') center no-repeat;
   background-size: cover;
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
 }
 .titleMedium {
