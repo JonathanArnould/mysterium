@@ -199,6 +199,7 @@
 @media screen and (min-width: 992px) {
   .Lose {
     justify-content: center;
+    padding-top: 0;
   }
   .Lose .cards {
     margin-bottom: 4rem;
