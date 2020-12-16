@@ -4,7 +4,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-top: 50px;
   background: url('../../images/bg-end.jpg') no-repeat center;
   background-size: cover;
   overflow: hidden;
@@ -48,7 +49,7 @@
 }
 
 .Win .cards > .cards-container > div {
-  width: 400px;
+  width: 300px;
   margin: 0 20px;
   z-index: 100;
 }
@@ -63,15 +64,35 @@
 
 .Win .cards .cards-container > div > img {
   width: 100%;
-  height: 300px;
+  height: 200px;
 }
 
+@media screen and (min-width: 992px) {
+  .Win {
+    justify-content: center;
+  }
+  .Win .cards {
+    margin-bottom: 4rem;
+  }
+
+  .Win .cards > .cards-container > div {
+    width: 400px;
+  }
+
+  .Win .cards .cards-container > div > img {
+    height: 300px;
+  }
+
+  .win-text .text {
+    font-size: 2.4 rem;
+  }
+}
 /* =============================
     END TEXT
 ============================= */
 .Win .win-text {
   margin-top: 4rem;
-  font-size: 5rem;
+  font-size: 2rem;
   font-family: var(--font-family-primary);
 }
 
@@ -83,7 +104,7 @@
   opacity: 0;
   transform: translate(-50%, -50%);
   mix-blend-mode: screen;
-  font-size: 2.4rem;
+  font-size: 2rem;
 }
 
 .win-text .text:nth-child(1) {
