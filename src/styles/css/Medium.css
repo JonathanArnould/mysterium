@@ -118,8 +118,11 @@
 /* ______________________Media Query____________________________ */
 
 @media screen and (min-width: 500px) and (max-width: 990px) {
+  .carousel {
+    padding: 3vh 0 0 0;
+  }
   .carousel figure {
-    width: 350px;
+    width: 300px;
   }
   .titleMedium {
     margin-top: 30px;
