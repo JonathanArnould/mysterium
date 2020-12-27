@@ -105,7 +105,7 @@
 .slick-arrow.slick-prev {
   background-image: url('../images/aiguille-prev.png');
   background-repeat: no-repeat;
-
+  z-index: 1;
   background-position: left;
   left: 0;
 }
