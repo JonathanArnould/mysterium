@@ -11,9 +11,10 @@
 .rule-container {
   background-image: url('../../styles/images/image.jpg');
   margin: 0 auto;
-  padding: 4em;
+  padding-bottom: 100px;
   width: 70%;
-  height: 700px;
+  max-height: 600px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -50,43 +51,47 @@
 /* ---------- */
 
 .title-modal {
-  font-size: 3em;
+  font-size: 2em;
   margin: 0;
+  padding: 10px;
 }
 
 .subtitle-modal {
-  font-size: 2em;
+  font-size: 1.5em;
   margin: 0;
-  padding: 0.5em;
+  padding: 10px;
   text-align: center;
 }
 
 .image-modal {
   margin: 0 auto;
   width: 50%;
-  height: 350px;
+  height: auto;
+  max-height: 320px;
   object-fit: cover;
 }
 
 .image-modal-1 {
-  margin: 0 auto;
+  margin: 20px auto;
   width: 40%;
   object-fit: cover;
 }
 .paragraphe-modal {
-  font-size: 1.5em;
+  font-size: 1.3em;
   margin: 0;
-  padding: 1em 3em;
+  padding: 10px;
   text-align: center;
 }
 
 .slick-slider {
   width: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .slick-arrow {
-  width: 200px;
+  width: 120px;
   height: 100px;
 }
 
@@ -94,13 +99,15 @@
   background-image: url('../images/aiguille-next.png');
   background-repeat: no-repeat;
   background-position: right;
+  right: 0;
 }
 
 .slick-arrow.slick-prev {
   background-image: url('../images/aiguille-prev.png');
   background-repeat: no-repeat;
-  z-index: 1;
+
   background-position: left;
+  left: 0;
 }
 
 .slick-arrow.slick-next:before,
@@ -114,5 +121,5 @@
 }
 
 .slick-dots {
-  bottom: 0;
+  bottom: -5px;
 }
