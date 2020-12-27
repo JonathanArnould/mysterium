@@ -151,6 +151,7 @@ const GameBoard = () => {
 
   // SECOND CHANCE
   const handleSecondChance = () => {
+    setOpen(true);
     setTimeLeft(60);
     setAlertUser(true);
     setSecondChance(true);
@@ -198,13 +199,13 @@ const GameBoard = () => {
   // MODALE TRANSITION
   const [alertUser, setAlertUser] = useState(false);
   const [secondChance, setSecondChance] = useState(false);
+  const [open, setOpen] = useState(false);
   const [chanceOn, setChanceOn] = useState(false);
   const handleAlert = () => {
     setAlertUser(false);
     setTimerActive(true);
   };
   const handleValidation = () => {
-    console.log(choices, charWeaponPlace);
     if (count === 0) {
       if (choices === charWeaponPlace.weapon.content.id) {
         setTimerActive(false);
@@ -280,13 +281,14 @@ const GameBoard = () => {
   };
 
   // GESTION MODALE TUTO
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(true);
 
   const handleSetModalIsOpen = () => {
     gameOn && setTimerActive(!timerActive);
     setModalIsOpen(!modalIsOpen);
   };
 
+  console.log(open);
   return (
     <div className={`GameBoard${modalIsOpen ? ' is-open' : ''}`}>
       <ChoiceContext.Provider value={{ choiceContextValue, updateChoice }}>
@@ -313,6 +315,7 @@ const GameBoard = () => {
             secondChance={secondChance}
             handleValidation={handleValidation}
             gameOn={gameOn}
+            openStockcard={{ open, setOpen }}
           />{' '}
           {modalIsOpen && <Rule setModalIsOpen={handleSetModalIsOpen} />}
           {alertUser && (

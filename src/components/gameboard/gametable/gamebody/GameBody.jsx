@@ -13,21 +13,23 @@ const GameBody = ({
   secondChance,
   handleValidation,
   gameOn,
+  openStockcard,
 }) => {
   const { weapons, places, characters } = visionCards;
   const [leftCards] = useState({ items: [], activeItem: null });
   const { setStep, ...step } = useContext(StepContext);
+  const { open, setOpen } = openStockcard;
 
   /**
    * Show or hide the current stockcard
    *
    * @param {object} stockcard  Element with the StockCard class
    */
+
   const hideOrShowStockcard = (stockcard) => {
     // stockcard.classList.toggle('hide');
     stockcard.classList.toggle('show');
   };
-
   /**
    * Show or hide the images of the current stockcard
    *
@@ -176,7 +178,7 @@ const GameBody = ({
         content={zoomCardVisions && zoomCardVisions}
       />
       <StockCard
-        className="stockcardright hide"
+        className={open ? 'stockcardright show' : 'stockcardright hide'}
         content={stockcardVisions}
         hideOrShowStockcard={hideOrShowStockcard}
         hideOrShowCard={hideOrShowCard}
