@@ -21,18 +21,9 @@
   transition: transform 1s;
 }
 
-.immediately.hide,
-.immediatly.show {
-  transition-delay: 0s;
-}
-
 .StockCard-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-}
-
-.StockCard-container button.hide {
-  display: none;
 }
 
 .StockCard-container button {

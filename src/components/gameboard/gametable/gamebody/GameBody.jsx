@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import StepContext from '../../StepContext';
-/* import ChoiceContext from '../../ChoiceContext'; */
+import StockcardContext from '../../StockcardContext';
 import StockCard from './StockCard';
 import ZoomCard from './ZoomCard';
 import '../../../../styles/css/component/GameBody.css';
@@ -13,51 +13,11 @@ const GameBody = ({
   secondChance,
   handleValidation,
   gameOn,
-  openStockcard,
 }) => {
   const { weapons, places, characters } = visionCards;
   const [leftCards] = useState({ items: [], activeItem: null });
   const { setStep, ...step } = useContext(StepContext);
-  const { open, setOpen } = openStockcard;
-
-  /**
-   * Show or hide the current stockcard
-   *
-   * @param {object} stockcard  Element with the StockCard class
-   */
-
-  const hideOrShowStockcard = (stockcard) => {
-    // stockcard.classList.toggle('hide');
-    stockcard.classList.toggle('show');
-  };
-  /**
-   * Show or hide the images of the current stockcard
-   *
-   * @param {HTMLCollection} stockcardCards  Container  Element of each image of the current stockard which have class stockcard-card
-   */
-  const hideOrShowCard = (stockcardCards) => {
-    Object.values(stockcardCards).forEach((card) => {
-      if (card.classList.contains('stockcard-card')) {
-        // card.classList.toggle('hide');
-        card.classList.toggle('show');
-      }
-    });
-  };
-
-  /**
-   * Change the label of the button that opens or closes the current stockcard
-   *
-   * @param {object} currentElement  The clicked item
-   */
-  const changeButtonLabel = (currentElement) => {
-    if (currentElement.classList.contains('open')) {
-      currentElement.nextSibling.classList.toggle('hide');
-      currentElement.classList.toggle('hide');
-    } else {
-      currentElement.parentNode.children[0].classList.toggle('hide');
-      currentElement.classList.toggle('hide');
-    }
-  };
+  const { stockCardOpen, setStockCardOpen } = useContext(StockcardContext);
 
   let firstImageVision;
   let firstImageChoice;
@@ -94,7 +54,11 @@ const GameBody = ({
         handleZoom={() => handleZoomVisions(card)}
         key={card.id}
         card={card}
-        className="stockcard-card hide"
+        className={
+          stockCardOpen.stockcardright === 'stockcardright'
+            ? 'stockcard-card show'
+            : 'stockcard-card hide'
+        }
         id={`stockcard-vision-${index + 5}`}
         classNameImage="stockcard-image"
       />
@@ -111,7 +75,11 @@ const GameBody = ({
         handleZoom={() => handleZoomChoices(card)}
         key={card.id}
         card={card}
-        className="stockcard-card hide"
+        className={
+          stockCardOpen.stockcardleft === 'stockcardleft'
+            ? 'stockcard-card show'
+            : 'stockcard-card hide'
+        }
         id={`stockcard-choice-${index + 1}`}
         classNameImage={`stockcard-image ${
           leftCards.activeItem === card.name ? 'active' : ''
@@ -122,8 +90,6 @@ const GameBody = ({
 
   let stockcardVisions;
   let stockcardChoices;
-
-  /* const { updateChoice, ...choices } = useContext(ChoiceContext); */
 
   if (step.step1) {
     stockcardVisions = !secondChance
@@ -147,9 +113,6 @@ const GameBody = ({
       <StockCard
         className="stockcardleft"
         content={stockcardChoices}
-        hideOrShowStockcard={hideOrShowStockcard}
-        hideOrShowCard={hideOrShowCard}
-        changeButtonLabel={changeButtonLabel}
         gameOn={gameOn}
       />
       <ZoomCard
@@ -178,11 +141,8 @@ const GameBody = ({
         content={zoomCardVisions && zoomCardVisions}
       />
       <StockCard
-        className={open ? 'stockcardright show' : 'stockcardright hide'}
+        className="stockcardright"
         content={stockcardVisions}
-        hideOrShowStockcard={hideOrShowStockcard}
-        hideOrShowCard={hideOrShowCard}
-        changeButtonLabel={changeButtonLabel}
         gameOn={gameOn}
       />
     </div>
