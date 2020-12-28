@@ -36,7 +36,7 @@
   border-radius: 0 0 100px 100px;
   border: none;
   cursor: pointer;
-  top: 150px;
+  top: 155px;
 }
 
 .StockCard-container button:hover {
@@ -85,12 +85,7 @@
 }
 
 .stockcardleft .open {
-  right: -65px;
-  transform: rotate(270deg);
-}
-
-.stockcardleft .close {
-  left: 267px;
+  right: -66px;
   transform: rotate(270deg);
 }
 
@@ -107,11 +102,7 @@
 }
 
 .stockcardright .open {
-  right: 270px;
-  transform: rotate(-270deg);
-}
-.stockcardright .close {
-  left: -68px;
+  right: 266px;
   transform: rotate(-270deg);
 }
 
