@@ -1,44 +1,55 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import StockcardContext from '../../StockcardContext';
 import PropTypes from 'prop-types';
 import '../../../../styles/css/component/StockCard.css';
 
-const StockCard = ({
-  className,
-  id,
-  content,
-  hideOrShowStockcard,
-  hideOrShowCard,
-  changeButtonLabel,
-  gameOn,
-}) => {
+const StockCard = ({ className, id, content, gameOn, openStockcard }) => {
+  const {
+    stockCardOpen,
+    setStockCardOpen,
+    displayStockcard,
+    setDisplayStockcard,
+  } = useContext(StockcardContext);
+
   const handleClick = (e) => {
-    const cards = e.target.parentNode.children;
-    const stockcard = e.target.parentNode.parentNode;
-    const currentElement = e.target;
-
-    hideOrShowCard(cards);
-    hideOrShowStockcard(stockcard);
-
-    if (content === undefined) {
-      stockcard.classList.add('immediately');
+    if (stockCardOpen[e.target.name] === e.target.name) {
+      setStockCardOpen({ ...stockCardOpen, [e.target.name]: '' });
+    } else {
+      setStockCardOpen({ ...stockCardOpen, [e.target.name]: e.target.name });
     }
-
-    changeButtonLabel(currentElement);
   };
 
+  // when help modal is closed, visions stockcard is open:
+  useEffect(() => {
+    if (displayStockcard === true) {
+      setStockCardOpen({ ...stockCardOpen, stockcardright: 'stockcardright' });
+      setDisplayStockcard(false);
+    }
+  }, [displayStockcard]);
+
+  const stateButton = gameOn ? 'open' : 'hide';
+
+  const stateStockcard =
+    stockCardOpen.stockcardright === className ||
+    stockCardOpen.stockcardleft === className
+      ? 'show'
+      : '';
+
   return (
-    <div className={`StockCard ${className}`}>
+    <div className={`StockCard ${className} ${stateStockcard}`}>
       <div className="StockCard-container" id={id}>
         <button
           type="button"
-          className={gameOn ? 'open' : 'open hide'}
+          name={className}
+          className={`stockcardButton ${stateButton}`}
           onClick={handleClick}
         >
-          OPEN
+          {stockCardOpen.stockcardright === className ||
+          stockCardOpen.stockcardleft === className
+            ? 'CLOSE'
+            : 'OPEN'}
         </button>
-        <button type="button" className="close hide" onClick={handleClick}>
-          CLOSE
-        </button>
+
         {content}
       </div>
     </div>
@@ -49,18 +60,12 @@ StockCard.defaultProps = {
   className: null,
   id: null,
   content: null,
-  hideOrShowStockcard: null,
-  hideOrShowCard: null,
-  changeButtonLabel: null,
 };
 
 StockCard.propTypes = {
   className: PropTypes.string,
   content: PropTypes.string,
   id: PropTypes.string,
-  hideOrShowStockcard: PropTypes.func,
-  hideOrShowCard: PropTypes.func,
-  changeButtonLabel: PropTypes.func,
 };
 
 export default StockCard;

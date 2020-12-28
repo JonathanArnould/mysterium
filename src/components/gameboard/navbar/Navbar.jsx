@@ -17,6 +17,7 @@ const Navbar = ({ setModalIsOpen, timer }) => {
   }, []);
 
   const [pseudo, setPseudo] = useState('');
+  const [description, setDescription] = useState('');
 
   useEffect(() => {
     const username = localStorage.getItem('username');
@@ -60,18 +61,30 @@ const Navbar = ({ setModalIsOpen, timer }) => {
           <img className={classClockHand} src={clockhand} alt="clockhand" />
         </div>
 
-        <div>
+        <div
+          className="nav-item home-container"
+          onMouseEnter={() => setDescription('Home')}
+          onMouseLeave={() => setDescription('')}
+        >
           <Link to="/">
             <img className="nav-item icon-home" src={home} alt="home" />
           </Link>
+          {description === 'Home' && (
+            <div className="description-home">{description}</div>
+          )}
         </div>
 
         <div
           className="nav-item crystalBall-container"
           onClick={setModalIsOpen}
+          onMouseEnter={() => setDescription('Help')}
+          onMouseLeave={() => setDescription('')}
         >
           <img id="crystalBall" src={crystalBall} alt="crystal ball" />
           <span className="interroMark">?</span>
+          {description === 'Help' && (
+            <div className="description-help">{description}</div>
+          )}
         </div>
       </nav>
     </div>

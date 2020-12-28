@@ -43,7 +43,7 @@ const App = () => {
         <audio
           className="controlAudioStyle"
           // ref={audioElement}
-          style={{ position: 'absolute', zIndex: 1 }}
+          style={{ position: 'absolute', zIndex: 200000 }}
           src={sound}
           controls
           autoPlay
