@@ -1,7 +1,7 @@
 .GameBody {
   display: flex;
   justify-content: space-around;
-  margin-top: 25vh;
+  margin-top: 20vh;
 }
 
 /* =============================
@@ -116,4 +116,10 @@
 
 .validate button:hover > span > span > span:after {
   width: 100%;
+}
+
+@media screen and (min-width: 992px) {
+  .GameBody {
+    margin-top: 25vh;
+  }
 }

@@ -4,6 +4,7 @@ import axios from 'axios';
 import MurderContext from './MurderContext';
 import ChoiceContext from './ChoiceContext';
 import StepContext from './StepContext';
+import StockcardContext from './StockcardContext';
 import Navbar from './navbar/Navbar';
 import GameFooter from './gamefooter/GameFooter';
 import '../../styles/css/component/GameBoard.css';
@@ -15,6 +16,21 @@ const GameBoard = () => {
   // COMBINAISON GAGNANTE WEAPON PLACE CHARACTER
 
   const { charWeaponPlace, setCharWeaponPlace } = useContext(MurderContext);
+
+  const [stockCardOpen, setStockCardOpen] = useState({
+    stockcardright: '',
+    stockcardleft: '',
+  });
+
+  // Display visions stockcard when help modal is closed:
+  const [displayStockcard, setDisplayStockcard] = useState(false);
+
+  const stockcardContextValue = {
+    stockCardOpen,
+    setStockCardOpen,
+    displayStockcard,
+    setDisplayStockcard,
+  };
 
   const handleAxios = () => {
     axios(`${process.env.REACT_APP_BASE_URL}/api/characters`)
@@ -151,6 +167,7 @@ const GameBoard = () => {
 
   // SECOND CHANCE
   const handleSecondChance = () => {
+    setDisplayStockcard(true);
     setTimeLeft(60);
     setAlertUser(true);
     setSecondChance(true);
@@ -198,13 +215,13 @@ const GameBoard = () => {
   // MODALE TRANSITION
   const [alertUser, setAlertUser] = useState(false);
   const [secondChance, setSecondChance] = useState(false);
+
   const [chanceOn, setChanceOn] = useState(false);
   const handleAlert = () => {
     setAlertUser(false);
     setTimerActive(true);
   };
   const handleValidation = () => {
-    console.log(choices, charWeaponPlace);
     if (count === 0) {
       if (choices === charWeaponPlace.weapon.content.id) {
         setTimerActive(false);
@@ -280,7 +297,7 @@ const GameBoard = () => {
   };
 
   // GESTION MODALE TUTO
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(true);
 
   const handleSetModalIsOpen = () => {
     gameOn && setTimerActive(!timerActive);
@@ -291,38 +308,40 @@ const GameBoard = () => {
     <div className={`GameBoard${modalIsOpen ? ' is-open' : ''}`}>
       <ChoiceContext.Provider value={{ choiceContextValue, updateChoice }}>
         <StepContext.Provider value={{ ...step, setStep }}>
-          <Navbar
-            setModalIsOpen={handleSetModalIsOpen}
-            modalIsOpen={modalIsOpen}
-            timer={timeLeft}
-          />
-          {!gameOn && (
-            <div className="start">
-              <button type="button" className="button-1" onClick={startGame}>
-                <span>
-                  <span>
-                    <span data-attr-span="Commencer">Commencer</span>
-                  </span>
-                </span>
-              </button>
-            </div>
-          )}
-          <GameBody
-            visionCards={visionCards && visionCards}
-            choicesCards={choicesCards && choicesCards}
-            secondChance={secondChance}
-            handleValidation={handleValidation}
-            gameOn={gameOn}
-          />{' '}
-          {modalIsOpen && <Rule setModalIsOpen={handleSetModalIsOpen} />}
-          {alertUser && (
-            <AlertPlayer
-              count={count}
-              handleAlert={handleAlert}
-              chance={chanceOn}
+          <StockcardContext.Provider value={stockcardContextValue}>
+            <Navbar
+              setModalIsOpen={handleSetModalIsOpen}
+              modalIsOpen={modalIsOpen}
+              timer={timeLeft}
             />
-          )}
-          <GameFooter />
+            {!gameOn && (
+              <div className="start">
+                <button type="button" className="button-1" onClick={startGame}>
+                  <span>
+                    <span>
+                      <span data-attr-span="Commencer">Commencer</span>
+                    </span>
+                  </span>
+                </button>
+              </div>
+            )}
+            <GameBody
+              visionCards={visionCards && visionCards}
+              choicesCards={choicesCards && choicesCards}
+              secondChance={secondChance}
+              handleValidation={handleValidation}
+              gameOn={gameOn}
+            />{' '}
+            {modalIsOpen && <Rule setModalIsOpen={handleSetModalIsOpen} />}
+            {alertUser && (
+              <AlertPlayer
+                count={count}
+                handleAlert={handleAlert}
+                chance={chanceOn}
+              />
+            )}
+            <GameFooter />
+          </StockcardContext.Provider>
         </StepContext.Provider>
       </ChoiceContext.Provider>
     </div>
