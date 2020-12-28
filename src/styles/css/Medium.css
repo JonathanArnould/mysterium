@@ -3,7 +3,8 @@
   background: url('../images/backgroundMedium.jpg') center no-repeat;
   background-size: cover;
   height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .titleMedium {
   margin-top: 3%;
