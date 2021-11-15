@@ -1,19 +1,3 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#MYSTERIUM
 
-## Getting started
-
-```bash
-$ cd my-app 
-$ npm install
-$ npm start
-```
-
-## Why this template over create-react-app ?
-
-This template provide :
-
-- ESLint AirBnB/Prettier configuration
-- Prettier configuration
-- Pre-commit prettifying
-- Pre-commit linting check
-- Pull request linting check (thanks to Github Action)
+A group project carried out during my training as a React developer. The goal was to create a web browser version of the Mysterium board game.
